@@ -1,0 +1,44 @@
+day one, June 29th:
+- idea for game
+- get a general layout of diferent scenes
+- what each scene should contain
+
+
+
+day two, June 30th:
+- have one scene for menus instead of a lot of different scenes
+- add general layout of main menu and other menus and of match
+- got most of the main menu to function on a basic level (move between menus)
+- added a contact dev but no actual mail sent yet.
+
+
+
+
+day three, July 1st:
+- drew a pile of coins for purse and in game revenue
+- added classes for Race,Type(ENUMS) character and cards, added 2 basic cards and one Heroic card
+- added shop view
+- started working on MatchUI
+- added abilities and interface for abilities.
+	Ideas for future:
+	- use designPatterns whenever possible: composition, factory etc.
+	- Singleton for Heroic cards? maybe not needed since it is not in random or saved deck anyway
+
+day four, July 2nd:
+- learned about ScriptableObjects
+- changed cards to SO
+- created some abilities as SO
+- created some cards as SO
+- created a cardDataBase as SO with 3 instantiations: random,saved,owned
+- basic card graphics(not prefab yet)
+
+day five. July 3rd:
+- created UI for decks using horizontal layout
+- Saved deck changes during play but gets restarted at the end via copy
+- Saved deck has a button on top of it, and depth changes according to how many cards are left in it
+- Button should stop once hand is Full (started doing it but not in new version)
+- added hand layout
+- cards drawn from Saved deck appear in hand layout.
+- changed displayCard to not include a card and erased start function
+
+day six, July 4th;
