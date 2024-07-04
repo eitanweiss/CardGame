@@ -42,3 +42,4 @@ day five. July 3rd:
 - changed displayCard to not include a card and erased start function
 
 day six, July 4th;
+- start git repo so no more entries here
