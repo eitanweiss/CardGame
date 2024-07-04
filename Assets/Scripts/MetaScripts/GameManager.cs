@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject [] SavedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
-
-
+    public TurnSystem turnSystem;
 
     public void DeckImage()
     {
@@ -76,6 +75,8 @@ public class GameManager : MonoBehaviour
             drawCardFromSavedDeck.gameObject.SetActive(false);
         }
     }
-
-
+    public void TurnControl()
+    {
+        turnSystem.EndPhase();
+    }
 }
