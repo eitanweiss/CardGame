@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
     public bool isMyTurn = true;
-    public TMP_Text text; 
+    public TMP_Text text;
+    public Button phaseButton;
     enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
     Phase phase;
 
@@ -16,19 +18,24 @@ public class TurnSystem : MonoBehaviour
         {
             case Phase.Draw:
                 phase = Phase.PlayBuff;
+                phaseButton.GetComponent<Text>().text = "Buff Phase";
                 break;
             case Phase.PlayBuff: phase = 
                 Phase.PlayCard;
+                phaseButton.GetComponent<Text>().text = "Card Phase";
                 break;
             case Phase.PlayCard:
-                phase = Phase.Discard; 
+                phase = Phase.Discard;
+                phaseButton.GetComponent<Text>().text = "Discard";
                 break;
             case Phase.Discard: 
                 phase = Phase.OpponentDraw;
+                phaseButton.GetComponent<Text>().text = "End Turn";
                 isMyTurn = false;
                 break;
             case Phase.OpponentDraw:
                 phase = Phase.OpponentPlayBuff;
+                phaseButton.GetComponent<Text>().text = "Opponent's Turn";
                 break;
             case Phase.OpponentPlayBuff:
                 phase = Phase.OpponentPlayCard;
