@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
@@ -9,7 +11,7 @@ public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         if (transform.parent.name == "Hand")
         {
-            Debug.Log("entering card");
+            Debug.Log("entering card" + this.GetComponent<DisplayCard>().nameText.text);
             this.transform.position = new Vector2(transform.position.x,transform.position.y+150f);
         }
     }
@@ -18,8 +20,13 @@ public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         if (transform.parent.name == "Hand")
         {
-            Debug.Log("leaving card");
+            Debug.Log("leaving card" + this.GetComponent<DisplayCard>().nameText.text);
             this.transform.position = new Vector2(transform.position.x, transform.position.y - 150f);
         }
+        //might be really heavy and not needed
+        //problem it solves: when dragging card A back to hand over card B, mouse enters card B , and after release of card A
+        // card A is reentered into hand layout, thereby resetting the position of cardB, so when mouse leaves card B
+        // it moves down and out of line with other cards
+        LayoutRebuilder.MarkLayoutForRebuild(transform.parent.GetComponent<RectTransform>());   
     }
 }

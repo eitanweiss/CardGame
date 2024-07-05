@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public Hand hand;
     public Button drawCardFromSavedDeck;
     public TurnSystem turnSystem;
-
     public void DeckImage()
     {
         if (savedCardDB.cards.Count < 30)
