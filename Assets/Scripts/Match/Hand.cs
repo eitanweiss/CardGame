@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
+    //get maxslots from character in future
+    public int maxslots=5;
     public int availablePlayerHandCardSlots;
     public List<Card> handCards = new List<Card>();
     public GameObject cardPrefab;
 
     public void AddCard(Card card)
     {
-        availablePlayerHandCardSlots--;
+
+        availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
         handCards.Add(card);
         Debug.Log("Added " +card.cardName + " to hand");
         //only what is related to hand
