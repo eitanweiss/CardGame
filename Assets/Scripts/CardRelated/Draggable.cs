@@ -8,6 +8,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
     public Transform transformToReturnTo;
     Vector2 offset;
     private CanvasGroup canvasGroup;
+    public bool isBeingDragged;
 
     void Awake ()
     {
@@ -16,6 +17,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
     public void OnBeginDrag(PointerEventData eventData)
     {
         //evemtData is Vector2 so need to cast it to 3D
+        isBeingDragged = true;
         offset = new Vector3(eventData.position.x,eventData.position.y,transform.position.z) - transform.position;
         transformToReturnTo = this.transform.parent;
         transform.SetParent(transform.parent.parent);
@@ -34,6 +36,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
         //if over drop zone don't reset parent?
         transform.SetParent(transformToReturnTo);
         canvasGroup.blocksRaycasts = true;
+        isBeingDragged=false;
         Debug.Log("Drag end!");
     }
 

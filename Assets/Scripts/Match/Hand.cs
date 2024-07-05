@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Hand : MonoBehaviour
 {
     //get maxslots from character in future
-    public int maxslots=5;
+    public int maxslots;
     public int availablePlayerHandCardSlots;
     public List<Card> handCards = new List<Card>();
     public GameObject cardPrefab;
@@ -15,7 +15,6 @@ public class Hand : MonoBehaviour
     public void AddCard(Card card)
     {
 
-        availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
         handCards.Add(card);
         Debug.Log("Added " +card.cardName + " to hand");
         //only what is related to hand
@@ -26,6 +25,7 @@ public class Hand : MonoBehaviour
         GameObject cardGO = Instantiate(cardPrefab, transform);
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
+        availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
     }
 
 

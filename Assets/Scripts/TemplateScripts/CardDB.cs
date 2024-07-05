@@ -28,7 +28,7 @@ public class CardDB : ScriptableObject
     public Card Draw()
     {
         Card card = cards[0];
-        Debug.Log(card.cardName);
+        //Debug.Log(card.cardName);
         return card;
     }
 }
