@@ -14,7 +14,7 @@ public class Card : ScriptableObject
     public Sprite image;//image
     public List<Ability> abilities;//what the card does
     public List<int> abilityValues;//how much it does for every ability
-    public enum Rarity { Common, Uncommon, Rare, Elite, Epic, Legendary, Mythical, Unique, Special, Relic, Heroic }
+    public enum Rarity { Common, Uncommon, Rare, Elite, Epic, Legendary, Mythical, Unique, Special, Relic, Heroic }//whatever
     public Rarity rarity; 
     public Type type; //Ranged,Fighter,Caster
     public Race race; //Human,Elf,Orc,Dwarf

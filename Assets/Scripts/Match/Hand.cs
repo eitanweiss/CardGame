@@ -9,25 +9,33 @@ public class Hand : MonoBehaviour
     //get maxslots from character in future
     public int maxslots;
     public int availablePlayerHandCardSlots;
-    public List<Card> handCards = new List<Card>();
+    public DropZone dropZone;
     public GameObject cardPrefab;
 
-    public void AddCard(Card card)
+    public void AddCardFromDeck(CardObject cardObj)
     {
-
-        handCards.Add(card);
-        Debug.Log("Added " +card.cardName + " to hand");
+        dropZone.AddCard(cardObj);
+        Debug.Log("Added " +cardObj.card.cardName + " to hand");
         //only what is related to hand
         //when i draw a card from a deck
         //display card in leftmost available slot
         //decrease number of available slots
 
         GameObject cardGO = Instantiate(cardPrefab, transform);
+        CardObject newCardObj = cardGO.AddComponent<CardObject>();
+        newCardObj.card = cardObj.card;
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
-        displayCard.SetCard(card);
+        displayCard.SetCard(cardObj.card);
         availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
     }
+    public void RemoveCard(CardObject cardObj)
+    {
 
+
+
+        //
+        dropZone.handCards.Remove(cardObj);
+    }
 
     void Start()
     {

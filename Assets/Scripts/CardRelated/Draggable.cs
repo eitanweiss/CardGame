@@ -18,6 +18,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
         //eventData is Vector2 so need to cast it to 3D
         offset = new Vector3(eventData.position.x,eventData.position.y,transform.position.z) - transform.position;
         transformToReturnTo = this.transform.parent;
+        transform.parent.GetComponent<DropZone>().RemoveCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and remove card from list
         transform.SetParent(transform.parent.parent);
         canvasGroup.blocksRaycasts = false;
         Debug.Log("Start drag!");
@@ -33,6 +34,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
         //if over drop zone don't reset parent?
         transform.SetParent(transformToReturnTo);
         canvasGroup.blocksRaycasts = true;
+        transform.parent.GetComponent<DropZone>().AddCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and add card to list
         Debug.Log("Drag end!" + this.GetComponent<DisplayCard>().nameText.text);
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
+    public List<CardObject> handCards = new List<CardObject>();
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop");
@@ -13,6 +14,24 @@ public class DropZone : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<Draggable>().transformToReturnTo = transform;
             //eventData.pointerDrag.GetComponent<RectTransform>().parent.SetParent(transform);?
             Debug.Log("set Parent to new zone");
+        }
+    }
+
+    public void AddCard(CardObject card)
+    {
+        handCards.Add(card);
+        if(transform.name =="PlayField")
+        {
+            transform.GetComponent<PayMana>().DecreaseMana(card);
+        }
+    }
+
+    public void RemoveCard(CardObject card)
+    {
+        handCards.Remove(card);
+        if (transform.name == "PlayField")
+        {
+            transform.GetComponent<PayMana>().IncreaseMana(card);
         }
     }
 }

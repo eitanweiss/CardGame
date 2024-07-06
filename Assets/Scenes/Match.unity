@@ -1213,6 +1213,7 @@ GameObject:
   - component: {fileID: 905445076}
   - component: {fileID: 905445075}
   - component: {fileID: 905445078}
+  - component: {fileID: 905445080}
   m_Layer: 5
   m_Name: PlayField
   m_TagString: Untagged
@@ -1315,6 +1316,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handCards: []
+--- !u!114 &905445080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905445072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMana: {fileID: 92385254}
+  oppMana: {fileID: 1205048785}
+  cards: []
 --- !u!1 &937155634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,7 +2974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxslots: 5
   availablePlayerHandCardSlots: 5
-  handCards: []
+  dropZone: {fileID: 1911530111}
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
 --- !u!114 &1911530111
 MonoBehaviour:
@@ -2971,6 +2988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handCards: []
 --- !u!1 &1932576880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,7 +3433,8 @@ PrefabInstance:
       propertyPath: displayCard
       value: 
       objectReference: {fileID: 11400000, guid: da224f08ddd783744998166ad648cfb0, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8371701565551483468, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: SavedDeck
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: b419c2d6526655644a10ef4c842426ba, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
   - {fileID: 11400000, guid: a663716ff0e388546befaad789e42c24, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: b419c2d6526655644a10ef4c842426ba, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
+  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
   - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
   - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
   - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
