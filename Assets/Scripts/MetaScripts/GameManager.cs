@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
     {
         if(hand.availablePlayerHandCardSlots>0)
         {
-            CardObject cardObj = new CardObject(randomCardDB.Draw());
+            Card card = randomCardDB.Draw();
 
-            hand.AddCardFromDeck(cardObj);
+            hand.AddCardFromDeck(card);
         }
 
     }
@@ -68,8 +68,7 @@ public class GameManager : MonoBehaviour
             //randomCard.transform.position = cardSlots[i].position;
             savedCardDB.cards.Remove(card);
             DeckImage();
-            CardObject cardObj = new CardObject(card);
-            hand.AddCardFromDeck(cardObj);
+            hand.AddCardFromDeck(card);
         }
         else
         {

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class PayMana : MonoBehaviour
+public class ManaManager : MonoBehaviour
 {
     public Image playerMana;
-    public Image oppMana;
     private float maxmanaval = 50f;//this is a patch for now, ned to change it to get info from player
 
     public void DecreaseMana(CardObject cardObj)
