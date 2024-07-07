@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void RandomDeckDraw()
     {
-        if(hand.availablePlayerHandCardSlots>0)
+        if(hand.GetComponent<DropZone>().availablePlayerHandCardSlots>0)
         {
             Card card = randomCardDB.Draw();
 
@@ -61,8 +61,9 @@ public class GameManager : MonoBehaviour
     }
     public void SavedDeckDraw()
     {
-        if (hand.availablePlayerHandCardSlots > 0)
+        if (hand.GetComponent<DropZone>().availablePlayerHandCardSlots > 0)
         {
+            drawCardFromSavedDeck.gameObject.SetActive(true);
             Card card = savedCardDB.Draw();
             //randomCard.gameObject.SetActive(true);
             //randomCard.transform.position = cardSlots[i].position;

@@ -7,24 +7,17 @@ using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
-    //get maxslots from character in future
-    public int maxslots;
-    public int availablePlayerHandCardSlots;
     public Image playerMana; //in future will have access to the Character or something?
-    public DropZone dropZone;
     public GameObject cardPrefab;
-    public void getMana()
-    {
 
-    }
-
+    //only hand can get a card from deck so it makes sense to have a special function for it. SRP
     public void AddCardFromDeck(Card card)
     {
         GameObject cardGO = Instantiate(cardPrefab, transform);
         CardObject newCardObj = cardGO.AddComponent<CardObject>();
         newCardObj.card = card;
 
-        dropZone.AddCard(newCardObj);
+        transform.GetComponent<DropZone>().AddCard(newCardObj);
         Debug.Log("Added " +card.cardName + " to hand");
         //only what is related to hand
         //when i draw a card from a deck
@@ -35,19 +28,18 @@ public class Hand : MonoBehaviour
 
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
-        availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
     }
-    public void RemoveCard(CardObject cardObj)
-    {
-
-
-        //
-        dropZone.RemoveCard(cardObj);
-    }
+    //happens directly in dropzone not through here
+    //public void RemoveCard(CardObject cardObj)
+    //{
+    //    dropZone.RemoveCard(cardObj);
+    //    availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
+    //    //
+    //}
 
     public void CheckValid()
     {
-        foreach (CardObject cardObj in dropZone.handCards)
+        foreach (CardObject cardObj in transform.GetComponent<DropZone>().handCards)
         {
             //check if correct phase
             //if yes, check if can play card (room in field, cost)

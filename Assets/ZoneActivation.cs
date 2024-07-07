@@ -20,12 +20,15 @@ public class ZoneActivation : MonoBehaviour
             case TurnManager.Phase.Draw:
                 buttonA.enabled = true;
                 buttonB.enabled = true;
+                
                 hand.enabled = true;
+                hand.ActivateDrag();
                 break;
             
             case TurnManager.Phase.PlayBuff:
                 buttonA.enabled = false;
                 buttonB.enabled = false;
+                
                 buffArea.enabled = true;
                 buffArea.ActivateDrag();
                 break;
@@ -33,17 +36,25 @@ public class ZoneActivation : MonoBehaviour
             case TurnManager.Phase.PlayCard:
                 buffArea.enabled = false;
                 buffArea.DisableDrag();
+                
                 playArea.enabled = true;
+                playArea.ActivateDrag();
                 break;
 
             case TurnManager.Phase.Discard:
                 playArea.enabled = false;
+                playArea.DisableDrag();
+                
                 discard.enabled = true;
+                discard.ActivateDrag();
                 break;
             
             case TurnManager.Phase.OpponentDraw:
                 discard.enabled = false;
+                discard.DisableDrag();
+                
                 hand.enabled = false;
+                hand.DisableDrag();
                 break;
 
             default:
