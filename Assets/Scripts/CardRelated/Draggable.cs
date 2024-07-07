@@ -13,29 +13,38 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
     {
         canvasGroup = GetComponent<CanvasGroup>();
     }
+
+    public void ChangeParent(Transform transform)
+    {
+        transformToReturnTo = transform;
+    }
+
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         //eventData is Vector2 so need to cast it to 3D
         offset = new Vector3(eventData.position.x,eventData.position.y,transform.position.z) - transform.position;
-        transformToReturnTo = this.transform.parent;
+        transformToReturnTo = this.transform.parent;//set home to where card was
         transform.parent.GetComponent<DropZone>().RemoveCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and remove card from list
-        transform.SetParent(transform.parent.parent);
+        transform.SetParent(transform.parent.parent);//move card to be child of canvas
         canvasGroup.blocksRaycasts = false;
-        Debug.Log("Start drag!");
+        //Debug.Log("Start drag!");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position - offset;
+        //Debug.Log("is problem in onDrag?");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         //if over drop zone don't reset parent?
         transform.SetParent(transformToReturnTo);
+        Debug.Log(transformToReturnTo.name);
         canvasGroup.blocksRaycasts = true;
         transform.parent.GetComponent<DropZone>().AddCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and add card to list
-        Debug.Log("Drag end!" + this.GetComponent<DisplayCard>().nameText.text);
+        //Debug.Log("Drag end!" + this.GetComponent<DisplayCard>().nameText.text);
     }
 
     public void OnPointerDown(PointerEventData eventData)

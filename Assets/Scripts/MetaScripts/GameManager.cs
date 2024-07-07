@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject [] SavedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
-    public TurnSystem turnSystem;
+    public TurnManager turnManager;
     public void DeckImage()
     {
         if (savedCardDB.cards.Count < 30)
@@ -77,6 +77,6 @@ public class GameManager : MonoBehaviour
     }
     public void TurnControl()
     {
-        turnSystem.EndPhase();
+        turnManager.EndPhase();
     }
 }

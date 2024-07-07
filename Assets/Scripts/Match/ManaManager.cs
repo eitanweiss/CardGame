@@ -19,14 +19,13 @@ public class ManaManager : MonoBehaviour
 
     public void DecreaseMana(CardObject cardObj)
     {
-        Debug.Log("is this reached?");
         int val = int.Parse(playerMana.GetComponentInChildren<TMP_Text>().text);
         for (int i = 0; i < cardObj.card.abilities.Count; i++)
         {
-            Debug.Log("DecreaseMana");
+            //Debug.Log("DecreaseMana");
             if (cardObj.card.abilities[i].name == "Cost")
             {
-                Debug.Log("Now");
+                //Debug.Log("Now");
                 val = val - cardObj.card.abilityValues[i];
                 break;
             }

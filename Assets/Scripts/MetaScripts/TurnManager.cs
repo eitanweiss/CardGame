@@ -4,12 +4,24 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class TurnSystem : MonoBehaviour
+public class TurnManager : MonoBehaviour
 {
     public bool isMyTurn = true;
     public Button phaseButton;
-    enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
-    Phase phase = Phase.Draw;
+    public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
+    Phase phase;
+
+
+    void Start()
+    {
+            phase = Phase.OpponentDiscard;
+            EndPhase();
+    }
+    public Phase GetPhase()
+    {
+        Phase newPhase = phase;
+        return newPhase;
+    }
 
     public void EndPhase()
     {
@@ -45,8 +57,10 @@ public class TurnSystem : MonoBehaviour
             case Phase.OpponentDiscard:
                 phase = Phase.Draw;
                 isMyTurn = true;
+                phaseButton.GetComponentInChildren<TMP_Text>().text = "Draw Phase";
                 break;
-
         }
+        //let zone activation know somehow
+        GameObject.Find("PlayerObject").GetComponent<ZoneActivation>().OnPhaseChange();
     }
 }
