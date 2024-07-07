@@ -7,7 +7,7 @@ public class PayMana : MonoBehaviour
 {
     public Image playerMana;
     public Image oppMana;
-    private int maxmanaval = 50;//this is a patch for now, ned to change it to get info from player
+    private float maxmanaval = 50f;//this is a patch for now, ned to change it to get info from player
 
     public void DecreaseMana(CardObject cardObj)
     {
@@ -24,6 +24,7 @@ public class PayMana : MonoBehaviour
             }
         }
         playerMana.GetComponentInChildren<TMP_Text>().text = val.ToString();
+        playerMana.GetComponentsInChildren<Image>()[1].fillAmount = val/maxmanaval;
     }
 
     public void IncreaseMana(CardObject cardObj)
@@ -41,5 +42,6 @@ public class PayMana : MonoBehaviour
             }
         }
         playerMana.GetComponentInChildren<TMP_Text>().text = val.ToString();
+        playerMana.GetComponentsInChildren<Image>()[1].fillAmount = val / maxmanaval;
     }
 }
