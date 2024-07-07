@@ -22,7 +22,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         handCards.Add(card);
         if(transform.name == "PlayerPlayArea")
         {
-            transform.GetComponent<ManaManager>().DecreaseMana(card);
+            transform.parent.GetComponent<ManaManager>().DecreaseMana(card);
         }
     }
 
@@ -31,7 +31,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         handCards.Remove(card);
         if (transform.name == "PlayerPlayArea")
         {
-            transform.GetComponent<ManaManager>().IncreaseMana(card);
+            transform.parent.GetComponent<ManaManager>().IncreaseMana(card);
         }
     }
 }

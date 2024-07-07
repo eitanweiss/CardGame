@@ -55,6 +55,7 @@ public class Hand : MonoBehaviour
             {
                 if (cardObj.card.abilities[i].name == "Cost")
                 {
+                    Image playerMana = transform.parent.GetComponentInChildren<Image>();
                     if(cardObj.card.abilityValues[i] > int.Parse(playerMana.GetComponentInChildren<TMP_Text>().text))
                     {
                         cardObj.GetComponent<Draggable>().enabled = false;

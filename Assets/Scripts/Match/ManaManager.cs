@@ -8,6 +8,15 @@ public class ManaManager : MonoBehaviour
     public Image playerMana;
     private float maxmanaval = 50f;//this is a patch for now, ned to change it to get info from player
 
+    public int GetMana()
+    {
+        return int.Parse(playerMana.GetComponentInChildren<TMP_Text>().text);
+    }
+    public void SetMaxMana(int mana)
+    {
+        playerMana.GetComponentInChildren<TMP_Text>().text = mana.ToString();
+    }
+
     public void DecreaseMana(CardObject cardObj)
     {
         Debug.Log("is this reached?");

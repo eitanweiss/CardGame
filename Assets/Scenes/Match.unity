@@ -149,18 +149,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92385252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2032957114}
   - {fileID: 937155635}
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -456.4, y: 410.6}
+  m_AnchoredPosition: {x: -409.84946, y: 476.74625}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92385254
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 186342796}
   - component: {fileID: 186342798}
   m_Layer: 5
-  m_Name: Player
+  m_Name: PlayerPortrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,17 +319,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186342794}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 778466822}
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -380.7, y: 390}
+  m_AnchoredPosition: {x: -334.14948, y: 456.1463}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186342796
@@ -966,7 +966,6 @@ GameObject:
   - component: {fileID: 569411451}
   - component: {fileID: 569411450}
   - component: {fileID: 569411449}
-  - component: {fileID: 569411448}
   m_Layer: 5
   m_Name: PlayerBuffArea
   m_TagString: Untagged
@@ -981,31 +980,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569411446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22232048, y: 0}
   m_AnchorMax: {x: 1, y: 0.6941962}
-  m_AnchoredPosition: {x: -597, y: -208}
-  m_SizeDelta: {x: -806.4725, y: -416.1733}
+  m_AnchoredPosition: {x: -401.0501, y: -279.00668}
+  m_SizeDelta: {x: 238.72882, y: 206.52072}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &569411448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569411446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
 --- !u!114 &569411449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,6 +1321,57 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1533818112820224511, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
   m_PrefabInstance: {fileID: 699904282}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &759403783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759403784}
+  - component: {fileID: 759403785}
+  m_Layer: 0
+  m_Name: PlayerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759403784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759403783}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -46.550537, y: -66.1463, z: -56.60309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 92385253}
+  - {fileID: 186342795}
+  - {fileID: 905445073}
+  - {fileID: 1682370971}
+  - {fileID: 569411447}
+  - {fileID: 1911530106}
+  m_Father: {fileID: 1352257111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &759403785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759403783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMana: {fileID: 92385254}
 --- !u!1 &778466821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1563,6 @@ GameObject:
   - component: {fileID: 905445076}
   - component: {fileID: 905445075}
   - component: {fileID: 905445078}
-  - component: {fileID: 905445080}
   m_Layer: 5
   m_Name: PlayerPlayArea
   m_TagString: Untagged
@@ -1541,17 +1577,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905445072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22232048, y: 0}
   m_AnchorMax: {x: 1, y: 0.6941962}
-  m_AnchoredPosition: {x: -213, y: 14}
-  m_SizeDelta: {x: -439.9673, y: -416.1733}
+  m_AnchoredPosition: {x: -17.05011, y: -57.006683}
+  m_SizeDelta: {x: 605.234, y: 206.52072}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &905445075
 MonoBehaviour:
@@ -1630,19 +1666,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handCards: []
---- !u!114 &905445080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905445072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
 --- !u!1 &937155634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2258,18 +2281,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1429956949}
+  - {fileID: 759403784}
   - {fileID: 190228175}
   - {fileID: 829923444}
   - {fileID: 1700255497}
   - {fileID: 976284161}
   - {fileID: 1339171188}
-  - {fileID: 905445073}
-  - {fileID: 1682370971}
-  - {fileID: 569411447}
   - {fileID: 668727874}
-  - {fileID: 1911530106}
-  - {fileID: 186342795}
-  - {fileID: 92385253}
   - {fileID: 2060822583}
   - {fileID: 167177677}
   - {fileID: 1334416471}
@@ -2744,7 +2762,6 @@ GameObject:
   - component: {fileID: 1682370975}
   - component: {fileID: 1682370974}
   - component: {fileID: 1682370973}
-  - component: {fileID: 1682370972}
   m_Layer: 5
   m_Name: PlayerActiveCardArea
   m_TagString: Untagged
@@ -2759,31 +2776,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682370970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22232048, y: 0}
   m_AnchorMax: {x: 1, y: 0.6941962}
-  m_AnchoredPosition: {x: -675.1, y: 14}
-  m_SizeDelta: {x: -769.9768, y: -416.1733}
+  m_AnchoredPosition: {x: -479.1501, y: -57.006683}
+  m_SizeDelta: {x: 275.2245, y: 206.52072}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1682370972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682370970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
 --- !u!114 &1682370973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3255,7 +3259,6 @@ GameObject:
   - component: {fileID: 1911530107}
   - component: {fileID: 1911530110}
   - component: {fileID: 1911530111}
-  - component: {fileID: 1911530112}
   m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
@@ -3271,16 +3274,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911530105}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 56.60309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1352257111}
+  m_Father: {fileID: 759403784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22232048, y: 0}
   m_AnchorMax: {x: 1, y: 0.6941962}
-  m_AnchoredPosition: {x: -138.60007, y: -303}
-  m_SizeDelta: {x: -439.9673, y: -416.1733}
+  m_AnchoredPosition: {x: 57.349854, y: -374.00668}
+  m_SizeDelta: {x: 605.234, y: 206.52072}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911530107
 MonoBehaviour:
@@ -3376,19 +3379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handCards: []
---- !u!114 &1911530112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911530105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
 --- !u!1 &1932576880
 GameObject:
   m_ObjectHideFlags: 0
