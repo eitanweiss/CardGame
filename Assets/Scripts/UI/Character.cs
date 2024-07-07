@@ -14,42 +14,46 @@ public class Character : MonoBehaviour
     public int skillPoints = 0;
     //public int skills;
     public int maxHealthPoints;
-    public int healthPoints;
-    public int mana;
+    public int currentHealthPoints;
+    public int maxMana;
+    public int currentMana;
     public int manaMultiplier;
     public int attack = 0;
     public int defense = 0;
     public int regeneration = 0;
-    public int dmgTaken=0;
-
+    public int handSlots = 5;
+    public int buffSlots = 1;
+    public int playSlots = 2;
+    public int drawCount = 3;
+    public int discardSlots= 1;
+    public int maxDeckSize = 10;
     
     
     
     
     
     
-    
-    //Meta details
-    public void increaseAttack(int n)
-    {
-        attack += n;
-    }
-    public void increaseDefense(int n) 
-    {
-        defense += n;
-    }
-    public void increaseRegeneration(int n)
-    {
-        regeneration += n;
-    }
-    public void increaseMana(int n)
-    {
-        mana += n* manaMultiplier;
-    }
-    public void increaseHP(int n)
-    {
-        maxHealthPoints += n*2;
-    }
+    ////Meta details
+    //public void increaseAttack(int n)
+    //{
+    //    attack += n;
+    //}
+    //public void increaseDefense(int n) 
+    //{
+    //    defense += n;
+    //}
+    //public void increaseRegeneration(int n)
+    //{
+    //    regeneration += n;
+    //}
+    //public void increaseMana(int n)
+    //{
+    //    mana += n* manaMultiplier;
+    //}
+    //public void increaseHP(int n)
+    //{
+    //    maxHealthPoints += n*2;
+    //}
     private void LevelUp()
     {
         if (experience>experienceToLevel)
@@ -57,6 +61,7 @@ public class Character : MonoBehaviour
             UpdateXP();
             level++;
             skillPoints += 5;
+            maxDeckSize++;
             LevelUp();
         }
     }
