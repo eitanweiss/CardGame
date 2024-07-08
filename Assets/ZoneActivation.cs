@@ -50,6 +50,7 @@ public class ZoneActivation : MonoBehaviour
                 break;
             
             case TurnManager.Phase.OpponentDraw:
+                discard.GetComponent<DiscardManager>().deleteCards();
                 discard.enabled = false;
                 discard.DisableDrag();
                 
