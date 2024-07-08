@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public TMP_Text  DeckSize;
     public CardDB randomCardDB;
-    public CardDB savedCardDB;
+    public SavedDeck savedCardDB;
     private List<Card> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
     public GameObject [] SavedDeckDepth = new GameObject[4];
     public Hand hand;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if(hand.GetComponent<DropZone>().availablePlayerHandCardSlots>0)
         {
-            Card card = randomCardDB.Draw();
+            Card card = randomCardDB.randomDraw();
 
             hand.AddCardFromDeck(card);
         }

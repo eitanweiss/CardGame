@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CardGame/CardDB")]
+[CreateAssetMenu(menuName = "CardGame/randomCardDB")]
 public class CardDB : ScriptableObject
 {
     [SerializeField]
@@ -68,31 +68,6 @@ public class CardDB : ScriptableObject
     float chanceElite = 0.16f;
     float chanceEpic = 0.019f;
     //float chanceMythical = 0.001f;
-    public void Randomize()
-    {
-       
-        Card temp;
-        for (int i = 0; i < cards.Count; i++)
-        {
-            temp = cards[i];
-            int num = Random.Range(0, cards.Count);
-            cards[i] = cards[num];
-            cards[num] = temp;
-
-        }
-    }
-
-    private void MixList(List<Card> list)
-    {
-        Card temp;
-        for (int i = 0; i < list.Count; i++)
-        {
-            temp = list[i];
-            int num = Random.Range(0, list.Count);
-            list[i] = list[num];
-            list[num] = temp;
-        }
-    }
     public Card randomDraw()
     {
         List<Card> list = new List<Card>();
@@ -118,11 +93,5 @@ public class CardDB : ScriptableObject
             list = SearchByRarity(Card.Rarity.Mythical);
         }
         return list[Random.Range(0, list.Count)];
-    }
-    public Card Draw()
-    {
-        Card card = cards[0];
-        //Debug.Log(card.cardName);
-        return card;
     }
 }
