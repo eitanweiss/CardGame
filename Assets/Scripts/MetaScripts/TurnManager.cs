@@ -114,7 +114,7 @@ public class TurnManager : MonoBehaviour
                 phaseText.text = "Draw Phase";
                 break;
         }
-        phaseText.GetComponent<FadeAway>().resetFadeAway();
+        phaseText.GetComponent<FadeAway>().ResetFadeAway();
         //let zone activation know somehow
         GameObject.Find("PlayerObject").GetComponent<ZoneActivation>().OnPhaseChange();
     }

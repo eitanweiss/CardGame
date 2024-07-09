@@ -7,16 +7,16 @@ public class FadeAway : MonoBehaviour
 {
     public float speed;
     public float fadeTime;
+    [SerializeField]
     TextMeshProUGUI fadeAwayText;
     private float alpha;
     private float fadePerSecond;
-    Vector3 originalPosition;
+    //Vector3 originalPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        fadeAwayText = GetComponent<TextMeshProUGUI>();
-        originalPosition= fadeAwayText.rectTransform.anchoredPosition;
+        //originalPosition= new Vector3 (0,320,0);
         fadePerSecond = 1 / fadeTime;
         alpha = 1;
     }
@@ -32,9 +32,10 @@ public class FadeAway : MonoBehaviour
             fadeTime -= Time.deltaTime;
         }
     }
-    public void resetFadeAway()
+    public void ResetFadeAway()
     {
-        fadeAwayText.rectTransform.anchoredPosition = originalPosition;
+        //want text to appear a bit more to the top
+        fadeAwayText.rectTransform.anchoredPosition = new Vector3(0, 320, 0);
         fadeTime = 2f;
         alpha = 1;
     }
