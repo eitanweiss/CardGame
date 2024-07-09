@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RandomDeck
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: a663716ff0e388546befaad789e42c24, type: 2}
-  - {fileID: 11400000, guid: b419c2d6526655644a10ef4c842426ba, type: 2}
-  - {fileID: 11400000, guid: 81389821f26b6034e84383c2095a12a0, type: 2}
-  - {fileID: 11400000, guid: 9ab284fa7110dc744a955a847f1711b5, type: 2}
-  - {fileID: 11400000, guid: 70bd75af782bbfb44bacd5782a9765aa, type: 2}
-  - {fileID: 11400000, guid: f2675f77500312149a76d8cdbc2ef561, type: 2}
-  - {fileID: 11400000, guid: da224f08ddd783744998166ad648cfb0, type: 2}
+  - {fileID: 11400000, guid: 55a9d255d6758204f9902a594905ffd0, type: 2}
+  - {fileID: 11400000, guid: 88e2bbcfc9cb35f49b35597dfa8881d3, type: 2}
+  - {fileID: 11400000, guid: 3a8de04aa3d51264589799e87fb26a9f, type: 2}
+  - {fileID: 11400000, guid: c66fe9581f332b14982cb881c9d3d934, type: 2}
+  - {fileID: 11400000, guid: 5a60bcdd8c51d774cbd61b97b99812d0, type: 2}
+  - {fileID: 11400000, guid: e3d5ce49593240f408a65e661e68e1ea, type: 2}
+  - {fileID: 11400000, guid: ae8f586ef9b4f354dbf77ea7b9622e1d, type: 2}

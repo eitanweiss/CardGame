@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bb01b802c64d5841945ed7407046b63, type: 2}
   - {fileID: 11400000, guid: 485b4eb5632c89f47b633b8aef9ca2a6, type: 2}
   abilityValues: 230000000200000014000000
-  rarity: 2
-  type: 1
-  race: 4
+  rarity: 0
+  type: 0
+  race: 0
   value: 2

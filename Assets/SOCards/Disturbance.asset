@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a975d52e04b7329439d4597362da01ee, type: 2}
   - {fileID: 11400000, guid: 47d1b2e23a60e734aa8edcaae63e62f2, type: 2}
   abilityValues: 5f00000001000000
-  rarity: 3
+  rarity: 0
   type: 0
-  race: 4
+  race: 0
   value: 10

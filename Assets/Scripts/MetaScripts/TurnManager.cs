@@ -7,15 +7,23 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     public bool isMyTurn = true;
-    public Button phaseButton;
+    public TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
     Phase phase;
 
 
     void Start()
     {
-            phase = Phase.OpponentDiscard;
-            EndPhase();
+        if(Random.Range(0,1)==1)
+        {
+            //player starts
+        }
+        else
+        {
+            //AI starts
+        }
+        phase = Phase.OpponentDiscard;
+        EndPhase();
     }
     public Phase GetPhase()
     {
@@ -23,30 +31,76 @@ public class TurnManager : MonoBehaviour
         return newPhase;
     }
 
+    public void OpponentStartsRound()
+    {
+        switch (phase)
+        {
+            case Phase.Draw:
+                phase = Phase.PlayCard;
+                phaseText.text = "Defense Phase";
+                break;
+
+            case Phase.PlayCard:
+                phase = Phase.Discard;
+                phaseText.text = "Discard";
+                break;
+            case Phase.Discard:
+                phase = Phase.OpponentDraw;
+                //do calculation of damage and stuff
+                isMyTurn = false;
+                break;
+        }
+    }
+
+    public void PlayerStartsRound()
+    {
+        switch (phase)
+        {
+            case Phase.Draw:
+                phase = Phase.PlayCard;
+                phaseText.text = "Buff Phase";
+                break;
+            case Phase.PlayBuff:
+                phase =
+                Phase.PlayCard;
+                phaseText.text = "Attack Phase";
+                break;
+            case Phase.PlayCard:
+                phase = Phase.Discard;
+                phaseText.text = "Discard";
+                break;
+            case Phase.Discard:
+                phase = Phase.OpponentDraw;
+                phaseText.text = "Opponent's Turn";
+                isMyTurn = false;
+                break;
+        }
+    }
+    //want to change this for the top version of 2 round types
     public void EndPhase()
     {
         switch (phase)
         {
             case Phase.Draw:
                 phase = Phase.PlayBuff;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "Buff Phase";
+                phaseText.text = "Buff Phase";
                 break;
             case Phase.PlayBuff: phase = 
                 Phase.PlayCard;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "Card Phase";
+                phaseText.text = "Card Phase";
                 break;
             case Phase.PlayCard:
                 phase = Phase.Discard;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "Discard";
+                phaseText.text = "Discard";
                 break;
             case Phase.Discard: 
                 phase = Phase.OpponentDraw;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "End Turn";
+                phaseText.text = "End Turn";
                 isMyTurn = false;
                 break;
             case Phase.OpponentDraw:
                 phase = Phase.OpponentPlayBuff;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "Opponent's Turn";
+                phaseText.text = "Opponent's Turn";
                 break;
             case Phase.OpponentPlayBuff:
                 phase = Phase.OpponentPlayCard;
@@ -57,9 +111,10 @@ public class TurnManager : MonoBehaviour
             case Phase.OpponentDiscard:
                 phase = Phase.Draw;
                 isMyTurn = true;
-                phaseButton.GetComponentInChildren<TMP_Text>().text = "Draw Phase";
+                phaseText.text = "Draw Phase";
                 break;
         }
+        phaseText.GetComponent<FadeAway>().resetFadeAway();
         //let zone activation know somehow
         GameObject.Find("PlayerObject").GetComponent<ZoneActivation>().OnPhaseChange();
     }
