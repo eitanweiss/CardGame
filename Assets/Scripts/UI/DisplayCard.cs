@@ -13,7 +13,7 @@ public class DisplayCard : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public void SetCard(Card card)
+    public void SetCard(CardScriptableObject card)
     {
      
         nameText.text = " " +card.cardName;
@@ -22,7 +22,12 @@ public class DisplayCard : MonoBehaviour
         rarityText.text = " " + card.rarity; 
         for (int i = 0;i<card.abilities.Count;i++)
         {
-        descriptionText.text = descriptionText.text + card.abilities[i].name + "(" + card.abilityValues[i] +"); ";
+            if (card.abilities[i].name=="Duration")
+            {
+                Debug.Log("got Duration");
+                transform.GetChild(2).GetComponent<Image>().GetComponentInChildren<TMP_Text>().text = $"{card.abilityValues[i]}/{card.abilityValues[i]}";
+            }
+            descriptionText.text = descriptionText.text + card.abilities[i].name + "(" + card.abilityValues[i] +"); ";
 
         }
     }

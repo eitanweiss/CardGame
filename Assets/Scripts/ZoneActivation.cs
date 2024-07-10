@@ -18,6 +18,8 @@ public class ZoneActivation : MonoBehaviour
         switch (turnManager.GetPhase())
         {
             case TurnManager.Phase.Draw:
+                discard.enabled = false;//this is done twice, may need to rwwrite how and when these get updated
+                discard.GetComponent<DiscardManager>().deleteCards();//this should be done as first step of calculations. just here for now
                 buttonA.enabled = true;
                 buttonB.enabled = true;
                 
@@ -34,6 +36,8 @@ public class ZoneActivation : MonoBehaviour
                 break;
 
             case TurnManager.Phase.PlayCard:
+                buttonA.enabled = false;
+                buttonB.enabled = false;
                 buffArea.enabled = false;
                 buffArea.DisableDrag();
                 
@@ -50,7 +54,7 @@ public class ZoneActivation : MonoBehaviour
                 break;
             
             case TurnManager.Phase.OpponentDraw:
-                discard.GetComponent<DiscardManager>().deleteCards();
+                discard.GetComponent<DiscardManager>().deleteCards();//this should be done as first step of calculations. just here for now
                 discard.enabled = false;
                 discard.DisableDrag();
                 

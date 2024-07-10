@@ -12,11 +12,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text  DeckSize;
     public CardDB randomCardDB;
     public SavedDeck savedCardDB;
-    private List<Card> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
+    private List<CardScriptableObject> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
     public GameObject [] SavedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
     public TurnManager turnManager;
+
     public void DeckImage()
     {
         if (savedCardDB.cards.Count < 30)
@@ -40,20 +41,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         savedCardDB.Randomize();
-        copySavedDeck = new List<Card>(savedCardDB.cards);
+        copySavedDeck = new List<CardScriptableObject>(savedCardDB.cards);
         DeckImage();
     }
 
     public void EndGame()
     {
-        savedCardDB.cards =  new List<Card>(copySavedDeck);
+        savedCardDB.cards =  new List<CardScriptableObject>(copySavedDeck);
     }
 
     public void RandomDeckDraw()
     {
         if(hand.GetComponent<DropZone>().availablePlayerHandCardSlots>0)
         {
-            Card card = randomCardDB.randomDraw();
+            CardScriptableObject card = randomCardDB.randomDraw();
 
             hand.AddCardFromDeck(card);
         }
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
         if (hand.GetComponent<DropZone>().availablePlayerHandCardSlots > 0)
         {
             drawCardFromSavedDeck.gameObject.SetActive(true);
-            Card card = savedCardDB.Draw();
+            CardScriptableObject card = savedCardDB.Draw();
             //randomCard.gameObject.SetActive(true);
             //randomCard.transform.position = cardSlots[i].position;
             savedCardDB.cards.Remove(card);
@@ -78,6 +79,8 @@ public class GameManager : MonoBehaviour
     }
     public void TurnControl()
     {
-        turnManager.EndPhase();
+        turnManager.ChangePhase();
+        this.gameObject.GetComponent<IsCardPlayable>().CanCardBePlayed();
+
     }
 }

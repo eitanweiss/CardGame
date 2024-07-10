@@ -6,12 +6,12 @@ using UnityEngine;
 public class CardDB : ScriptableObject
 {
     [SerializeField]
-    public List<Card> cards = new List<Card>();
+    public List<CardScriptableObject> cards = new List<CardScriptableObject>();
     
-    public List<Card> SearchByRarity(Card.Rarity rarity)
+    public List<CardScriptableObject> SearchByRarity(CardScriptableObject.Rarity rarity)
     {
-        List<Card> list  = new List<Card>();
-        foreach (Card card in cards)
+        List<CardScriptableObject> list  = new List<CardScriptableObject>();
+        foreach (CardScriptableObject card in cards)
         {
             if(card.rarity == rarity)
             {
@@ -20,10 +20,10 @@ public class CardDB : ScriptableObject
         }
         return list;
     }
-    public List<Card> SearchByRace(Race race)
+    public List<CardScriptableObject> SearchByRace(Race race)
     {
-        List<Card> list = new List<Card>();
-        foreach (Card card in cards)
+        List<CardScriptableObject> list = new List<CardScriptableObject>();
+        foreach (CardScriptableObject card in cards)
         {
             if (card.race== race || card.race== Race.All)
             {
@@ -32,10 +32,10 @@ public class CardDB : ScriptableObject
         }
         return list;
     }
-    public List<Card> SearchByType(Type type)
+    public List<CardScriptableObject> SearchByType(Type type)
     {
-        List<Card> list = new List<Card>();
-        foreach (Card card in cards)
+        List<CardScriptableObject> list = new List<CardScriptableObject >();
+        foreach (CardScriptableObject card in cards)
         {
             if (card.type== type || card.type == Type.All)
             {
@@ -45,10 +45,10 @@ public class CardDB : ScriptableObject
         return list;
     }
 
-    public List<Card> SearchByAbility(Ability ability)
+    public List<CardScriptableObject> SearchByAbility(Ability ability)
     {
-        List<Card> list = new List<Card>();
-        foreach (Card card in cards)
+        List<CardScriptableObject> list = new List<CardScriptableObject>();
+        foreach (CardScriptableObject card in cards)
         {
             foreach (Ability cardAbility in card.abilities)
             {
@@ -68,29 +68,29 @@ public class CardDB : ScriptableObject
     float chanceElite = 0.16f;
     float chanceEpic = 0.019f;
     //float chanceMythical = 0.001f;
-    public Card randomDraw()
+    public CardScriptableObject randomDraw()
     {
-        List<Card> list = new List<Card>();
+        List<CardScriptableObject> list = new List<CardScriptableObject>();
         float val = Random.Range(0f, 1f);
-        if(val<=chanceCommon)
+        if (val <= chanceCommon)
         {
-            list = SearchByRarity(Card.Rarity.Common);
+            list = SearchByRarity(CardScriptableObject.Rarity.Common);
         }
-        else if (val <= chanceCommon +chanceRare)
+        else if (val <= chanceCommon + chanceRare)
         {
-            list = SearchByRarity(Card.Rarity.Rare);
+            list = SearchByRarity(CardScriptableObject.Rarity.Rare);
         }
-        else if (val <= chanceCommon+ chanceRare +chanceElite)
+        else if (val <= chanceCommon + chanceRare + chanceElite)
         {
-            list = SearchByRarity(Card.Rarity.Elite);
+            list = SearchByRarity(CardScriptableObject.Rarity.Elite);
         }
         else if (val <= chanceCommon + chanceRare + chanceElite + chanceEpic)
         {
-            list = SearchByRarity(Card.Rarity.Epic);
+            list = SearchByRarity(CardScriptableObject.Rarity.Epic);
         }
-        else 
+        else
         {
-            list = SearchByRarity(Card.Rarity.Mythical);
+            list = SearchByRarity(CardScriptableObject.Rarity.Mythical);
         }
         return list[Random.Range(0, list.Count)];
     }

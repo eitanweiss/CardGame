@@ -12,6 +12,8 @@ public class DropZone : MonoBehaviour, IDropHandler
     public int maxslots;
     public int availablePlayerHandCardSlots;
 
+
+
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop");
@@ -50,7 +52,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         handCards.Add(card);
         if(transform.name == "PlayerPlayArea")
         {
-            transform.parent.GetComponent<ManaManager>().DecreaseMana(card);
+            transform.parent.GetComponent<ManaManager>().ChangeMana(card,true);
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;
 
@@ -60,14 +62,18 @@ public class DropZone : MonoBehaviour, IDropHandler
     {
 
         handCards.Remove(card);
-        if (transform.name == "PlayerPlayArea")
+        if (transform.name == "PlayerPlayArea" &&
+            GameObject.Find("TurnManager").GetComponent<TurnManager>().GetPhase() ==TurnManager.Phase.PlayCard)
         {
-            transform.parent.GetComponent<ManaManager>().IncreaseMana(card);
+            transform.parent.GetComponent<ManaManager>().ChangeMana(card,false);
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;
     }
 
-
+    public void RemoveAllCards()
+    {
+        handCards.Clear();
+    }
     public void ActivateDrag()
     {
         Debug.Log(enabled);

@@ -6,12 +6,12 @@ using UnityEngine;
 public class SavedDeck : ScriptableObject
 {
     [SerializeField]
-    public List<Card> cards = new List<Card>();
+    public List<CardScriptableObject> cards = new List<CardScriptableObject>();
     // Start is called before the first frame update
     public void Randomize()
     {
 
-        Card temp;
+        CardScriptableObject temp;
         for (int i = 0; i < cards.Count; i++)
         {
             temp = cards[i];
@@ -21,9 +21,9 @@ public class SavedDeck : ScriptableObject
 
         }
     }
-    private void MixList(List<Card> list)
+    private void MixList(List<CardScriptableObject> list)
     {
-        Card temp;
+        CardScriptableObject temp;
         for (int i = 0; i < list.Count; i++)
         {
             temp = list[i];
@@ -32,9 +32,9 @@ public class SavedDeck : ScriptableObject
             list[num] = temp;
         }
     }
-    public Card Draw()
+    public CardScriptableObject Draw()
     {
-        Card card = cards[0];
+        CardScriptableObject card = cards[0];
         //Debug.Log(card.cardName);
         return card;
     }

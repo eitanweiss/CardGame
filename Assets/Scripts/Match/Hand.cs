@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
     public GameObject cardPrefab;
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
-    public void AddCardFromDeck(Card card)
+    public void AddCardFromDeck(CardScriptableObject card)
     {
         GameObject cardGO = Instantiate(cardPrefab, transform);
         CardObject newCardObj = cardGO.AddComponent<CardObject>();
@@ -39,7 +39,7 @@ public class Hand : MonoBehaviour
 
     public void CheckValid()
     {
-        foreach (CardObject cardObj in transform.GetComponent<DropZone>().handCards)
+        foreach (CardObject cardObj in transform.GetComponent<DropZone>().handCards)//for each card in hand
         {
             //check if correct phase
             //if yes, check if can play card (room in field, cost)

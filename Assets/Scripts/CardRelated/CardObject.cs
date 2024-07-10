@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CardObject : MonoBehaviour
 {
-    public Card card;
+    public CardScriptableObject card;
 
 
     public CardObject() { }
 
-    public CardObject (Card card)
+    public CardObject (CardScriptableObject card)
     {
         this.card = card;
     }

@@ -13,7 +13,7 @@ public class EffectManager : MonoBehaviour
     public Image playerMana;
     public Image oppMana;
 
-    public void decreaseMana(Card card)
+    public void decreaseMana(CardScriptableObject card)
     {
         Debug.Log("is this reached?");
         int val = int.Parse(playerMana.GetComponent<TMP_Text>().text);
