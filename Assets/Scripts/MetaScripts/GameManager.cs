@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Hand hand;
     public Button drawCardFromSavedDeck;
     public TurnManager turnManager;
+    public OpponentBasicAI opponentBasicAI;
 
     public void DeckImage()
     {
@@ -81,6 +82,6 @@ public class GameManager : MonoBehaviour
     {
         turnManager.ChangePhase();
         this.gameObject.GetComponent<IsCardPlayable>().CanCardBePlayed();
-
+        opponentBasicAI.GetComponent<OpponentBasicAI>().Play();
     }
 }

@@ -17,16 +17,16 @@ public class DropZone : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop");
-        if(eventData.pointerDrag != null)
+        if (eventData.pointerDrag != null)
         {
-            if(!ReachedMaxCards())
+            if (!ReachedMaxCards())
             {
                 eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
                 //eventData.pointerDrag.GetComponent<RectTransform>().parent.SetParent(transform);?
                 Debug.Log("set Parent to new zone");
             }
             //make it so it is always possible to switch out buff
-            else if(transform.name == "PlayerBuffArea")
+            else if (transform.name == "PlayerBuffArea")
             {
                 transform.parent.Find("Hand").GetComponent<DropZone>().AddCard(handCards[0]);
                 handCards[0].transform.SetParent(transform.parent.Find("Hand").transform);
@@ -34,14 +34,14 @@ public class DropZone : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
                 Debug.Log("max cards in buff zone");
                 //switch buff out
-            }            
+            }
 
         }
     }
 
     public bool ReachedMaxCards()
     {
-        if(availablePlayerHandCardSlots<1)
+        if (availablePlayerHandCardSlots < 1)
         {
             return true;
         }
@@ -50,9 +50,9 @@ public class DropZone : MonoBehaviour, IDropHandler
     public void AddCard(CardObject card)
     {
         handCards.Add(card);
-        if(transform.name == "PlayerPlayArea")
+        if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
         {
-            transform.parent.GetComponent<ManaManager>().ChangeMana(card,true);
+            transform.parent.GetComponent<ManaManager>().ChangeMana(card, true);
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;
 
@@ -62,8 +62,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     {
 
         handCards.Remove(card);
-        if (transform.name == "PlayerPlayArea" &&
-            GameObject.Find("TurnManager").GetComponent<TurnManager>().GetPhase() ==TurnManager.Phase.PlayCard)
+        if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
         {
             transform.parent.GetComponent<ManaManager>().ChangeMana(card,false);
         }
@@ -94,4 +93,5 @@ public class DropZone : MonoBehaviour, IDropHandler
             card.GetComponent<Draggable>().enabled = false;
         }
     }
+    //AI functions since it will not drag
 }

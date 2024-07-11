@@ -8,6 +8,7 @@ using UnityEngine;
 public class IsCardPlayable : MonoBehaviour
 {    
     public Hand hand;
+    public Hand oppHand;
     public TurnManager turnManager;
 
     public void CanCardBePlayed()
@@ -70,6 +71,70 @@ public class IsCardPlayable : MonoBehaviour
         else
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            {
+                card.GetComponent<Draggable>().enabled = false;
+            }
+        }
+
+
+        if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
+        {
+            Debug.Log("in playbuff playable phase");
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            {
+                if (card.card.isBuffCard == true)
+                {
+                    card.GetComponent<Draggable>().enabled = true;
+                }
+                else
+                {
+                    card.GetComponent<Draggable>().enabled = false;
+                }
+            }
+        }
+        else if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayCard)
+        {
+
+            int mana = oppHand.GetComponentInParent<ManaManager>().GetMana();
+            Debug.Log(mana);
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            {
+                Debug.Log(card.name);
+                if (card.card.isBuffCard == false)
+                {
+                    for (int i = 0; i < card.card.abilities.Count; i++)
+                    {
+                        if (card.card.abilities[i].name == "Cost")
+                        {
+                            if (card.card.abilityValues[i] <= mana)
+                            {
+                                card.GetComponent<Draggable>().enabled = true;
+                            }
+                            else
+                            {
+                                card.GetComponent<Draggable>().enabled = false;
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    card.GetComponent<Draggable>().enabled = false;
+                }
+
+            }
+        }
+        else if (turnManager.GetPhase() == TurnManager.Phase.OpponentDiscard)
+        {
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            {
+                card.GetComponent<Draggable>().enabled = true;
+            }
+        }
+        else
+        {
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
             {
                 card.GetComponent<Draggable>().enabled = false;
             }

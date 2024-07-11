@@ -55,6 +55,7 @@ public class ZoneActivation : MonoBehaviour
             
             case TurnManager.Phase.OpponentDraw:
                 discard.GetComponent<DiscardManager>().deleteCards();//this should be done as first step of calculations. just here for now
+                //actually i think it (that^) is ok here
                 discard.enabled = false;
                 discard.DisableDrag();
                 

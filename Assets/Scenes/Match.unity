@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 39206172}
   - component: {fileID: 39206171}
   - component: {fileID: 39206170}
+  - component: {fileID: 39206174}
   m_Layer: 5
   m_Name: Opponent Hand
   m_TagString: Untagged
@@ -448,6 +449,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39206167}
   m_CullTransparentMesh: 1
+--- !u!114 &39206174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39206167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCards: []
+  maxslots: 5
+  availablePlayerHandCardSlots: 5
 --- !u!1 &92385252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1078,7 @@ GameObject:
   - component: {fileID: 353540530}
   - component: {fileID: 353540529}
   - component: {fileID: 353540528}
+  - component: {fileID: 353540531}
   m_Layer: 5
   m_Name: OpponentPlayArea
   m_TagString: Untagged
@@ -1152,6 +1169,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353540525}
   m_CullTransparentMesh: 1
+--- !u!114 &353540531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353540525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCards: []
+  maxslots: 2
+  availablePlayerHandCardSlots: 2
 --- !u!1 &366859781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMana: {fileID: 92385254}
+  baseMana: 50
+  startOfTurnMana: 0
 --- !u!114 &759403786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3854,6 +3888,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752888279}
+  - component: {fileID: 1752888280}
+  - component: {fileID: 1752888281}
   m_Layer: 0
   m_Name: OpponentObject
   m_TagString: Untagged
@@ -3881,6 +3917,36 @@ Transform:
   - {fileID: 39206168}
   m_Father: {fileID: 1352257111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1752888280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752888278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f1293c7d5a655409631845c701585a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnManager: {fileID: 1976088628}
+  randomCardDB: {fileID: 11400000, guid: 6f05ff4d044050345bfd3435f7d3619d, type: 2}
+  hand: {fileID: 39206170}
+--- !u!114 &1752888281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752888278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3246ae94b6b0e4f82030a2b0fe3230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMana: {fileID: 1764020401}
+  baseMana: 50
+  startOfTurnMana: 0
 --- !u!1 &1757673378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
@@ -4006,6 +4072,7 @@ GameObject:
   - component: {fileID: 1888001725}
   - component: {fileID: 1888001727}
   - component: {fileID: 1888001728}
+  - component: {fileID: 1888001729}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4036,6 +4103,7 @@ MonoBehaviour:
   hand: {fileID: 1911530110}
   drawCardFromSavedDeck: {fileID: 2072977979}
   turnManager: {fileID: 1976088628}
+  opponentBasicAI: {fileID: 1752888280}
 --- !u!4 &1888001726
 Transform:
   m_ObjectHideFlags: 0
@@ -4087,7 +4155,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1911530110}
+  oppHand: {fileID: 39206170}
   turnManager: {fileID: 1976088628}
+--- !u!114 &1888001729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888001724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2ed69b317f8444fb40db52ec00ddb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playArea: {fileID: 905445072}
+  activeArea: {fileID: 1682370970}
+  buffArea: {fileID: 569411446}
 --- !u!1 &1911530105
 GameObject:
   m_ObjectHideFlags: 0
@@ -4347,6 +4431,7 @@ GameObject:
   - component: {fileID: 1996761783}
   - component: {fileID: 1996761782}
   - component: {fileID: 1996761781}
+  - component: {fileID: 1996761784}
   m_Layer: 5
   m_Name: OpponentActiveCardArea
   m_TagString: Untagged
@@ -4437,6 +4522,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996761778}
   m_CullTransparentMesh: 1
+--- !u!114 &1996761784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996761778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCards: []
+  maxslots: 15
+  availablePlayerHandCardSlots: 15
 --- !u!1 &2032957113
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,6 +5052,7 @@ GameObject:
   - component: {fileID: 2081207606}
   - component: {fileID: 2081207605}
   - component: {fileID: 2081207604}
+  - component: {fileID: 2081207607}
   m_Layer: 5
   m_Name: OpponentBuffArea
   m_TagString: Untagged
@@ -5042,6 +5143,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081207601}
   m_CullTransparentMesh: 1
+--- !u!114 &2081207607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081207601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCards: []
+  maxslots: 1
+  availablePlayerHandCardSlots: 1
 --- !u!1 &248353555729172776
 GameObject:
   m_ObjectHideFlags: 0
