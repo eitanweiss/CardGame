@@ -16,17 +16,17 @@ public class TurnManager : MonoBehaviour
     {
         if(Random.Range(0,2)==1)
         {
-            isMyTurnToStart=true;
-            phase = Phase.Draw;
+            isMyTurnToStart=false;
+            phase = Phase.Discard;
             phaseText.text = "Draw Phase";
         }
         else
         {
-            isMyTurnToStart = false;
-            phase = Phase.OpponentDraw;
+            isMyTurnToStart = true;
+            phase = Phase.OpponentDiscard;
             phaseText.text = "Opponent's Draw Phase";
         }
-        Notify();
+        GameObject.Find("GameManager").GetComponent<GameManager>().TurnControl();
     }
     public Phase GetPhase()
     {
@@ -119,41 +119,43 @@ public class TurnManager : MonoBehaviour
         {
             PlayerStartsRound();
         }
-        //switch (phase)
-        //{
-        //    case Phase.Draw:
-        //        phase = Phase.PlayBuff;
-        //        phaseText.text = "Buff Phase";
-        //        break;
-        //    case Phase.PlayBuff: phase = 
-        //        Phase.PlayCard;
-        //        phaseText.text = "Card Phase";
-        //        break;
-        //    case Phase.PlayCard:
-        //        phase = Phase.Discard;
-        //        phaseText.text = "Discard";
-        //        break;
-        //    case Phase.Discard: 
-        //        phase = Phase.OpponentDraw;
-        //        phaseText.text = "End Turn";
-        //        isMyTurn = false;
-        //        break;
-        //    case Phase.OpponentDraw:
-        //        phase = Phase.OpponentPlayBuff;
-        //        phaseText.text = "Opponent's Turn";
-        //        break;
-        //    case Phase.OpponentPlayBuff:
-        //        phase = Phase.OpponentPlayCard;
-        //        break;
-        //    case Phase.OpponentPlayCard:
-        //        phase = Phase.OpponentDiscard;
-        //        break;
-        //    case Phase.OpponentDiscard:
-        //        phase = Phase.Draw;
-        //        isMyTurn = true;
-        //        phaseText.text = "Draw Phase";
-        //        break;
-        //}
+        {
+            //switch (phase)
+            //{
+            //    case Phase.Draw:
+            //        phase = Phase.PlayBuff;
+            //        phaseText.text = "Buff Phase";
+            //        break;
+            //    case Phase.PlayBuff: phase = 
+            //        Phase.PlayCard;
+            //        phaseText.text = "Card Phase";
+            //        break;
+            //    case Phase.PlayCard:
+            //        phase = Phase.Discard;
+            //        phaseText.text = "Discard";
+            //        break;
+            //    case Phase.Discard: 
+            //        phase = Phase.OpponentDraw;
+            //        phaseText.text = "End Turn";
+            //        isMyTurn = false;
+            //        break;
+            //    case Phase.OpponentDraw:
+            //        phase = Phase.OpponentPlayBuff;
+            //        phaseText.text = "Opponent's Turn";
+            //        break;
+            //    case Phase.OpponentPlayBuff:
+            //        phase = Phase.OpponentPlayCard;
+            //        break;
+            //    case Phase.OpponentPlayCard:
+            //        phase = Phase.OpponentDiscard;
+            //        break;
+            //    case Phase.OpponentDiscard:
+            //        phase = Phase.Draw;
+            //        isMyTurn = true;
+            //        phaseText.text = "Draw Phase";
+            //        break;
+            //}
+        }
         Notify();
     }
     public void Notify()

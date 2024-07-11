@@ -19,6 +19,7 @@ public class OpponentBasicAI : MonoBehaviour
 
                 hand.AddCardFromDeck(card);
             }
+            hand.GetComponent<DropZone>().DisableDrag();
         }
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
         {
@@ -27,6 +28,7 @@ public class OpponentBasicAI : MonoBehaviour
                 if (card.GetComponent<Draggable>().enabled)
                 {
                     transform.GetChild(3).GetComponent<DropZone>().AddCard(card);
+                    transform.GetChild(3).GetComponent<DropZone>().DisableDrag();
                     hand.GetComponent<DropZone>().RemoveCard(card);
                     card.transform.SetParent(transform.GetChild(3).transform);
                     break;
@@ -41,6 +43,7 @@ public class OpponentBasicAI : MonoBehaviour
                 if (card.GetComponent<Draggable>().enabled)
                 {
                     transform.GetChild(1).GetComponent<DropZone>().AddCard(card);
+                    transform.GetChild(1).GetComponent<DropZone>().DisableDrag();
                     hand.GetComponent<DropZone>().RemoveCard(card);
                     card.transform.SetParent(transform.GetChild(1).transform);
                 }
@@ -54,6 +57,7 @@ public class OpponentBasicAI : MonoBehaviour
                 {
                     hand.GetComponent<DropZone>().RemoveCard(card);
                     GameObject.Find("Discard").GetComponent<DropZone>().AddCard(card);
+                    GameObject.Find("Discard").GetComponent<DropZone>().DisableDrag();
                     card.transform.SetParent(GameObject.Find("Discard").transform);
                     break;
                 }

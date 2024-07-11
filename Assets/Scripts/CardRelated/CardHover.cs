@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler//, ISelectHandler,IDeselectHandler
 {
-    float hoveramount;
-    void Start()
-    {
-        hoveramount = 150f;
-    }
+
+    [SerializeField] float verticalMovement = 150f;
+    //[SerializeField] float movetime = 0.1f;
+    //Coroutine currentCoroutine;
     Vector3 originalPosition;
+    Vector3 endPosition;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (transform.parent.name == "Hand" || transform.parent.name=="Opponent Hand")
+        if (transform.parent.name == "Hand")
         {
             originalPosition=transform.position;
+            endPosition=transform.position +new Vector3(0f,verticalMovement,0f);
+            eventData.selectedObject = gameObject;
             //Debug.Log("entering card" + this.GetComponent<DisplayCard>().nameText.text);
-            this.transform.position = new Vector2(transform.position.x,transform.position.y+ hoveramount);
+            this.transform.position = new Vector2(transform.position.x,transform.position.y+ verticalMovement);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (transform.parent.name == "Hand" || transform.parent.name == "Opponent Hand")
+        if (transform.parent.name == "Hand")
         {
+            eventData.selectedObject = null;
             //Debug.Log("leaving card" + this.GetComponent<DisplayCard>().nameText.text);
             this.transform.position = originalPosition;
         }
@@ -36,4 +40,43 @@ public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         //problem it creates: if mouse enters another card immedietly it will not hover
         //LayoutRebuilder.MarkLayoutForRebuild(transform.parent.GetComponent<RectTransform>());   
     }
+
+    //public void OnSelect(BaseEventData eventData)
+    //{
+    //    if(currentCoroutine != null)
+    //    {
+    //        StopCoroutine(currentCoroutine);
+    //        transform.position = originalPosition;
+    //    }
+    //    currentCoroutine =StartCoroutine(MoveCard(true));
+    //}
+
+    //public void OnDeselect(BaseEventData eventData)
+    //{
+    //    if (currentCoroutine != null)
+    //    {
+    //        StopCoroutine(currentCoroutine);
+    //        //transform.position = originalPosition;
+    //    }
+    //    currentCoroutine = StartCoroutine(MoveCard(false));
+    //}
+    //private IEnumerator MoveCard(bool startingMovement)
+    //{        
+    //    float elapsedTime = 0f;
+    //    while(elapsedTime< movetime)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        if (startingMovement)
+    //        {
+    //            endPosition = originalPosition +new Vector3(0f,verticalMovement,0f);
+    //        }
+    //        else
+    //        {
+    //            endPosition = originalPosition;
+    //        }
+    //        transform.position = Vector3.Lerp(transform.position, endPosition, elapsedTime / movetime);
+        
+    //        yield return null;
+    //    }
+    //}
 }

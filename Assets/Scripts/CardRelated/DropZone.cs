@@ -94,4 +94,8 @@ public class DropZone : MonoBehaviour, IDropHandler
         }
     }
     //AI functions since it will not drag
+    public void CalculationPhase()
+    {
+
+    }
 }

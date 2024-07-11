@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 39206170}
   - component: {fileID: 39206174}
   m_Layer: 5
-  m_Name: Opponent Hand
+  m_Name: OpponentHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

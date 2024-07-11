@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
     public Transform transformToReturnTo;
     Vector2 offset;
     private CanvasGroup canvasGroup;
-
+    
     void Awake ()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -22,14 +23,33 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //eventData is Vector2 so need to cast it to 3D
-        offset = new Vector3(eventData.position.x,eventData.position.y,transform.position.z) - transform.position;
-        transformToReturnTo = this.transform.parent;//set home to where card was
-        transform.parent.GetComponent<DropZone>().RemoveCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and remove card from list
-        transform.SetParent(transform.parent.parent);//move card to be child of canvas
-        canvasGroup.blocksRaycasts = false;
-        //Debug.Log("Start drag!");
+        //if (isPlayerTurn())
+        //{
+            //eventData is Vector2 so need to cast it to 3D
+            offset = new Vector3(eventData.position.x,eventData.position.y,transform.position.z) - transform.position;
+            transformToReturnTo = this.transform.parent;//set home to where card was
+            transform.parent.GetComponent<DropZone>().RemoveCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and remove card from list
+            transform.SetParent(transform.parent.parent);//move card to be child of canvas
+            canvasGroup.blocksRaycasts = false;
+            //Debug.Log("Start drag!");
+
+        //}
+        //else
+        //{
+
+        //}
     }
+
+    //private bool isPlayerTurn()
+    //{
+    //    TurnManager.Phase phase = GameObject.Find(TurnManager).GetComponent<TurnManager>().GetPhase();
+    //    if (phase == TurnManager.Phase.PlayBuff || phase == TurnManager.Phase.PlayCard || 
+    //        phase == TurnManager.Phase.Discard)
+    //    {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     public void OnDrag(PointerEventData eventData)
     {

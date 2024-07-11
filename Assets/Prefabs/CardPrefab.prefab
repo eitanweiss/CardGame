@@ -333,6 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b25b3a230da42d4e8211298faa6fb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalMovement: 150
+  movetime: 1
 --- !u!225 &-4416503930277877832
 CanvasGroup:
   m_ObjectHideFlags: 0

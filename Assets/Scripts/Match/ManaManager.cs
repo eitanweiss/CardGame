@@ -24,6 +24,11 @@ public class ManaManager : MonoBehaviour
         playerMana.GetComponentInChildren<TMP_Text>().text = currentMana.ToString();
         playerMana.GetComponentsInChildren<Image>()[1].fillAmount =1;
     }
+
+    public void ResetMana()
+    {
+        currentMana = startOfTurnMana;
+    }
     //might not be needed
     public int GetMana()
     {
