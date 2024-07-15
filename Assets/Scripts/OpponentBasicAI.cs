@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+/// <summary>
+/// basic opp AI for game feel when testing things out, for card playing,mana changes and calculations of damage at end of round
+/// </summary>
 public class OpponentBasicAI : MonoBehaviour
 {
     public TurnManager turnManager;
@@ -11,6 +14,7 @@ public class OpponentBasicAI : MonoBehaviour
     // Start is called before the first frame update
     public void Play()
     {
+        //check why draggable becomes active again when moving between zones, patched it with the disable every phase
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentDraw)
         {
             while (hand.GetComponent<DropZone>().availablePlayerHandCardSlots > 0)
