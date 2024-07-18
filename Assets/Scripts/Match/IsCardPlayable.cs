@@ -15,7 +15,7 @@ public class IsCardPlayable : MonoBehaviour
     {
         if (turnManager.GetPhase() == TurnManager.Phase.PlayBuff)
         {
-            Debug.Log("in playbuff playable phase");
+            //Debug.Log("in playbuff playable phase");
             foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
             {
                 if (card.card.isBuffCard == true)
@@ -32,7 +32,7 @@ public class IsCardPlayable : MonoBehaviour
         {
 
             int mana = hand.GetComponentInParent<ManaManager>().GetMana();
-            Debug.Log(mana);
+            //Debug.Log(mana);
             foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
             {
                 Debug.Log(card.name);
@@ -79,7 +79,7 @@ public class IsCardPlayable : MonoBehaviour
 
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
         {
-            Debug.Log("in playbuff playable phase");
+            //Debug.Log("in playbuff playable phase");
             foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
             {
                 if (card.card.isBuffCard == true)
@@ -96,10 +96,10 @@ public class IsCardPlayable : MonoBehaviour
         {
 
             int mana = oppHand.GetComponentInParent<ManaManager>().GetMana();
-            Debug.Log(mana);
+            //Debug.Log(mana);
             foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
             {
-                Debug.Log(card.name);
+                //Debug.Log(card.name);
                 if (card.card.isBuffCard == false)
                 {
                     for (int i = 0; i < card.card.abilities.Count; i++)

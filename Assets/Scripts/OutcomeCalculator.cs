@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
@@ -13,16 +14,18 @@ public class OutcomeCalculator : MonoBehaviour
     private int block;
     private int heal;
     private int loseHealth;
-    private int decreaseMana;
-    private int decreaseMaxHP;
-    private int decreasehandSize;
-    private int decreasePlayArea;
-    private int decreaseBuffArea;
-    private int decreaseDiscard;
-    private int decreaseDraw;
-    public DropZone activeArea;
-    public DropZone buffArea;
-    public DropZone playArea;
+    //private int decreaseMana;
+    //private int decreaseMaxHP;
+    //private int decreasehandSize;
+    //private int decreasePlayArea;
+    //private int decreaseBuffArea;
+    //private int decreaseDiscard;
+    //private int decreaseDraw;
+    public List<CardObject> playerCards;
+    public List<CardObject> opponentCards;
+
+    public GameObject cardPrefab;
+    [SerializeField] GameObject calcView;
 
     //void Start()
     //{
@@ -40,26 +43,26 @@ public class OutcomeCalculator : MonoBehaviour
     //    decreaseDraw = 0;
     //}
 
-    void ResetValuesToZero()
+    public void ResetValuesToZero()
     {
         damage = 0;
         bonusDamage = 0;
         block = 0;
         heal = 0;
         loseHealth = 0;
-        decreaseMana = 0;
-        decreaseMaxHP = 0;
-        decreasehandSize = 0;
-        decreasePlayArea = 0;
-        decreaseBuffArea = 0;
-        decreaseDiscard = 0;
-        decreaseDraw = 0;
+        //decreaseMana = 0;
+        //decreaseMaxHP = 0;
+        //decreasehandSize = 0;
+        //decreasePlayArea = 0;
+        //decreaseBuffArea = 0;
+        //decreaseDiscard = 0;
+        //decreaseDraw = 0;
     }
     //need to decide if i want to calculate by card or by effect
     //ATM it is by card
-    public void CalculateByArea(DropZone zone)
+    public void CalculateByArea(List<CardObject> list)
     {
-         foreach(CardObject card in zone.handCards)
+         foreach(CardObject card in list)
         {
             for(int i = 0;i<card.card.abilities.Count;i++)
             {
@@ -150,40 +153,77 @@ public class OutcomeCalculator : MonoBehaviour
         }
     }
 
-
-
-    public void CalculateAllZones()
+    private void AddCards(GameObject gameObject, List<CardObject> list)
     {
+        Component[] dropzones = gameObject.GetComponentsInChildren<DropZone>();
+        foreach (DropZone dropzone in dropzones)
+        {
+            //need to find a way to make this not HardCoded
+            if(dropzone.transform.parent.name == "OpponentHand" || dropzone.transform.parent.name == "Hand")
+                {
+                continue;
+            }
+            foreach(CardObject card in dropzone.handCards)
+            {
+                GameObject cardGO = Instantiate(cardPrefab, transform);
+                CardObject newCardObj = cardGO.AddComponent<CardObject>();
+                newCardObj.card = card.card;
+                DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
+                displayCard.SetCard(card.card);
+                cardGO.GetComponent<DisplayCard>().enabled = false;
+                list.Add(card);
+            }
+        }
+    }
+
+    public void CalculateAllZones(TextMeshProUGUI phaseText)
+    {
+        calcView.SetActive(true);
         ResetValuesToZero();
-        CalculateByArea(activeArea);
-        CalculateByArea(buffArea);
-        CalculateByArea(playArea);
 
+        //add cards to lists.
+        //need to find a way to make this not HardCoded
+        GameObject opponentObject = GameObject.Find("OpponentObject").gameObject;
+        GameObject playerObject = GameObject.Find("PlayerObject").gameObject;
+        AddCards(opponentObject,opponentCards);
+        AddCards(playerObject,playerCards);
 
-        //CalculateBlockByArea(activeArea);
-        //CalculateBlockByArea(buffArea);
-        //CalculateBlockByArea(playArea);
-
-        //CalculateHealByArea(activeArea);
-        //CalculateHealByArea(buffArea);
-        //CalculateHealByArea(playArea);
-
-        //CalculateSelfBlockBreakByArea(activeArea);
-        //CalculateSelfBlockBreakByArea(buffArea);
-        //CalculateSelfBlockBreakByArea(playArea);
-
-        //CalculateSelfDamageBreakByArea(activeArea);
-        //CalculateSelfDamageBreakByArea(buffArea);
-        //CalculateSelfDamageBreakByArea(playArea);
-
-        //CalculateSelfDamageByArea(activeArea);
-        //CalculateSelfDamageByArea(buffArea);
-        //CalculateSelfDamageByArea(playArea);
-
-        //CalculateBonusDamageByArea(activeArea);
-        //CalculateBonusDamageByArea(buffArea);
-        //CalculateBonusDamageByArea(playArea);
+        //pan out cards in 1st player
+        StartCoroutine(Timer(playerCards) );
+        //pan out cards in 2nd player
 
         //calculate the rest of the effects(those not directly related to hp and attack)
+
+
+        //calculate dmg and related effects
+        CalculateByArea(playerCards);
+        CalculateByArea(opponentCards);
+
+
+        calcView.SetActive(false);
+        phaseText.GetComponent<FadeAway>().ResetFadeAway();
+    }
+
+    IEnumerator ShowCardCoroutine(CardObject card)
+    {
+        card.GetComponent<DisplayCard>().enabled = true;
+        yield return null;
+    }
+
+    IEnumerator Timer(List<CardObject> list)
+    {
+        while(list.Count > 0)
+        {
+            float duration = 1f;
+            float elapsedTime = 0f;
+            while(elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            } 
+            yield return StartCoroutine(ShowCardCoroutine(list[0]));
+            list.RemoveAt(0);
+            Debug.Log("in enumerator");
+        }
     }
 }

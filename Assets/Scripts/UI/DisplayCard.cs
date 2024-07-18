@@ -24,7 +24,6 @@ public class DisplayCard : MonoBehaviour
         {
             if (card.abilities[i].name=="Duration")
             {
-                Debug.Log("got Duration");
                 transform.GetChild(2).GetComponent<Image>().GetComponentInChildren<TMP_Text>().text = $"{card.abilityValues[i]}/{card.abilityValues[i]}";
             }
             descriptionText.text = descriptionText.text + card.abilities[i].name + "(" + card.abilityValues[i] +"); ";

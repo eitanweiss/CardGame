@@ -20,7 +20,6 @@ public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler/
             originalPosition=transform.position;
             endPosition=transform.position +new Vector3(0f,verticalMovement,0f);
             eventData.selectedObject = gameObject;
-            //Debug.Log("entering card" + this.GetComponent<DisplayCard>().nameText.text);
             this.transform.position = new Vector2(transform.position.x,transform.position.y+ verticalMovement);
         }
     }
@@ -30,7 +29,6 @@ public class CardHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler/
         if (transform.parent.name == "Hand")
         {
             eventData.selectedObject = null;
-            //Debug.Log("leaving card" + this.GetComponent<DisplayCard>().nameText.text);
             this.transform.position = originalPosition;
         }
         //might be really heavy and not needed

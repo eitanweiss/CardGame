@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     public TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
     Phase phase;
-
+    [SerializeField] OutcomeCalculator outcomeCalculator;
 
     void Start()
     {
@@ -67,6 +67,9 @@ public class TurnManager : MonoBehaviour
                 //do calculation of damage and stuff
                 isMyTurnToStart = true;
                 phaseText.text = "Draw Phase";
+                ////
+                ///make calculations from here.
+                outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
                 break;
         }
     }
@@ -104,6 +107,7 @@ public class TurnManager : MonoBehaviour
                 isMyTurnToStart = false;
                 phaseText.text = "Opponent's Draw Phase";
                 //do calculation of damage and stuff
+                outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
                 break;
         }
 
@@ -118,43 +122,6 @@ public class TurnManager : MonoBehaviour
         else
         {
             PlayerStartsRound();
-        }
-        {
-            //switch (phase)
-            //{
-            //    case Phase.Draw:
-            //        phase = Phase.PlayBuff;
-            //        phaseText.text = "Buff Phase";
-            //        break;
-            //    case Phase.PlayBuff: phase = 
-            //        Phase.PlayCard;
-            //        phaseText.text = "Card Phase";
-            //        break;
-            //    case Phase.PlayCard:
-            //        phase = Phase.Discard;
-            //        phaseText.text = "Discard";
-            //        break;
-            //    case Phase.Discard: 
-            //        phase = Phase.OpponentDraw;
-            //        phaseText.text = "End Turn";
-            //        isMyTurn = false;
-            //        break;
-            //    case Phase.OpponentDraw:
-            //        phase = Phase.OpponentPlayBuff;
-            //        phaseText.text = "Opponent's Turn";
-            //        break;
-            //    case Phase.OpponentPlayBuff:
-            //        phase = Phase.OpponentPlayCard;
-            //        break;
-            //    case Phase.OpponentPlayCard:
-            //        phase = Phase.OpponentDiscard;
-            //        break;
-            //    case Phase.OpponentDiscard:
-            //        phase = Phase.Draw;
-            //        isMyTurn = true;
-            //        phaseText.text = "Draw Phase";
-            //        break;
-            //}
         }
         Notify();
     }

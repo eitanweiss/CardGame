@@ -26,7 +26,6 @@ public class ZoneActivation : MonoBehaviour
         DropZone discard = GameObject.Find("Discard").GetComponent<DropZone>();
         DropZone hand = GameObject.Find("Hand").GetComponent<DropZone>();
 
-        Debug.Log("on phase change works");
         switch (turnManager.GetPhase())
         {
             case TurnManager.Phase.Draw:

@@ -42,15 +42,20 @@ public class OpponentBasicAI : MonoBehaviour
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayCard)
         {
             List<CardObject> list = new List<CardObject>();
+            List<CardObject> cardsToRemove = new List<CardObject>();
             foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
             {
                 if (card.GetComponent<Draggable>().enabled)
                 {
+                    cardsToRemove.Add(card);
                     transform.GetChild(1).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(1).GetComponent<DropZone>().DisableDrag();
-                    hand.GetComponent<DropZone>().RemoveCard(card);
                     card.transform.SetParent(transform.GetChild(1).transform);
                 }
+            }
+            foreach (CardObject card in cardsToRemove) 
+            {
+                hand.GetComponent<DropZone>().RemoveCard(card);
             }
         }
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentDiscard)

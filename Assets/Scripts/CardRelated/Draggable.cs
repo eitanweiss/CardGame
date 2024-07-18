@@ -39,22 +39,9 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
 
         //}
     }
-
-    //private bool isPlayerTurn()
-    //{
-    //    TurnManager.Phase phase = GameObject.Find(TurnManager).GetComponent<TurnManager>().GetPhase();
-    //    if (phase == TurnManager.Phase.PlayBuff || phase == TurnManager.Phase.PlayCard || 
-    //        phase == TurnManager.Phase.Discard)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position - offset;
-        //Debug.Log("is problem in onDrag?");
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -64,7 +51,6 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
         Debug.Log(transformToReturnTo.name);
         canvasGroup.blocksRaycasts = true;
         transform.parent.GetComponent<DropZone>().AddCard(eventData.pointerDrag.GetComponent<CardObject>());//take parent(hand/playfield etc.) and add card to list
-        //Debug.Log("Drag end!" + this.GetComponent<DisplayCard>().nameText.text);
     }
 
     public void OnPointerDown(PointerEventData eventData)

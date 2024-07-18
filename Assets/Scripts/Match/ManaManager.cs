@@ -50,10 +50,8 @@ public class ManaManager : MonoBehaviour
     {
         for (int i = 0; i < card.card.abilities.Count; i++)
         {
-            //Debug.Log("DecreaseMana");
             if (card.card.abilities[i].name == "Cost")
             {
-                //Debug.Log("Now");
                 if(added)
                 {
                     currentMana -= card.card.abilityValues[i];
@@ -70,38 +68,4 @@ public class ManaManager : MonoBehaviour
 
         //change which cards can be played with new mana amount
     }
-    //public void DecreaseMana(CardObject cardObj)
-    //{
-    //    for (int i = 0; i < cardObj.card.abilities.Count; i++)
-    //    {
-    //        //Debug.Log("DecreaseMana");
-    //        if (cardObj.card.abilities[i].name == "Cost")
-    //        {
-    //            //Debug.Log("Now");
-    //            currentMana -= cardObj.card.abilityValues[i];
-    //            break;
-    //        }
-    //    }
-    //    playerMana.GetComponentInChildren<TMP_Text>().text = currentMana.ToString();
-    //    playerMana.GetComponentsInChildren<Image>()[1].fillAmount = currentMana / baseMana;
-    //}
-
-    //public void IncreaseMana(CardObject cardObj)
-    //{
-    //    Debug.Log("is this reached?");
-    //    for (int i = 0; i < cardObj.card.abilities.Count; i++)
-    //    {
-    //        Debug.Log("DecreaseMana");
-    //        if (cardObj.card.abilities[i].name == "Cost")
-    //        {
-    //            Debug.Log("Now");
-    //            currentMana += cardObj.card.abilityValues[i];
-    //            break;
-    //        }
-    //    }
-    //    playerMana.GetComponentInChildren<TMP_Text>().text = currentMana.ToString();
-    //    playerMana.GetComponentsInChildren<Image>()[1].fillAmount = currentMana / baseMana;
-    //}
-    
-
 }
