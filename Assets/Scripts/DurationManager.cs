@@ -15,9 +15,10 @@ public class DurationManager : MonoBehaviour
     public void ReduceRoundCount()
     {
         //go through PlayArea
-        for (int j = 0; j < buffArea.GetComponent<DropZone>().handCards.Count; j++)
+        var list = buffArea.GetComponent<DropZone>().GetList();
+        for (int j = 0; j < list.Count; j++)
         {
-            CardObject card = buffArea.GetComponent<DropZone>().handCards[j];
+            CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
             {
                 if (card.card.abilities[i].name == "Duration")
@@ -32,9 +33,9 @@ public class DurationManager : MonoBehaviour
         }
         playArea.GetComponent<DropZone>().RemoveAllCards();
         //go through BuffArea
-        for (int j = 0; j < buffArea.GetComponent<DropZone>().handCards.Count; j++)
+        for (int j = 0; j < list.Count; j++)
         {
-            CardObject card = buffArea.GetComponent<DropZone>().handCards[j];
+            CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
             {
                 if (card.card.abilities[i].name == "Duration")
@@ -46,9 +47,9 @@ public class DurationManager : MonoBehaviour
             }
         }
         //go through ActiveCardsArea
-        for (int j = 0; j < buffArea.GetComponent<DropZone>().handCards.Count; j++)
+        for (int j = 0; j < list.Count; j++)
         {
-            CardObject card = buffArea.GetComponent<DropZone>().handCards[j];
+            CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
             {
                 if (card.card.abilities[i].name == "Duration")

@@ -16,7 +16,8 @@ public class IsCardPlayable : MonoBehaviour
         if (turnManager.GetPhase() == TurnManager.Phase.PlayBuff)
         {
             //Debug.Log("in playbuff playable phase");
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 if (card.card.isBuffCard == true)
                 {
@@ -33,7 +34,7 @@ public class IsCardPlayable : MonoBehaviour
 
             int mana = hand.GetComponentInParent<ManaManager>().GetMana();
             //Debug.Log(mana);
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 Debug.Log(card.name);
                 if (card.card.isBuffCard == false)
@@ -63,14 +64,14 @@ public class IsCardPlayable : MonoBehaviour
         }
         else if (turnManager.GetPhase() == TurnManager.Phase.Discard)
         {
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 card.GetComponent<Draggable>().enabled = true;
             }
         }  
         else
         {
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 card.GetComponent<Draggable>().enabled = false;
             }
@@ -80,7 +81,7 @@ public class IsCardPlayable : MonoBehaviour
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
         {
             //Debug.Log("in playbuff playable phase");
-            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
                 if (card.card.isBuffCard == true)
                 {
@@ -97,7 +98,7 @@ public class IsCardPlayable : MonoBehaviour
 
             int mana = oppHand.GetComponentInParent<ManaManager>().GetMana();
             //Debug.Log(mana);
-            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
                 //Debug.Log(card.name);
                 if (card.card.isBuffCard == false)
@@ -127,14 +128,14 @@ public class IsCardPlayable : MonoBehaviour
         }
         else if (turnManager.GetPhase() == TurnManager.Phase.OpponentDiscard)
         {
-            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
                 card.GetComponent<Draggable>().enabled = true;
             }
         }
         else
         {
-            foreach (CardObject card in oppHand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
                 card.GetComponent<Draggable>().enabled = false;
             }

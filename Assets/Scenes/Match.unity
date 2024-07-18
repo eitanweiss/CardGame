@@ -4633,6 +4633,7 @@ MonoBehaviour:
   isMyTurnToStart: 1
   phaseText: {fileID: 1576206025412485652}
   outcomeCalculator: {fileID: 879984210}
+  calcScreen: {fileID: 770227591}
 --- !u!4 &1976088629
 Transform:
   m_ObjectHideFlags: 0

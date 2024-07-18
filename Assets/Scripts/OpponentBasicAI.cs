@@ -27,7 +27,7 @@ public class OpponentBasicAI : MonoBehaviour
         }
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
         {
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 if (card.GetComponent<Draggable>().enabled)
                 {
@@ -43,14 +43,16 @@ public class OpponentBasicAI : MonoBehaviour
         {
             List<CardObject> list = new List<CardObject>();
             List<CardObject> cardsToRemove = new List<CardObject>();
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 if (card.GetComponent<Draggable>().enabled)
                 {
+                    Debug.Log("play card");
                     cardsToRemove.Add(card);
                     transform.GetChild(1).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(1).GetComponent<DropZone>().DisableDrag();
                     card.transform.SetParent(transform.GetChild(1).transform);
+                    hand.CheckValid();
                 }
             }
             foreach (CardObject card in cardsToRemove) 
@@ -60,7 +62,7 @@ public class OpponentBasicAI : MonoBehaviour
         }
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentDiscard)
         {
-            foreach (CardObject card in hand.GetComponent<DropZone>().handCards)
+            foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
                 if (card.GetComponent<Draggable>().enabled)
                 {

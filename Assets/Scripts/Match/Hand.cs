@@ -29,17 +29,10 @@ public class Hand : MonoBehaviour
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
     }
-    //happens directly in dropzone not through here
-    //public void RemoveCard(CardObject cardObj)
-    //{
-    //    dropZone.RemoveCard(cardObj);
-    //    availablePlayerHandCardSlots = maxslots - GetComponent<HorizontalLayoutGroup>().transform.childCount;
-    //    //
-    //}
 
     public void CheckValid()
     {
-        foreach (CardObject cardObj in transform.GetComponent<DropZone>().handCards)//for each card in hand
+        foreach (CardObject cardObj in transform.GetComponent<DropZone>().GetList())//for each card in hand
         {
             //check if correct phase
             //if yes, check if can play card (room in field, cost)

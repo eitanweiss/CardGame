@@ -8,9 +8,10 @@ public class TurnManager : MonoBehaviour
 {
     public bool isMyTurnToStart = true;//not sure if this is needed
     public TextMeshProUGUI phaseText;
-    public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard};
+    public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard, Calculation};
     Phase phase;
     [SerializeField] OutcomeCalculator outcomeCalculator;
+    [SerializeField] GameObject calcScreen;
 
     void Start()
     {
@@ -63,12 +64,16 @@ public class TurnManager : MonoBehaviour
                 phaseText.text = "Discard";
                 break;
             case Phase.Discard:
-                phase = Phase.Draw;
+                phase = Phase.Calculation;
                 //do calculation of damage and stuff
-                isMyTurnToStart = true;
                 phaseText.text = "Draw Phase";
                 ////
                 ///make calculations from here.
+                break;
+            case Phase.Calculation:
+                phase = Phase.Draw;
+                isMyTurnToStart = true;
+                calcScreen.SetActive(true);
                 outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
                 break;
         }
@@ -103,12 +108,17 @@ public class TurnManager : MonoBehaviour
                 phaseText.text = "Opponent's Discard Phase";
                 break;
             case Phase.OpponentDiscard:
-                phase = Phase.OpponentDraw;
-                isMyTurnToStart = false;
+                phase = Phase.Calculation;
                 phaseText.text = "Opponent's Draw Phase";
                 //do calculation of damage and stuff
+                break;
+            case Phase.Calculation:
+                phase = Phase.OpponentDraw;
+                calcScreen.SetActive(true);
+                isMyTurnToStart = false;
                 outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
                 break;
+
         }
 
     }
