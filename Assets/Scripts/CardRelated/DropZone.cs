@@ -16,7 +16,7 @@ public class DropZone : MonoBehaviour, IDropHandler
 
     private List<CardObject> handCards = new List<CardObject>();
     //get maxslots from character in future
-    [SerializeField] private int maxslots;
+    [SerializeField] private int maxslots;//this will be determined from player/opp abilities later on, not directly from editor
     [SerializeField] private int availablePlayerHandCardSlots;
 
     public ReadOnlyCollection<CardObject> GetList()
@@ -71,7 +71,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
         {
             transform.parent.GetComponent<ManaManager>().ChangeMana(card, true);
-            transform.parent.GetComponentInChildren<Hand>().CheckValid();
+           GameObject.Find("GameManager").GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;//make it independant of previous values
 

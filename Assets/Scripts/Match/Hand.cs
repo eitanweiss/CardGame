@@ -29,7 +29,9 @@ public class Hand : MonoBehaviour
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
     }
-
+    /// <summary>
+    /// checks if card is playable due to mana constraints
+    /// </summary>
     public void CheckValid()
     {
         foreach (CardObject cardObj in transform.GetComponent<DropZone>().GetList())//for each card in hand

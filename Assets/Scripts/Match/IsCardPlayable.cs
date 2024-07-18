@@ -11,7 +11,10 @@ public class IsCardPlayable : MonoBehaviour
     public Hand oppHand;
     public TurnManager turnManager;
 
-    public void CanCardBePlayed()
+    /// <summary>
+    /// sets which cards can be played at every phase
+    /// </summary>
+    public void UpdateIfCardCanBePlayed()
     {
         if (turnManager.GetPhase() == TurnManager.Phase.PlayBuff)
         {
@@ -21,11 +24,11 @@ public class IsCardPlayable : MonoBehaviour
             {
                 if (card.card.isBuffCard == true)
                 {
-                    card.GetComponent<Draggable>().enabled = true;
+                    card.isPlayable = true;
                 }
                 else
                 {
-                    card.GetComponent<Draggable>().enabled = false;
+                    card.isPlayable = false;
                 }
             }
         }
@@ -45,11 +48,11 @@ public class IsCardPlayable : MonoBehaviour
                         {
                             if (card.card.abilityValues[i]<=mana)
                             {
-                                card.GetComponent<Draggable>().enabled = true;
+                                card.isPlayable = true;
                             }
                             else
                             {
-                                card.GetComponent<Draggable>().enabled = false;
+                                card.isPlayable = false;
                             }
                             break;
                         }
@@ -57,7 +60,7 @@ public class IsCardPlayable : MonoBehaviour
                 }
                 else
                 {
-                    card.GetComponent<Draggable>().enabled = false;
+                    card.isPlayable = false;
                 }
 
             }
@@ -66,14 +69,14 @@ public class IsCardPlayable : MonoBehaviour
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                card.GetComponent<Draggable>().enabled = true;
+                card.isPlayable = true;
             }
         }  
         else
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                card.GetComponent<Draggable>().enabled = false;
+                card.isPlayable = false;
             }
         }
 
@@ -85,11 +88,11 @@ public class IsCardPlayable : MonoBehaviour
             {
                 if (card.card.isBuffCard == true)
                 {
-                    card.GetComponent<Draggable>().enabled = true;
+                    card.isPlayable = true;
                 }
                 else
                 {
-                    card.GetComponent<Draggable>().enabled = false;
+                    card.isPlayable = false;
                 }
             }
         }
@@ -109,11 +112,11 @@ public class IsCardPlayable : MonoBehaviour
                         {
                             if (card.card.abilityValues[i] <= mana)
                             {
-                                card.GetComponent<Draggable>().enabled = true;
+                                card.isPlayable = true;
                             }
                             else
                             {
-                                card.GetComponent<Draggable>().enabled = false;
+                                card.isPlayable = false;
                             }
                             break;
                         }
@@ -121,7 +124,7 @@ public class IsCardPlayable : MonoBehaviour
                 }
                 else
                 {
-                    card.GetComponent<Draggable>().enabled = false;
+                    card.isPlayable = false;
                 }
 
             }
@@ -130,14 +133,14 @@ public class IsCardPlayable : MonoBehaviour
         {
             foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
-                card.GetComponent<Draggable>().enabled = true;
+                card.isPlayable = true;
             }
         }
         else
         {
             foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {
-                card.GetComponent<Draggable>().enabled = false;
+                card.isPlayable = false;
             }
         }
     }

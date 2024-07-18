@@ -29,7 +29,7 @@ public class OpponentBasicAI : MonoBehaviour
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                if (card.GetComponent<Draggable>().enabled)
+                if (card.isPlayable)
                 {
                     transform.GetChild(3).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(3).GetComponent<DropZone>().DisableDrag();
@@ -45,14 +45,14 @@ public class OpponentBasicAI : MonoBehaviour
             List<CardObject> cardsToRemove = new List<CardObject>();
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                if (card.GetComponent<Draggable>().enabled)
+                if (card.isPlayable)
                 {
                     Debug.Log("play card");
                     cardsToRemove.Add(card);
                     transform.GetChild(1).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(1).GetComponent<DropZone>().DisableDrag();
                     card.transform.SetParent(transform.GetChild(1).transform);
-                    hand.CheckValid();
+                    GameObject.Find("GameManager").GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
                 }
             }
             foreach (CardObject card in cardsToRemove) 
@@ -64,7 +64,7 @@ public class OpponentBasicAI : MonoBehaviour
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                if (card.GetComponent<Draggable>().enabled)
+                if (card.isPlayable)
                 {
                     hand.GetComponent<DropZone>().RemoveCard(card);
                     GameObject.Find("Discard").GetComponent<DropZone>().AddCard(card);

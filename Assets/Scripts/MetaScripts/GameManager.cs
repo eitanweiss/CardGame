@@ -78,10 +78,15 @@ public class GameManager : MonoBehaviour
             drawCardFromSavedDeck.gameObject.SetActive(false);
         }
     }
+    /// <summary>
+    /// changes phase every time button is pressed
+    /// updates which cards are relevant to current phase
+    /// activates opponent's AI
+    /// </summary>
     public void TurnControl()
     {
         turnManager.ChangePhase();
-        this.gameObject.GetComponent<IsCardPlayable>().CanCardBePlayed();
-        opponentBasicAI.GetComponent<OpponentBasicAI>().Play();
+        gameObject.GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
+        opponentBasicAI.Play();
     }
 }

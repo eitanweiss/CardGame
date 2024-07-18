@@ -461,7 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 5
   availablePlayerHandCardSlots: 5
 --- !u!1 &92385252
@@ -1256,7 +1255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 2
   availablePlayerHandCardSlots: 2
 --- !u!1 &366859781
@@ -1562,7 +1560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 1
   availablePlayerHandCardSlots: 1
 --- !u!114 &569411450
@@ -2324,7 +2321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 0
   availablePlayerHandCardSlots: 0
 --- !u!1 &859454732
@@ -2571,7 +2567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 2
   availablePlayerHandCardSlots: 2
 --- !u!1 &937155634
@@ -3467,7 +3462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 0
   availablePlayerHandCardSlots: 0
 --- !u!1 &1513346480
@@ -3745,7 +3739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 15
   availablePlayerHandCardSlots: 15
 --- !u!114 &1682370974
@@ -4530,7 +4523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 5
   availablePlayerHandCardSlots: 5
 --- !u!1 &1932576880
@@ -4764,7 +4756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 15
   availablePlayerHandCardSlots: 15
 --- !u!1 &2032957113
@@ -4969,7 +4960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 1
   availablePlayerHandCardSlots: 1
 --- !u!114 &2064119887
@@ -5385,7 +5375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards: []
   maxslots: 1
   availablePlayerHandCardSlots: 1
 --- !u!1 &248353555729172776

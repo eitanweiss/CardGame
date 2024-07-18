@@ -4,9 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// in charge of changing the phase FSM
+/// 
+/// </summary>
 public class TurnManager : MonoBehaviour
 {
-    public bool isMyTurnToStart = true;//not sure if this is needed
+    public bool isMyTurnToStart = true;
     public TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard, Calculation};
     Phase phase;
@@ -18,13 +22,13 @@ public class TurnManager : MonoBehaviour
         if(Random.Range(0,2)==1)
         {
             isMyTurnToStart=false;
-            phase = Phase.Discard;
+            phase = Phase.Calculation;
             phaseText.text = "Draw Phase";
         }
         else
         {
             isMyTurnToStart = true;
-            phase = Phase.OpponentDiscard;
+            phase = Phase.Calculation;
             phaseText.text = "Opponent's Draw Phase";
         }
         GameObject.Find("GameManager").GetComponent<GameManager>().TurnControl();
