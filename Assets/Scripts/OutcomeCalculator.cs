@@ -163,7 +163,7 @@ public class OutcomeCalculator : MonoBehaviour
                 {
                 continue;
             }
-            foreach(CardObject card in dropzone.handCards)
+            foreach(CardObject card in dropzone.GetList())
             {
                 GameObject cardGO = Instantiate(cardPrefab, transform);
                 CardObject newCardObj = cardGO.AddComponent<CardObject>();

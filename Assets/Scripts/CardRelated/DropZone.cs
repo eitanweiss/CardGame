@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public class DropZone : MonoBehaviour, IDropHandler
 {
 
-    [SerializeField] private List<CardObject> handCards { get; }
+    private List<CardObject> handCards = new List<CardObject>();
     //get maxslots from character in future
     [SerializeField] private int maxslots;
     [SerializeField] private int availablePlayerHandCardSlots;

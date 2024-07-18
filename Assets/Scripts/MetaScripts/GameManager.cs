@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void RandomDeckDraw()
     {
-        if(hand.GetComponent<DropZone>().availablePlayerHandCardSlots>0)
+        if(hand.GetComponent<DropZone>().ReachedMaxCards() == false)
         {
             CardScriptableObject card = randomCardDB.randomDraw();
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     }
     public void SavedDeckDraw()
     {
-        if (hand.GetComponent<DropZone>().availablePlayerHandCardSlots > 0)
+        if (hand.GetComponent<DropZone>().ReachedMaxCards()==false)
         {
             drawCardFromSavedDeck.gameObject.SetActive(true);
             CardScriptableObject card = savedCardDB.Draw();

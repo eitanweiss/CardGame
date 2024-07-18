@@ -17,7 +17,7 @@ public class OpponentBasicAI : MonoBehaviour
         //check why draggable becomes active again when moving between zones, patched it with the disable every phase
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentDraw)
         {
-            while (hand.GetComponent<DropZone>().availablePlayerHandCardSlots > 0)
+            while (hand.GetComponent<DropZone>().ReachedMaxCards()==false)
             {
                 CardScriptableObject card = randomCardDB.randomDraw();
 
