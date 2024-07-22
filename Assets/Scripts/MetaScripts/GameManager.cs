@@ -9,11 +9,11 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text  DeckSize;
+    public TMP_Text  deckSize;
     public CardDB randomCardDB;
     public SavedDeck savedCardDB;
     private List<CardScriptableObject> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
-    public GameObject [] SavedDeckDepth = new GameObject[4];
+    public GameObject [] savedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
     public TurnManager turnManager;
@@ -23,21 +23,21 @@ public class GameManager : MonoBehaviour
     {
         if (savedCardDB.cards.Count < 30)
         {
-            SavedDeckDepth[0].SetActive(false);
+            savedDeckDepth[0].SetActive(false);
         }
         if (savedCardDB.cards.Count < 20)
         {
-            SavedDeckDepth[1].SetActive(false);
+            savedDeckDepth[1].SetActive(false);
         }
         if (savedCardDB.cards.Count < 10)
         {
-            SavedDeckDepth[2].SetActive(false);
+            savedDeckDepth[2].SetActive(false);
         }
         if (savedCardDB.cards.Count < 1)
         {
-            SavedDeckDepth[3].SetActive(false);
+            savedDeckDepth[3].SetActive(false);
         }
-        DeckSize.text = savedCardDB.cards.Count.ToString();
+        deckSize.text = savedCardDB.cards.Count.ToString();
     }
     void Start()
     {

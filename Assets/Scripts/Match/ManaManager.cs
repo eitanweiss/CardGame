@@ -16,11 +16,12 @@ public class ManaManager : MonoBehaviour
     public float baseMana = 50f;//this is a patch for now, need to change it to get info from player
     public float startOfTurnMana;
     private float currentMana;
+    [SerializeField] private Character character;
 
     void Start()
     {
-        currentMana = baseMana;  
-        startOfTurnMana = baseMana;
+        currentMana = character.maxMana;  
+        startOfTurnMana = character.maxMana;
         playerMana.GetComponentInChildren<TMP_Text>().text = currentMana.ToString();
         playerMana.GetComponentsInChildren<Image>()[1].fillAmount =1;
     }

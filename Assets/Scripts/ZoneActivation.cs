@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ZoneActivation : MonoBehaviour
 {
-    public TurnManager turnManager;
-    public Button buttonA;
-    public Button buttonB;
+    [SerializeField] private TurnManager turnManager;
+    [SerializeField] private Button buttonA;
+    [SerializeField] private Button buttonB;
 
     
     

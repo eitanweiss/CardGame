@@ -383,7 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3f8631ac3eb3545837fc1edd3b9571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
 --- !u!114 &39206171
 MonoBehaviour:
@@ -813,20 +812,24 @@ MonoBehaviour:
   experience: 0
   experienceToLevel: 20
   skillPoints: 0
-  maxHealthPoints: 40
-  currentHealthPoints: 40
-  maxMana: 50
-  currentMana: 50
-  manaMultiplier: 0
   attack: 0
+  costToIncreaseAttack: 0
   defense: 0
+  costToIncreaseDefense: 0
   regeneration: 0
+  costToIncreaseRegeneration: 0
   handSlots: 5
   buffSlots: 1
   playSlots: 2
   drawCount: 3
   discardSlots: 1
   maxDeckSize: 10
+  maxHealthPoints: 40
+  costToIncreaseMaxHP: 0
+  currentHealthPoints: 40
+  maxMana: 50
+  costToIncreaseMaxMana: 0
+  currentMana: 50
 --- !u!1 &190228174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1027,10 @@ PrefabInstance:
     - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
       propertyPath: m_Name
       value: CardBackPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635520340919245501, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1314,20 +1321,24 @@ MonoBehaviour:
   experience: 0
   experienceToLevel: 20
   skillPoints: 0
-  maxHealthPoints: 40
-  currentHealthPoints: 40
-  maxMana: 50
-  currentMana: 50
-  manaMultiplier: 0
   attack: 0
+  costToIncreaseAttack: 0
   defense: 0
+  costToIncreaseDefense: 0
   regeneration: 0
+  costToIncreaseRegeneration: 0
   handSlots: 5
   buffSlots: 1
   playSlots: 2
   drawCount: 3
   discardSlots: 1
   maxDeckSize: 10
+  maxHealthPoints: 40
+  costToIncreaseMaxHP: 0
+  currentHealthPoints: 40
+  maxMana: 50
+  costToIncreaseMaxMana: 0
+  currentMana: 50
 --- !u!114 &366859784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,11 +1377,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366859781}
   m_CullTransparentMesh: 1
---- !u!1 &462952226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  m_PrefabInstance: {fileID: 1261190146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &493800250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1462,6 +1468,10 @@ PrefabInstance:
     - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
       propertyPath: m_Name
       value: CardBack (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1947,6 +1957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardBack
       objectReference: {fileID: 0}
+    - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1969,8 +1983,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 759403784}
-  - component: {fileID: 759403785}
   - component: {fileID: 759403786}
+  - component: {fileID: 759403785}
+  - component: {fileID: 759403787}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -2013,6 +2028,7 @@ MonoBehaviour:
   playerMana: {fileID: 92385254}
   baseMana: 50
   startOfTurnMana: 0
+  character: {fileID: 759403787}
 --- !u!114 &759403786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,6 +2044,42 @@ MonoBehaviour:
   turnManager: {fileID: 1976088628}
   buttonA: {fileID: 2072977979}
   buttonB: {fileID: 178150939}
+--- !u!114 &759403787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759403783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258a33ae7d3289b4fbdc0c78c1edb254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  race: 0
+  type: 0
+  level: 1
+  experience: 0
+  experienceToLevel: 20
+  skillPoints: 0
+  attack: 0
+  costToIncreaseAttack: 12
+  defense: 0
+  costToIncreaseDefense: 5
+  regeneration: 0
+  costToIncreaseRegeneration: 7
+  handSlots: 5
+  buffSlots: 1
+  playSlots: 2
+  drawCount: 3
+  discardSlots: 1
+  maxDeckSize: 10
+  maxHealthPoints: 30
+  costToIncreaseMaxHP: 1
+  currentHealthPoints: 30
+  maxMana: 60
+  costToIncreaseMaxMana: 1
+  currentMana: 60
 --- !u!1 &770227591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,11 +2904,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976284160}
   m_CullTransparentMesh: 1
---- !u!1 &1009905144 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  m_PrefabInstance: {fileID: 1725842945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1059273794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,6 +3071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardBack (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3110,11 +3161,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275389069}
   m_CullTransparentMesh: 1
---- !u!1 &1289049778 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  m_PrefabInstance: {fileID: 493800250}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352257107
 GameObject:
   m_ObjectHideFlags: 0
@@ -4071,6 +4117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardBack (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4092,6 +4142,7 @@ GameObject:
   - component: {fileID: 1752888279}
   - component: {fileID: 1752888280}
   - component: {fileID: 1752888281}
+  - component: {fileID: 1752888282}
   m_Layer: 0
   m_Name: OpponentObject
   m_TagString: Untagged
@@ -4149,11 +4200,43 @@ MonoBehaviour:
   playerMana: {fileID: 1764020401}
   baseMana: 50
   startOfTurnMana: 0
---- !u!1 &1757673378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  m_PrefabInstance: {fileID: 699904282}
+  character: {fileID: 1752888282}
+--- !u!114 &1752888282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752888278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258a33ae7d3289b4fbdc0c78c1edb254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  race: 1
+  type: 2
+  level: 1
+  experience: 0
+  experienceToLevel: 20
+  skillPoints: 0
+  attack: 0
+  costToIncreaseAttack: 7
+  defense: 0
+  costToIncreaseDefense: 12
+  regeneration: 0
+  costToIncreaseRegeneration: 12
+  handSlots: 5
+  buffSlots: 1
+  playSlots: 2
+  drawCount: 3
+  discardSlots: 1
+  maxDeckSize: 10
+  maxHealthPoints: 60
+  costToIncreaseMaxHP: 1
+  currentHealthPoints: 60
+  maxMana: 30
+  costToIncreaseMaxMana: 1
+  currentMana: 30
 --- !u!1 &1764020398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,14 +4419,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a0f4bec0d8d334a894c5ea3a68175e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckSize: {fileID: 1528318988}
+  deckSize: {fileID: 1528318988}
   randomCardDB: {fileID: 11400000, guid: 6f05ff4d044050345bfd3435f7d3619d, type: 2}
   savedCardDB: {fileID: 11400000, guid: 2797a9004cf8dcb439be458dce065691, type: 2}
-  SavedDeckDepth:
-  - {fileID: 1009905144}
-  - {fileID: 462952226}
-  - {fileID: 1289049778}
-  - {fileID: 1757673378}
+  savedDeckDepth:
+  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
   hand: {fileID: 1911530110}
   drawCardFromSavedDeck: {fileID: 2072977979}
   turnManager: {fileID: 1976088628}
@@ -4509,7 +4592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3f8631ac3eb3545837fc1edd3b9571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMana: {fileID: 92385254}
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
 --- !u!114 &1911530111
 MonoBehaviour:
@@ -4622,7 +4704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e545cd6e7adef343a7164c0f3aca9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMyTurnToStart: 1
   phaseText: {fileID: 1576206025412485652}
   outcomeCalculator: {fileID: 879984210}
   calcScreen: {fileID: 770227591}

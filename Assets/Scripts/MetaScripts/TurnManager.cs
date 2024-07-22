@@ -10,13 +10,16 @@ using UnityEngine.UI;
 /// </summary>
 public class TurnManager : MonoBehaviour
 {
-    public bool isMyTurnToStart = true;
-    public TextMeshProUGUI phaseText;
+    public bool isMyTurnToStart { get; private set; }
+    [SerializeField]private TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard, Calculation};
     Phase phase;
     [SerializeField] OutcomeCalculator outcomeCalculator;
     [SerializeField] GameObject calcScreen;
 
+    /// <summary>
+    /// at start of game randomizes who is first
+    /// </summary>
     void Start()
     {
         if(Random.Range(0,2)==1)

@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
+
 /// <summary>
 /// every area where cards can be in will havea dropzone. 
 /// <param name="handCards"> a list of cards which are connected to the prefab children of gameObject this is attached to </param>
@@ -18,6 +20,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     //get maxslots from character in future
     [SerializeField] private int maxslots;//this will be determined from player/opp abilities later on, not directly from editor
     [SerializeField] private int availablePlayerHandCardSlots;
+    //TODO: add slots to dropzone instead of layoutgroup.
 
     public ReadOnlyCollection<CardObject> GetList()
     {
@@ -121,5 +124,19 @@ public class DropZone : MonoBehaviour, IDropHandler
         {
             card.GetComponent<Draggable>().enabled = false;
         }
+    }
+
+    public void MoveCardToOtherZone(CardObject card)
+    {
+        if(transform.name == "Hand")
+        {
+            //from hand
+        }
+        else
+        {
+            GameObject.Find("Hand").GetComponent<DropZone>().AddCard(card);
+            //give to hand
+        }
+        //move card to other dropzone
     }
 }

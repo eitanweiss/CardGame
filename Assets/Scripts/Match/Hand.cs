@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
-    public Image playerMana; //in future will have access to the Character or something?
-    public GameObject cardPrefab;
+    [SerializeField] public Image playerMana { get;} //in future will have access to the Character or something?
+    [SerializeField] private GameObject cardPrefab;
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
     public void AddCardFromDeck(CardScriptableObject card)
@@ -31,13 +31,12 @@ public class Hand : MonoBehaviour
     }
     /// <summary>
     /// checks if card is playable due to mana constraints
+    /// called in relevant phase only
     /// </summary>
     public void CheckValid()
     {
         foreach (CardObject cardObj in transform.GetComponent<DropZone>().GetList())//for each card in hand
         {
-            //check if correct phase
-            //if yes, check if can play card (room in field, cost)
             for (int i = 0; i < cardObj.card.abilities.Count; i++)
             {
                 if (cardObj.card.abilities[i].name == "Cost")
