@@ -49,8 +49,11 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             case TurnManager.Phase.PlayBuff:
                 if (transform.parent.name == "Hand")
                 {
-                    Vector3 target = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[2].transform.position;
-                    MoveTo(target);
+                    DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[2];
+
+                    transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
+                    transform.SetParent(newZone.transform);
+                    MoveTo(newZone.transform.position);
                     //move to buff
                 }
                 //move to/from buff
@@ -58,8 +61,8 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             case TurnManager.Phase.Discard:
                 if (transform.parent.name == "Hand")
                 {
-                    Vector3 target = GameObject.Find("Discard").transform.position;
-                    MoveTo(target);
+                    DropZone newZone = GameObject.Find("Discard").GetComponent<DropZone>();
+                    MoveTo(newZone.transform.position);
                     //move to discard
                 }
                 //move to/from discard
@@ -68,16 +71,17 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
                 if (transform.parent.name == "Hand")
                 {
-                    Vector3 target = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[0].transform.position;
-                    MoveTo(target);
+                    DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[0];
+                    MoveTo(newZone.transform.position);
                     //move to play
-                }
-                else
-                {
-
                 }
                 break;
             default:
+                if(gameObject.GetComponent<CardObject>().isPlayable)
+                {
+                    DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[3];
+                    MoveTo(newZone.transform.position);
+                }
                 break;
         }
         //lerp
