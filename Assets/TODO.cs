@@ -10,15 +10,11 @@ public static class TODO : object
     /// 
     /// TODO list:
     /// 1.  finish up calculation phase:
-    /// 2.      move cards from  play to trash/played, dependant on wether they had duration or not
-    /// 3.      reduce duration from cards in buff zone
-    /// 4.      reduce duration from cards in played zone
     /// 5.      calculate all the dmg, def and heal for each player
     /// 6.      reduce life in the correct amount for each player
     /// 7.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
     /// 8.  
     /// 9.
-    /// 10.
     /// 11.
     /// 12.
     /// 13.
