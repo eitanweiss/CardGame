@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField] public Image playerMana { get;} //in future will have access to the Character or something?
+    //[SerializeField] public Image playerMana { get;} //in future will have access to the Character or something?
     [SerializeField] private GameObject cardPrefab;
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
@@ -41,10 +41,17 @@ public class Hand : MonoBehaviour
             {
                 if (cardObj.card.abilities[i].name == "Cost")
                 {
-                    Image playerMana = transform.parent.GetComponentInChildren<Image>();
-                    if(cardObj.card.abilityValues[i] > int.Parse(playerMana.GetComponentInChildren<TMP_Text>().text))
+                    ManaManager playerMana = transform.parent.GetComponent<ManaManager>();
+                    if(cardObj.card.abilityValues[i] > playerMana.GetMana())
                     {
                         cardObj.GetComponent<Draggable>().enabled = false;
+                        cardObj.isPlayable = false;
+                    }
+                    else
+                    {
+
+                        cardObj.GetComponent<Draggable>().enabled = true;
+                        cardObj.isPlayable = true;
                     }
                     break;
                 }

@@ -37,7 +37,7 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     IEnumerator HandleSingleClick()
     {
         yield return new WaitForSeconds(doubleClickThreshold);
-        //dostuff
+        //large card icon - make it duplicate so does not leave parent
         Debug.Log("Click!");
     }
 
@@ -49,32 +49,57 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             case TurnManager.Phase.PlayBuff:
                 if (transform.parent.name == "Hand")
                 {
-                    DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[2];
-
-                    transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
-                    transform.SetParent(newZone.transform);
-                    MoveTo(newZone.transform.position);
-                    //move to buff
+                    if (gameObject.GetComponent<CardObject>().isPlayable)
+                    {
+                        ChooseZone(2); 
+                        //move to buff
+                    }
+                }
+                else
+                {
+                    if (transform.parent.name == "PlayerBuffArea")
+                    {
+                        ChooseZone(3);
+                        //from buff to hand
+                    }
                 }
                 //move to/from buff
-                break;
-            case TurnManager.Phase.Discard:
-                if (transform.parent.name == "Hand")
-                {
-                    DropZone newZone = GameObject.Find("Discard").GetComponent<DropZone>();
-                    MoveTo(newZone.transform.position);
-                    //move to discard
-                }
-                //move to/from discard
                 break;
             case TurnManager.Phase.PlayCard:
 
                 if (transform.parent.name == "Hand")
                 {
-                    DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[0];
-                    MoveTo(newZone.transform.position);
-                    //move to play
+
+                    if (gameObject.GetComponent<CardObject>().isPlayable)
+                    {
+                        transform.parent.GetComponent<Hand>().CheckValid();
+                        ChooseZone(0);
+                        //move to play
+                    }
                 }
+                else
+                {
+                    ChooseZone(3);
+                    transform.parent.GetComponent<Hand>().CheckValid();
+                    //move from play to hand
+                }
+                break;
+            case TurnManager.Phase.Discard:
+                if (transform.parent.name == "Hand")
+                {
+                    DropZone newZone = GameObject.Find("Discard").GetComponent<DropZone>();
+                    transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
+                    newZone.AddCard(gameObject.GetComponent<CardObject>());
+                    transform.SetParent(newZone.transform);
+                    MoveTo(newZone.transform.position);
+                    //move to discard
+                }
+                else
+                {
+                    ChooseZone(3);
+                    //move back to hand
+                }
+                //move to/from discard
                 break;
             default:
                 if(gameObject.GetComponent<CardObject>().isPlayable)
@@ -89,6 +114,15 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         yield return null;
     }
 
+    private void ChooseZone(int i)
+    {
+        DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[i];
+
+        transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
+        newZone.AddCard(gameObject.GetComponent<CardObject>());
+        transform.SetParent(newZone.transform);
+        MoveTo(newZone.transform.position);
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {

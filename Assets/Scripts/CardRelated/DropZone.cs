@@ -73,7 +73,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         handCards.Add(card);
         if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
         {
-            transform.parent.GetComponent<ManaManager>().ChangeMana(card, true);
+           transform.parent.GetComponent<ManaManager>().ChangeMana(card, true);
            GameObject.Find("GameManager").GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;//make it independant of previous values
@@ -112,6 +112,7 @@ public class DropZone : MonoBehaviour, IDropHandler
             {
                 //Debug.Log("in foreach");
                 card.GetComponent<Draggable>().enabled = true;
+                card.isPlayable = true;
             }
         }
     }
@@ -123,6 +124,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         foreach (CardObject card in handCards)
         {
             card.GetComponent<Draggable>().enabled = false;
+            card.isPlayable = false;
         }
     }
 

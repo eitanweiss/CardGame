@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 1167033371159991285}
   - component: {fileID: 8947978205538655542}
   - component: {fileID: -2444896691251697721}
-  - component: {fileID: -4685718906467796009}
   - component: {fileID: -4416503930277877832}
   - component: {fileID: -1841858008126525062}
   - component: {fileID: 2705122500636223847}
@@ -254,7 +253,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 300}
+  m_SizeDelta: {x: 120, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5384584055947900864
 CanvasRenderer:
@@ -323,19 +322,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformToReturnTo: {fileID: 0}
---- !u!114 &-4685718906467796009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236386901728739356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b25b3a230da42d4e8211298faa6fb2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verticalMovement: 150
 --- !u!225 &-4416503930277877832
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1535,7 +1521,7 @@ RectTransform:
   m_GameObject: {fileID: 9131003218807060500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1297531927224261618}

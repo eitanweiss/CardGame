@@ -24,6 +24,7 @@ public class IsCardPlayable : MonoBehaviour
             {
                 if (card.card.isBuffCard == true)
                 {
+                    Debug.Log(card.name + "is active");
                     card.isPlayable = true;
                 }
                 else
@@ -39,7 +40,6 @@ public class IsCardPlayable : MonoBehaviour
             //Debug.Log(mana);
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                Debug.Log(card.name);
                 if (card.card.isBuffCard == false)
                 {
                     for(int i = 0; i < card.card.abilities.Count;i++)
@@ -48,6 +48,7 @@ public class IsCardPlayable : MonoBehaviour
                         {
                             if (card.card.abilityValues[i]<=mana)
                             {
+                                Debug.Log(card.name + "is active");
                                 card.isPlayable = true;
                             }
                             else
@@ -61,6 +62,7 @@ public class IsCardPlayable : MonoBehaviour
                 else
                 {
                     card.isPlayable = false;
+                    Debug.Log(card.name + "has been deactivated");
                 }
 
             }
