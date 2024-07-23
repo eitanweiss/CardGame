@@ -58,6 +58,7 @@ public class OutcomeCalculator : MonoBehaviour
         //decreaseDiscard = 0;
         //decreaseDraw = 0;
     }
+
     //need to decide if i want to calculate by card or by effect
     //ATM it is by card
     public void CalculateByArea(List<CardObject> list)
@@ -153,25 +154,32 @@ public class OutcomeCalculator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// copy all cards from the different zones into one list in order to make it easier to show and go over all of them together
+    /// </summary>
+    /// <param name="gameObject"> object to add cards to</param>
+    /// <param name="list"> cards to add to object</param>
     private void AddCards(GameObject gameObject, List<CardObject> list)
     {
         Component[] dropzones = gameObject.GetComponentsInChildren<DropZone>();
         foreach (DropZone dropzone in dropzones)
         {
+            //ignore hands
             //need to find a way to make this not HardCoded
-            if(dropzone.transform.parent.name == "OpponentHand" || dropzone.transform.parent.name == "Hand")
-                {
+            if(dropzone.transform.name == "OpponentHand" || dropzone.transform.name =="Hand")
+            {
+                Debug.Log("in hand");
                 continue;
             }
             foreach(CardObject card in dropzone.GetList())
             {
                 GameObject cardGO = Instantiate(cardPrefab, transform);
                 CardObject newCardObj = cardGO.AddComponent<CardObject>();
-                newCardObj.card = card.card;
+                newCardObj.card = card.card.DeepCopy();
                 DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
-                displayCard.SetCard(card.card);
+                displayCard.SetCard(newCardObj.card);
                 cardGO.GetComponent<DisplayCard>().enabled = false;
-                list.Add(card);
+                list.Add(newCardObj);
             }
         }
     }
@@ -204,11 +212,6 @@ public class OutcomeCalculator : MonoBehaviour
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
     }
 
-    IEnumerator ShowCardCoroutine(CardObject card)
-    {
-        card.GetComponent<DisplayCard>().enabled = true;
-        yield return null;
-    }
 
     IEnumerator Timer(List<CardObject> list)
     {
@@ -225,5 +228,10 @@ public class OutcomeCalculator : MonoBehaviour
             list.RemoveAt(0);
             Debug.Log("in enumerator");
         }
+    }
+    IEnumerator ShowCardCoroutine(CardObject card)
+    {
+        card.GetComponent<DisplayCard>().enabled = true;
+        yield return null;
     }
 }

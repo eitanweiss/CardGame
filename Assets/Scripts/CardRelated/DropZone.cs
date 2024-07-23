@@ -98,7 +98,12 @@ public class DropZone : MonoBehaviour, IDropHandler
     /// </summary>
     public void RemoveAllCards()
     {
-        handCards.Clear();
+        while(handCards.Count > 0)
+        {
+            Destroy(handCards[0].gameObject);
+            handCards.Remove(handCards[0]);
+        }
+
     }
     /// <summary>
     /// enable user interface with all cards in zone

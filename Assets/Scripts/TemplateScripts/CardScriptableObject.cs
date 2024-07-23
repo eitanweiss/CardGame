@@ -34,4 +34,11 @@ public class CardScriptableObject : ScriptableObject
         type = card.type;
         isBuffCard = card.isBuffCard;
     }
+    public CardScriptableObject DeepCopy()
+    {
+        CardScriptableObject card = ScriptableObject.CreateInstance<CardScriptableObject>();
+        card.CopyValues(this);
+        return card;
+
+    }
 }

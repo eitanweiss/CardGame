@@ -16,6 +16,7 @@ public class TurnManager : MonoBehaviour
     Phase phase;
     [SerializeField] OutcomeCalculator outcomeCalculator;
     [SerializeField] GameObject calcScreen;
+    [SerializeField] DurationManager durationManager;
 
     /// <summary>
     /// at start of game randomizes who is first
@@ -82,6 +83,7 @@ public class TurnManager : MonoBehaviour
                 isMyTurnToStart = true;
                 calcScreen.SetActive(true);
                 outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
+                durationManager.ReduceRoundCount();
                 break;
         }
     }
@@ -124,6 +126,7 @@ public class TurnManager : MonoBehaviour
                 calcScreen.SetActive(true);
                 isMyTurnToStart = false;
                 outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
+                durationManager.ReduceRoundCount();
                 break;
 
         }
