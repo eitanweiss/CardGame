@@ -15,7 +15,7 @@ public static class TODO : object
     /// 7.      reset Mana at start of each turn to correct amount (for now w/out changes)
     /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
     /// 9.  add limitations to the random deck according to race and class of players
-    /// 11.
+    /// 11. limit draw to max hand on first turn and 3 on every other turn 
     /// 12.
     /// 13.
     /// 14.

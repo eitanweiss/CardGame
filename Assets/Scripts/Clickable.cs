@@ -89,6 +89,10 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (transform.parent.name == "Hand")
                 {
                     DropZone newZone = GameObject.Find("Discard").GetComponent<DropZone>();
+                    if (newZone.ReachedMaxCards())
+                    {
+                        break;
+                    }
                     transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
                     newZone.AddCard(gameObject.GetComponent<CardObject>());
                     transform.SetParent(newZone.transform);
@@ -118,7 +122,10 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void ChooseZone(int i)
     {
         DropZone newZone = GameObject.Find("PlayerObject").GetComponentsInChildren<DropZone>()[i];
-
+        if(newZone.ReachedMaxCards())
+        {
+            return;
+        }
         transform.parent.GetComponent<DropZone>().RemoveCard(gameObject.GetComponent<CardObject>());
         newZone.AddCard(gameObject.GetComponent<CardObject>());
         transform.SetParent(newZone.transform);
