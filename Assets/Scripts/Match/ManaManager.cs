@@ -29,6 +29,7 @@ public class ManaManager : MonoBehaviour
     public void ResetMana()
     {
         currentMana = startOfTurnMana;
+        UpdateImage();
     }
     //might not be needed
     public int GetMana()
@@ -64,9 +65,12 @@ public class ManaManager : MonoBehaviour
                 break;
             }
         }
+        UpdateImage();
+        //change which cards can be played with new mana amount
+    }
+    private void UpdateImage()
+    {
         playerMana.GetComponentInChildren<TMP_Text>().text = currentMana.ToString();
         playerMana.GetComponentsInChildren<Image>()[1].fillAmount = currentMana / startOfTurnMana;
-
-        //change which cards can be played with new mana amount
     }
 }

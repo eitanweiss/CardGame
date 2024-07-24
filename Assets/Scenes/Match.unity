@@ -1899,9 +1899,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ed69b317f8444fb40db52ec00ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playArea: {fileID: 905445072}
-  activeArea: {fileID: 1682370970}
-  buffArea: {fileID: 569411446}
+  playerPlayArea: {fileID: 905445072}
+  playerActiveArea: {fileID: 1682370970}
+  playerBuffArea: {fileID: 569411446}
+  oppPlayArea: {fileID: 353540525}
+  oppActiveArea: {fileID: 1996761778}
+  oppBuffArea: {fileID: 2081207601}
 --- !u!4 &694988570
 Transform:
   m_ObjectHideFlags: 0
@@ -4498,9 +4501,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ed69b317f8444fb40db52ec00ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playArea: {fileID: 905445072}
-  activeArea: {fileID: 1682370970}
-  buffArea: {fileID: 569411446}
+  playerPlayArea: {fileID: 0}
+  playerActiveArea: {fileID: 0}
+  playerBuffArea: {fileID: 0}
+  oppPlayArea: {fileID: 0}
+  oppActiveArea: {fileID: 0}
+  oppBuffArea: {fileID: 0}
 --- !u!1 &1911530105
 GameObject:
   m_ObjectHideFlags: 0

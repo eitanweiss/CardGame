@@ -10,14 +10,21 @@ using UnityEngine.UI;
 public class DurationManager : MonoBehaviour
 {
     //this will run after calculation of damage, before throwing out cards from areas
-    public GameObject playArea;
-    public GameObject activeArea;
-    public GameObject buffArea;
+    public GameObject playerPlayArea;
+    public GameObject playerActiveArea;
+    public GameObject playerBuffArea;
+    public GameObject oppPlayArea;
+    public GameObject oppActiveArea;
+    public GameObject oppBuffArea;
 
 
-    public void ReduceRoundCount()
+    /// <summary>
+    /// checks which cards have duration and moves them to active zone, removes those that do not
+    /// </summary>
+    /// <param name="playArea">relevant play area</param>
+    /// <param name="activeArea">relevant active area</param>
+    void ReducePlayCount(GameObject playArea,GameObject activeArea)
     {
-        //go through PlayArea
         var list = playArea.GetComponent<DropZone>().GetList();
         for (int j = 0; j < list.Count; j++)
         {
@@ -39,8 +46,16 @@ public class DurationManager : MonoBehaviour
         Debug.Log("removing all cards from playzone");
         playArea.GetComponent<DropZone>().RemoveAllCards();
         Debug.Log("all cards should be removed now");
-        //go through BuffArea
-        list = buffArea.GetComponent<DropZone>().GetList();
+
+    }
+
+    /// <summary>
+    /// reduces the duration of all cards in the buff area
+    /// </summary>
+    /// <param name="buffArea">relevant buff area</param>
+    void ReduceBuffCount(GameObject buffArea)
+    {
+        var list = buffArea.GetComponent<DropZone>().GetList();
         for (int j = 0; j < list.Count; j++)
         {
             CardObject card = list[j];
@@ -49,13 +64,20 @@ public class DurationManager : MonoBehaviour
                 if (card.card.abilities[i].name == "Duration")
                 {
                     Image duration = buffArea.transform.GetChild(j).GetChild(2).GetComponent<Image>();
-                    WriteBubble(card,duration);
+                    WriteBubble(card, duration);
                     break;
                 }
             }
         }
-        //go through ActiveCardsArea
-        list = activeArea.GetComponent<DropZone>().GetList();
+    }
+
+    /// <summary>
+    /// reduces the duration of all cards in the active area
+    /// </summary>
+    /// <param name="activeArea">relevant active area</param>
+    void ReduceActiveCount(GameObject activeArea)
+    {
+        var list = activeArea.GetComponent<DropZone>().GetList();
         for (int j = 0; j < list.Count; j++)
         {
             CardObject card = list[j];
@@ -65,12 +87,40 @@ public class DurationManager : MonoBehaviour
                 {
                     Debug.Log("this card was moved to active area" + card.card.name);
                     Image duration = activeArea.transform.GetChild(j).GetChild(2).GetComponent<Image>();
-                    WriteBubble(card,duration);
+                    WriteBubble(card, duration);
                     break;
                 }
             }
         }
     }
+
+    /// <summary>
+    /// reorganizes all cards in the correct areas for the next round, reducing all durations accordingly.
+    /// </summary>
+    public void ReduceRoundCount()
+    {
+        ///player zones
+        //go through PlayArea
+        ReducePlayCount(playerPlayArea, playerActiveArea);
+        //go through BuffArea
+        ReduceBuffCount(playerBuffArea);
+        //go through ActiveCardsArea
+        ReduceActiveCount(playerActiveArea);
+
+        ///opponent zones
+        //go through PlayArea
+        ReducePlayCount(oppPlayArea, oppActiveArea);
+        //go through BuffArea
+        ReduceBuffCount(oppBuffArea);
+        //go through ActiveCardsArea
+        ReduceActiveCount(oppActiveArea);
+    }
+
+    /// <summary>
+    /// Updates the duration bubble of all cards in the game when called by the ReduceRoundCount method.
+    /// </summary>
+    /// <param name="card">card who's duration is decreased </param>
+    /// <param name="image">image containing the text that needs to change</param>
     public void WriteBubble(CardObject card,Image image)
     {
         image.gameObject.SetActive(true);

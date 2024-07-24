@@ -12,9 +12,9 @@ public class DiscardManager : MonoBehaviour
         var list = transform.GetComponent<DropZone>().GetList();
         for (int i = 0; i < list.Count; i++)
         {
+            //if (list[i] wasplayed) => add to collection
             transform.GetComponent<DropZone>().RemoveCard(list[i]);
             Destroy(transform.GetChild(0).gameObject);
-            //if (list[i] wasplayed) => add to collection
         }
     }
 }

@@ -37,6 +37,7 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     IEnumerator HandleSingleClick()
     {
         yield return new WaitForSeconds(doubleClickThreshold);
+        //darken all screen, enlarge card and allow information to be gotten about it
         //large card icon - make it duplicate so does not leave parent
         Debug.Log("Click!");
     }

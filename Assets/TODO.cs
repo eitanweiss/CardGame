@@ -12,8 +12,8 @@ public static class TODO : object
     /// 1.  finish up calculation phase:
     /// 5.      calculate all the dmg, def and heal for each player
     /// 6.      reduce life in the correct amount for each player
-    /// 7.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
-    /// 8.  
+    /// 7.      reset Mana at start of each turn to correct amount (for now w/out changes)
+    /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
     /// 9.
     /// 11.
     /// 12.

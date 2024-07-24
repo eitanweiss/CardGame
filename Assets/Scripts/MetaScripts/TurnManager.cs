@@ -73,17 +73,14 @@ public class TurnManager : MonoBehaviour
                 break;
             case Phase.Discard:
                 phase = Phase.Calculation;
-                //do calculation of damage and stuff
                 phaseText.text = "Draw Phase";
-                ////
-                ///make calculations from here.
                 break;
             case Phase.Calculation:
+                calcScreen.SetActive(true);
+                outcomeCalculator.CalculateAllZones(phaseText);
+                durationManager.ReduceRoundCount();
                 phase = Phase.Draw;
                 isMyTurnToStart = true;
-                calcScreen.SetActive(true);
-                outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
-                durationManager.ReduceRoundCount();
                 break;
         }
     }
@@ -122,13 +119,12 @@ public class TurnManager : MonoBehaviour
                 //do calculation of damage and stuff
                 break;
             case Phase.Calculation:
-                phase = Phase.OpponentDraw;
                 calcScreen.SetActive(true);
-                isMyTurnToStart = false;
-                outcomeCalculator.GetComponent<OutcomeCalculator>().CalculateAllZones(phaseText);
+                outcomeCalculator.CalculateAllZones(phaseText);
                 durationManager.ReduceRoundCount();
+                phase = Phase.OpponentDraw;
+                isMyTurnToStart = false;
                 break;
-
         }
 
     }

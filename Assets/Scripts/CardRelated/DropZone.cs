@@ -87,7 +87,13 @@ public class DropZone : MonoBehaviour, IDropHandler
     {
 
         handCards.Remove(card);
-        if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
+        
+        ////
+        ///needed to fix the problem of removing card but not back to hand.
+        ///might want to find a cleaner solution than adding the second condition here
+        ///it is a little ugly
+        if ((transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")&&
+            GameObject.Find("TurnManager").GetComponent<TurnManager>().GetPhase() != TurnManager.Phase.Calculation)
         {
             transform.parent.GetComponent<ManaManager>().ChangeMana(card,false);
         }

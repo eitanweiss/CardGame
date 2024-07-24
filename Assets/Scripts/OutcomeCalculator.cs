@@ -210,6 +210,8 @@ public class OutcomeCalculator : MonoBehaviour
 
         calcView.SetActive(false);
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
+        playerObject.GetComponent<ManaManager>().ResetMana();
+        opponentObject.GetComponent<ManaManager>().ResetMana();
     }
 
 
