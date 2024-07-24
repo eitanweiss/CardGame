@@ -10,13 +10,10 @@ public static class TODO : object
     /// 
     /// TODO list:
     /// 1.  finish up calculation phase:
-    /// 5.      calculate all the dmg, def and heal for each player
-    /// 6.      reduce life in the correct amount for each player
-    /// 7.      reset Mana at start of each turn to correct amount (for now w/out changes)
     /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
     /// 9.  add limitations to the random deck according to race and class of players
     /// 11. limit draw to max hand on first turn and 3 on every other turn 
-    /// 12.
+    /// 12. add other card effects to calculations
     /// 13.
     /// 14.
     /// 15.
