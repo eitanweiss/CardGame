@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// calculates all card effects at the end of each round. will reset values
 /// </summary>
 public class OutcomeCalculator : MonoBehaviour
 {
+    //need to find a way to make this not HardCoded if possible
+
+    GameObject playerObject;
+    GameObject opponentObject;
+    private void Start()
+    {
+        playerObject = GameObject.Find("PlayerObject").gameObject;
+        opponentObject = GameObject.Find("OpponentObject").gameObject;
+    }
     //this will be effects on player
-    private int damage;
-    private int bonusDamage;
-    private int block;
-    private int heal;
-    private int loseHealth;
+    int [] damage = new int[2];
+    int [] bonusDamage = new int[2];
+    int [] block = new int[2];
+    int [] heal = new int[2];
+    int [] loseHealth = new int[2];
     //private int decreaseMana;
     //private int decreaseMaxHP;
     //private int decreasehandSize;
@@ -45,23 +55,26 @@ public class OutcomeCalculator : MonoBehaviour
 
     public void ResetValuesToZero()
     {
-        damage = 0;
-        bonusDamage = 0;
-        block = 0;
-        heal = 0;
-        loseHealth = 0;
-        //decreaseMana = 0;
-        //decreaseMaxHP = 0;
-        //decreasehandSize = 0;
-        //decreasePlayArea = 0;
-        //decreaseBuffArea = 0;
-        //decreaseDiscard = 0;
-        //decreaseDraw = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            damage[i] = 0;
+            bonusDamage[i] = 0;
+            block[i] = 0;
+            heal[i] = 0;
+            loseHealth[i] = 0;
+            //decreaseMana = 0;
+            //decreaseMaxHP = 0;
+            //decreasehandSize = 0;
+            //decreasePlayArea = 0;
+            //decreaseBuffArea = 0;
+            //decreaseDiscard = 0;
+            //decreaseDraw = 0;
+        }
     }
 
     //need to decide if i want to calculate by card or by effect
     //ATM it is by card
-    public void CalculateByArea(List<CardObject> list)
+    public void CalculateByArea(List<CardObject> list, int player)
     {
          foreach(CardObject card in list)
         {
@@ -70,44 +83,44 @@ public class OutcomeCalculator : MonoBehaviour
                 switch (card.card.abilities[i].name)
                 {
                     case "Attack":
-                        damage += card.card.abilityValues[i];
+                        damage[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Bonus Attack":
-                        bonusDamage += card.card.abilityValues[i];
+                        bonusDamage[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Self Attack Break":
-                        damage -= card.card.abilityValues[i];
+                        damage[player] -= card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Attack Break":
                         //some sort of animation?
                         break;
                     case "Block":
-                        block += card.card.abilityValues[i];
+                        block[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Self Defense Break":
-                        block -= card.card.abilityValues[i];
+                        block[player] -= card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Defense Break":
                         //some sort of animation?
                         break;
                     case "Heal":
-                        heal += card.card.abilityValues[i];
+                        heal[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Self Heal Block":
-                        heal -= card.card.abilityValues[i];
+                        heal[player] -= card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Opponent Heal Block":
                         //some sort of animation?
                         break;
                     case "Self Damage":
-                        loseHealth += card.card.abilityValues[i];
+                        loseHealth[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Decrease Bonus Damage":
@@ -187,12 +200,11 @@ public class OutcomeCalculator : MonoBehaviour
     public void CalculateAllZones(TextMeshProUGUI phaseText)
     {
         calcView.SetActive(true);
+        Debug.Log("calcView should be active");
         ResetValuesToZero();
 
         //add cards to lists.
-        //need to find a way to make this not HardCoded
-        GameObject opponentObject = GameObject.Find("OpponentObject").gameObject;
-        GameObject playerObject = GameObject.Find("PlayerObject").gameObject;
+
         AddCards(opponentObject,opponentCards);
         AddCards(playerObject,playerCards);
 
@@ -204,15 +216,59 @@ public class OutcomeCalculator : MonoBehaviour
 
 
         //calculate dmg and related effects
-        CalculateByArea(playerCards);
-        CalculateByArea(opponentCards);
+        CalculateByArea(playerCards,0);
+        CalculateByArea(opponentCards,1);
 
-
-        calcView.SetActive(false);
+        StartCoroutine(Calc());
+        ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         playerObject.GetComponent<ManaManager>().ResetMana();
         opponentObject.GetComponent<ManaManager>().ResetMana();
     }
+
+
+    void ReduceLife()
+    {
+        Debug.Log("opp block is " + block[1]);
+        Debug.Log("player dmg is" + damage[0]);
+        if (damage[0]==0)
+        {
+            Debug.Log("no bonus dmg");
+            bonusDamage[0] = 0;
+        }
+
+        Debug.Log("opp self damage by " + loseHealth[1]);
+        Debug.Log("opp loses life by " + (loseHealth[1] + damage[0] + bonusDamage[0] - block[1]));
+        Debug.Log("opp heals for " + heal[1]);
+        Debug.Log("that's it for opp");
+
+        Debug.Log("player block is " + block[0]);
+        Debug.Log("opp dmg is" + damage[1]);
+        if (damage[1] == 0)
+        {
+            Debug.Log("no bonus dmg");
+            bonusDamage[0] = 0;
+        }
+
+        Debug.Log("player self damage by " + loseHealth[0]);
+        int damagedone = loseHealth[0] + damage[1] + bonusDamage[1] - block[0];
+        Debug.Log("player loses life by " + damagedone);
+        Debug.Log("player heals for " + heal[0]);
+        Debug.Log("that's it for player");
+        Image playerLife = playerObject.GetComponentsInChildren<Image>()[6];
+        Debug.Log(playerLife.transform.name) ;
+        Image oppLife = opponentObject.GetComponentsInChildren<Image>()[6];
+        int maxlife = playerObject.GetComponent<Character>().maxHealthPoints;
+        Debug.Log(maxlife);
+        playerLife.fillAmount = ((float)maxlife- (float)damagedone)/ (float)maxlife;
+    }
+    IEnumerator Calc()
+    {
+        yield return new WaitForSeconds(1);
+        calcView.SetActive(false);
+
+    }
+
 
 
     IEnumerator Timer(List<CardObject> list)

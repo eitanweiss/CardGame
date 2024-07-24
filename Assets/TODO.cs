@@ -14,7 +14,7 @@ public static class TODO : object
     /// 6.      reduce life in the correct amount for each player
     /// 7.      reset Mana at start of each turn to correct amount (for now w/out changes)
     /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
-    /// 9.
+    /// 9.  add limitations to the random deck according to race and class of players
     /// 11.
     /// 12.
     /// 13.
@@ -24,7 +24,8 @@ public static class TODO : object
     /// 17.
     /// 18.
     /// 19.
-    /// 20.
+    /// 20. a thought: do i want to make a 2Vs2 version? each player can choose in ehich zone to put his cards, andeach zone is seperate. 
+    /// 21. this adds interRace combos
     /// </summary>
     public static void TODOfirst()
     { }

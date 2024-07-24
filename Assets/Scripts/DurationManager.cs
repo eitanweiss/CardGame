@@ -26,7 +26,7 @@ public class DurationManager : MonoBehaviour
     void ReducePlayCount(GameObject playArea,GameObject activeArea)
     {
         var list = playArea.GetComponent<DropZone>().GetList();
-        for (int j = 0; j < list.Count; j++)
+        for (int j = list.Count - 1; j >= 0; j--)
         {
             CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
@@ -56,7 +56,7 @@ public class DurationManager : MonoBehaviour
     void ReduceBuffCount(GameObject buffArea)
     {
         var list = buffArea.GetComponent<DropZone>().GetList();
-        for (int j = 0; j < list.Count; j++)
+        for (int j = list.Count - 1; j >= 0; j--)
         {
             CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
@@ -78,7 +78,7 @@ public class DurationManager : MonoBehaviour
     void ReduceActiveCount(GameObject activeArea)
     {
         var list = activeArea.GetComponent<DropZone>().GetList();
-        for (int j = 0; j < list.Count; j++)
+        for (int j = list.Count-1; j >=0; j--)
         {
             CardObject card = list[j];
             for (int i = 0; i < card.card.abilities.Count; i++)
