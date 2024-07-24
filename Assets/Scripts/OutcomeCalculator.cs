@@ -255,12 +255,14 @@ public class OutcomeCalculator : MonoBehaviour
         Debug.Log("player loses life by " + damagedone);
         Debug.Log("player heals for " + heal[0]);
         Debug.Log("that's it for player");
-        Image playerLife = playerObject.GetComponentsInChildren<Image>()[6];
+        Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
         Debug.Log(playerLife.transform.name) ;
-        Image oppLife = opponentObject.GetComponentsInChildren<Image>()[6];
+        Image oppLife = GameObject.Find("OpponentHealthBar").GetComponentsInChildren<Image>()[1];
         int maxlife = playerObject.GetComponent<Character>().maxHealthPoints;
         Debug.Log(maxlife);
         playerLife.fillAmount = ((float)maxlife- (float)damagedone)/ (float)maxlife;
+        maxlife = opponentObject.GetComponent<Character>().maxHealthPoints;
+        oppLife.fillAmount = ((float)maxlife- (float)damagedone)/ (float)maxlife;
     }
     IEnumerator Calc()
     {
