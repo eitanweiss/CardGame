@@ -9,6 +9,19 @@ public class Hand : MonoBehaviour
 {
     //[SerializeField] public Image playerMana { get;} //in future will have access to the Character or something?
     [SerializeField] private GameObject cardPrefab;
+    public int drawCount;
+
+
+    public void ResetDrawCount()
+    {
+        drawCount = 3;
+    }
+
+    public void ChangeDrawCount(int change)
+    {
+        drawCount +=change;
+    }
+
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
     public void AddCardFromDeck(CardScriptableObject card)
@@ -25,7 +38,7 @@ public class Hand : MonoBehaviour
         //decrease number of available slots
 
 
-
+        drawCount--;
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
     }

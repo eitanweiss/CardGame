@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RandomDeckDraw()
     {
-        if(hand.GetComponent<DropZone>().ReachedMaxCards() == false)
+        if (hand.GetComponent<DropZone>().ReachedMaxCards() == false && hand.drawCount > 0)
         {
             CardScriptableObject card = playerRandomCardDB.randomDraw();
 
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     }
     public void SavedDeckDraw()
     {
-        if (hand.GetComponent<DropZone>().ReachedMaxCards()==false)
+        if (hand.GetComponent<DropZone>().ReachedMaxCards()==false && hand.drawCount > 0)
         {
             drawCardFromSavedDeck.gameObject.SetActive(true);
             CardScriptableObject card = savedCardDB.Draw();

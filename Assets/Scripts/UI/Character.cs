@@ -61,7 +61,7 @@ public class Character : MonoBehaviour
         handSlots = 5;
         buffSlots = 1;
         playSlots = 2;
-        drawCount = 3;
+        drawCount = 5;
         discardSlots = 1;
         maxDeckSize = 10;
     }

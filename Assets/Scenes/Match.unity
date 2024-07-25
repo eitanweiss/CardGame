@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
+  drawCount: 0
 --- !u!114 &39206171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2262,7 +2263,7 @@ MonoBehaviour:
   handSlots: 5
   buffSlots: 1
   playSlots: 2
-  drawCount: 3
+  drawCount: 5
   discardSlots: 1
   maxDeckSize: 10
   maxHealthPoints: 30
@@ -4972,6 +4973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
+  drawCount: 0
 --- !u!114 &1911530111
 MonoBehaviour:
   m_ObjectHideFlags: 0

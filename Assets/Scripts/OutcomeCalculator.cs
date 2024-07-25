@@ -224,6 +224,8 @@ public class OutcomeCalculator : MonoBehaviour
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         playerObject.GetComponent<ManaManager>().ResetMana();
         opponentObject.GetComponent<ManaManager>().ResetMana();
+        playerObject.GetComponentInChildren<Hand>().ResetDrawCount();
+        opponentObject.GetComponentInChildren<Hand>().ResetDrawCount();
     }
 
 
