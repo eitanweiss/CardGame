@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 /// <summary>
-/// basic opp AI for game feel when testing things out, for card playing,mana changes and calculations of damage at end of round
+/// basic opp AI for game feel when testing things out,
+/// set up for card playing,mana changes and calculations of damage at end of round
 /// </summary>
 public class OpponentBasicAI : MonoBehaviour
 {
     public TurnManager turnManager;
     public CardDB randomCardDB;
     public Hand hand;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Basic actions taken by computer player for in game testing. Does not have any AI or decision-making ability
+    /// </summary>
     public void Play()
     {
         //check why draggable becomes active again when moving between zones, patched it with the disable every phase
         if (turnManager.GetPhase() == TurnManager.Phase.OpponentDraw)
         {
             while (hand.GetComponent<DropZone>().ReachedMaxCards()==false)
+            //while (drawCount>0)
             {
                 CardScriptableObject card = randomCardDB.randomDraw();
 
                 hand.AddCardFromDeck(card);
+                //drawCount--
             }
             hand.GetComponent<DropZone>().DisableDrag();
         }
@@ -47,7 +52,7 @@ public class OpponentBasicAI : MonoBehaviour
             {
                 if (card.isPlayable)
                 {
-                    Debug.Log("play card");
+                    Debug.Log("play card" + card.card.name);
                     cardsToRemove.Add(card);
                     transform.GetChild(1).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(1).GetComponent<DropZone>().DisableDrag();

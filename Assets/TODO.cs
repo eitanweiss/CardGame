@@ -10,8 +10,7 @@ public static class TODO : object
     /// 
     /// TODO list:
     /// 1.  finish up calculation phase:
-    /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)
-    /// 9.  add limitations to the random deck according to race and class of players
+    /// 10.
     /// 11. limit draw to max hand on first turn and 3 on every other turn 
     /// 12. add other card effects to calculations
     /// 13.
@@ -21,6 +20,7 @@ public static class TODO : object
     /// 17.
     /// 18.
     /// 19.
+    /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)- visual, not needed for functionality so will move down the list
     /// 20. a thought: do i want to make a 2Vs2 version? each player can choose in ehich zone to put his cards, andeach zone is seperate. 
     /// 21. this adds interRace combos
     /// </summary>

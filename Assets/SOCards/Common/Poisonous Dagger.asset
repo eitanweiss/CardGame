@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf613ac5419cb4f8c6c38649701a15, type: 3}
   m_Name: Poisonous Dagger
   m_EditorClassIdentifier: 
-  id: 0
-  cardName: 
+  id: 40
+  cardName: Poisonous Dagger
   cardDescription: 
   image: {fileID: 0}
   abilities:
@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bb01b802c64d5841945ed7407046b63, type: 2}
   - {fileID: 11400000, guid: a1746b0be3617574283cb31c0b94006e, type: 2}
   abilityValues: 15000000020000000a000000
+  isBuffCard: 0
   rarity: 0
   type: 1
   race: 2

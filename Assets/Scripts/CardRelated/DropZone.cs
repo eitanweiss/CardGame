@@ -13,15 +13,23 @@ using UnityEngine.UI;
 /// <param name="maxslots">maximum number of cards allowed here at any given time </param>
 /// <param name="availablePlayerHandCardSlots">current available slots </param>
 /// </summary>
-public class DropZone : MonoBehaviour, IDropHandler
+public class DropZone : MonoBehaviour
 {
 
     private List<CardObject> handCards = new List<CardObject>();
     //get maxslots from character in future
     [SerializeField] private int maxslots;//this will be determined from player/opp abilities later on, not directly from editor
-    [SerializeField] private int availablePlayerHandCardSlots;
+    [SerializeField] private int availablePlayerHandCardSlots = 3;
     //TODO: add slots to dropzone instead of layoutgroup.
 
+    public void setMaxSlots(int num)
+    {
+        maxslots = num;
+    }
+    public void ResetAvailablePlayerHandCardSlots()
+    {
+        availablePlayerHandCardSlots = maxslots;
+    }
     public ReadOnlyCollection<CardObject> GetList()
     {
         return handCards.AsReadOnly();
@@ -31,27 +39,28 @@ public class DropZone : MonoBehaviour, IDropHandler
     /// will change when i implement clickable instead of draggable 
     /// </summary>
     /// <param name="eventData"> mouse </param>
-    public void OnDrop(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
-        {
-            if (!ReachedMaxCards())
-            {
-                eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
-            }
-            //make it so it is always possible to switch out buff
-            else if (transform.name == "PlayerBuffArea")
-            {
-                //switch buff out one for one
-                transform.parent.Find("Hand").GetComponent<DropZone>().AddCard(handCards[0]);
-                handCards[0].transform.SetParent(transform.parent.Find("Hand").transform);
-                this.RemoveCard(handCards[0]);
-                eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
-                //Debug.Log("max cards in buff zone");
-            }
+    //public void OnDrop(PointerEventData eventData)
+    //{
+    //    if (eventData.pointerDrag != null)
+    //    {
+    //        if (!ReachedMaxCards())
+    //        {
+    //            eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
+    //        }
+    //        //make it so it is always possible to switch out buff
+    //        else if (transform.name == "PlayerBuffArea")
+    //        {
+    //            //switch buff out one for one
+    //            transform.parent.Find("Hand").GetComponent<DropZone>().AddCard(handCards[0]);
+    //            handCards[0].transform.SetParent(transform.parent.Find("Hand").transform);
+    //            this.RemoveCard(handCards[0]);
+    //            eventData.pointerDrag.GetComponent<Draggable>().ChangeParent(transform);
+    //            //Debug.Log("max cards in buff zone");
+    //        }
 
-        }
-    }
+    //    }
+    //}
+
     /// <summary>
     /// check if another card can be added
     /// </summary>

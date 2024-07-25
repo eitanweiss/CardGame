@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf613ac5419cb4f8c6c38649701a15, type: 3}
   m_Name: Risky Charge
   m_EditorClassIdentifier: 
-  id: 13
+  id: 44
   cardName: Risky Charge
   cardDescription: 
   image: {fileID: 0}
@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de1dcebb0079baa4a9fd7f711fcb83a6, type: 2}
   - {fileID: 11400000, guid: 70bca88a5b62fb14d95dd9334eaaad81, type: 2}
   abilityValues: 150000000a00000004000000
+  isBuffCard: 0
   rarity: 0
   type: 1
   race: 4

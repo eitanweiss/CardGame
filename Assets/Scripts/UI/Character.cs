@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private Race race;
-    [SerializeField] private Type type;
+    public Race race;
+    public Type type;
     public int level;
     public int experience;
     public int experienceToLevel;
@@ -37,6 +38,15 @@ public class Character : MonoBehaviour
         this.type = type;
         NewCharacter();
         baseStats(race);
+        baseStats(type);
+    }
+
+    void Start()
+    {
+        if(transform.name!= "PlayerPortrait")
+        {
+            StartDropZones();
+        }
     }
 
     private void NewCharacter()
@@ -56,6 +66,10 @@ public class Character : MonoBehaviour
         maxDeckSize = 10;
     }
     
+    /// <summary>
+    /// set base stats for Race race
+    /// </summary>
+    /// <param name="race">race to set stats for</param>
     private void baseStats(Race race)
     {
         switch (race)
@@ -70,6 +84,11 @@ public class Character : MonoBehaviour
             default: break;
         }
     }
+
+    /// <summary>
+    /// set base stats for Type type
+    /// </summary>
+    /// <param name="type"></param>
     private void baseStats(Type type)
     {
         switch(type)
@@ -90,9 +109,46 @@ public class Character : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// set card limit for each dropzone
+    /// </summary>
+    void StartDropZones()
+    {
+        //hand
+        gameObject.GetComponentsInChildren<DropZone>()[3].setMaxSlots(handSlots);
+        gameObject.GetComponentsInChildren<DropZone>()[3].ResetAvailablePlayerHandCardSlots();
+        //buff
+        gameObject.GetComponentsInChildren<DropZone>()[2].setMaxSlots(buffSlots);
+        gameObject.GetComponentsInChildren<DropZone>()[2].ResetAvailablePlayerHandCardSlots();
+        //active - some randon big number - there should be no technical limit
+        gameObject.GetComponentsInChildren<DropZone>()[1].setMaxSlots(15);
+        gameObject.GetComponentsInChildren<DropZone>()[1].ResetAvailablePlayerHandCardSlots();
+        //play
+        gameObject.GetComponentsInChildren<DropZone>()[0].setMaxSlots(playSlots);
+        gameObject.GetComponentsInChildren<DropZone>()[0].ResetAvailablePlayerHandCardSlots();
+        //discard?
+        GameObject.Find("Discard").GetComponent<DropZone>().setMaxSlots(discardSlots);
+        GameObject.Find("Discard").GetComponent<DropZone>().ResetAvailablePlayerHandCardSlots();
+    }
+
+    public int GetRegeneration()
+    {
+        return regeneration;
+    }
+    public int GetAttack()
+    {
+        return attack;
+    }
+
+    public int GetDefense()
+    {
+        return defense;
+    }
+
+
     private void LevelUp()
     {
-        if (experience>experienceToLevel)
+        if (experience > experienceToLevel)
         {
             UpdateXP();
             level++;
@@ -103,7 +159,7 @@ public class Character : MonoBehaviour
     }
     void UpdateXP()
     {
-        if(level<5)
+        if (level < 5)
         {
             experienceToLevel += 20;
         }
@@ -112,7 +168,18 @@ public class Character : MonoBehaviour
             experienceToLevel += 150;
         }
     }
-    ////Meta details
+
+
+
+
+
+
+
+
+
+
+
+    ////Meta details - skills leveled up with level
     public void increaseAttack(int n)
     {
         attack += n;
@@ -125,7 +192,7 @@ public class Character : MonoBehaviour
     {
         regeneration += n;
     }
-     
+
     public void increaseMana(int n)
     {
         maxMana += n;

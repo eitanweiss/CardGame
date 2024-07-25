@@ -4,29 +4,35 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "CardGame/randomCardDB")]
 
-/*  
- * this contains all the cards known to man(or orc)
- * it contains methods for searching and limiting via each criterea,
- */
 
-
-
+/// <summary>
+/// contains all the cards known to man(or orc).
+/// contains methods for searching and limiting via each criterea,
+/// </summary>
 public class CardDB : ScriptableObject
 {
-    [SerializeField]
-    public List<CardScriptableObject> cards = new List<CardScriptableObject>();
-    
-    public List<CardScriptableObject> SearchByRarity(CardScriptableObject.Rarity rarity)
+
+    //[SerializeField] Race race;
+    //[SerializeField] Type type;
+    [SerializeField] public List<CardScriptableObject> allCards = new List<CardScriptableObject>();
+    public int drawCount;
+
+    public void SetDrawCount(int num)
+    {
+        drawCount = num;
+    }
+
+    public CardScriptableObject SearchByRarity(CardScriptableObject.Rarity rarity)
     {
         List<CardScriptableObject> list  = new List<CardScriptableObject>();
-        foreach (CardScriptableObject card in cards)
+        foreach (CardScriptableObject card in allCards)
         {
             if(card.rarity == rarity)
             {
                 list.Add(card);
             }
         }
-        return list;
+        return list[Random.Range(0, list.Count)];
     }
     public void LimitByRarity(List<CardScriptableObject> list, CardScriptableObject.Rarity rarity)
     {
@@ -41,7 +47,7 @@ public class CardDB : ScriptableObject
     public List<CardScriptableObject> SearchByRace(Race race)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject>();
-        foreach (CardScriptableObject card in cards)
+        foreach (CardScriptableObject card in allCards)
         {
             if (card.race== race || card.race== Race.All)
             {
@@ -63,7 +69,7 @@ public class CardDB : ScriptableObject
     public List<CardScriptableObject> SearchByType(Type type)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject >();
-        foreach (CardScriptableObject card in cards)
+        foreach (CardScriptableObject card in allCards)
         {
             if (card.type== type || card.type == Type.All)
             {
@@ -86,7 +92,7 @@ public class CardDB : ScriptableObject
     public List<CardScriptableObject> SearchByAbility(Ability ability)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject>();
-        foreach (CardScriptableObject card in cards)
+        foreach (CardScriptableObject card in allCards)
         {
             foreach (Ability cardAbility in card.abilities)
             {
@@ -108,29 +114,34 @@ public class CardDB : ScriptableObject
     //float chanceMythical = 0.001f;
     public CardScriptableObject randomDraw()
     {
-        List<CardScriptableObject> list = new List<CardScriptableObject>();
+        CardScriptableObject card;
         float val = Random.Range(0f, 1f);
         if (val <= chanceCommon)
         {
-            list = SearchByRarity(CardScriptableObject.Rarity.Common);
+            card = SearchByRarity(CardScriptableObject.Rarity.Common);
+            Debug.Log("draw common");
         }
         else if (val <= chanceCommon + chanceRare)
         {
-            list = SearchByRarity(CardScriptableObject.Rarity.Rare);
+            card = SearchByRarity(CardScriptableObject.Rarity.Rare);
+            Debug.Log("draw rare");
         }
         else if (val <= chanceCommon + chanceRare + chanceElite)
         {
-            list = SearchByRarity(CardScriptableObject.Rarity.Elite);
+            card = SearchByRarity(CardScriptableObject.Rarity.Elite);
+            Debug.Log("draw elite");
         }
         else if (val <= chanceCommon + chanceRare + chanceElite + chanceEpic)
         {
-            list = SearchByRarity(CardScriptableObject.Rarity.Epic);
+            card = SearchByRarity(CardScriptableObject.Rarity.Epic);
+            Debug.Log("draw epic");
         }
         else
         {
-            list = SearchByRarity(CardScriptableObject.Rarity.Mythical);
+            card = SearchByRarity(CardScriptableObject.Rarity.Mythical);
+            Debug.Log("draw Mythical");
         }
         //after getting all cards limit them to type and race of user
-        return list[Random.Range(0, list.Count)];
+        return card;
     }
 }

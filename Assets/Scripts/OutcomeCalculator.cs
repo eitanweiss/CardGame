@@ -229,8 +229,12 @@ public class OutcomeCalculator : MonoBehaviour
 
     void ReduceLife()
     {
-        Debug.Log("opp block is " + block[1]);
+        Character opponent = opponentObject.GetComponent<Character>();
+        Character player= playerObject.GetComponent<Character>();
+
+        Debug.Log("opp block is " + (block[1] + opponent.GetDefense()));
         Debug.Log("player dmg is" + damage[0]);
+        bonusDamage[0] += player.GetAttack();
         if (damage[0]==0)
         {
             Debug.Log("no bonus dmg");
@@ -239,21 +243,22 @@ public class OutcomeCalculator : MonoBehaviour
 
         Debug.Log("opp self damage by " + loseHealth[1]);
         Debug.Log("opp loses life by " + (loseHealth[1] + damage[0] + bonusDamage[0] - block[1]));
-        Debug.Log("opp heals for " + heal[1]);
+        Debug.Log("opp heals for " + (heal[1] + opponent.GetRegeneration()));
         Debug.Log("that's it for opp");
 
-        Debug.Log("player block is " + block[0]);
+        Debug.Log("player block is " + (block[0] + player.GetDefense()));
         Debug.Log("opp dmg is" + damage[1]);
+        bonusDamage[1] += opponent.GetAttack();
         if (damage[1] == 0)
         {
             Debug.Log("no bonus dmg");
-            bonusDamage[0] = 0;
+            bonusDamage[1] = 0;
         }
 
         Debug.Log("player self damage by " + loseHealth[0]);
         int damagedone = loseHealth[0] + damage[1] + bonusDamage[1] - block[0];
         Debug.Log("player loses life by " + damagedone);
-        Debug.Log("player heals for " + heal[0]);
+        Debug.Log("player heals for " + (heal[0] + player.GetRegeneration()));
         Debug.Log("that's it for player");
         Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
         Debug.Log(playerLife.transform.name) ;

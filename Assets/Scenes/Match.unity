@@ -614,7 +614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b262e703238a094a86b31d8ac31e172, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6373c726aaa7f74b9c70c273e945cc6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3581,7 +3581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b262e703238a094a86b31d8ac31e172, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6373c726aaa7f74b9c70c273e945cc6, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4559,7 +4559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnManager: {fileID: 1976088628}
-  randomCardDB: {fileID: 11400000, guid: 6f05ff4d044050345bfd3435f7d3619d, type: 2}
+  randomCardDB: {fileID: 11400000, guid: 65ebc10ef334ea24ba8b781dd7ac081a, type: 2}
   hand: {fileID: 39206170}
 --- !u!114 &1752888281
 MonoBehaviour:
@@ -4795,7 +4795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckSize: {fileID: 1528318988}
-  randomCardDB: {fileID: 11400000, guid: 6f05ff4d044050345bfd3435f7d3619d, type: 2}
+  playerRandomCardDB: {fileID: 11400000, guid: cd7bc7b3493ba1441843f8aa1701f1ad, type: 2}
+  opponentRandomCardDB: {fileID: 11400000, guid: 65ebc10ef334ea24ba8b781dd7ac081a, type: 2}
   savedCardDB: {fileID: 11400000, guid: 2797a9004cf8dcb439be458dce065691, type: 2}
   savedDeckDepth:
   - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
@@ -4983,8 +4984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb9693b04dd5148a061f9548071db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxslots: 5
-  availablePlayerHandCardSlots: 5
+  maxslots: 10
+  availablePlayerHandCardSlots: 10
 --- !u!1 &1932576880
 GameObject:
   m_ObjectHideFlags: 0

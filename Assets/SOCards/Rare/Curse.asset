@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf613ac5419cb4f8c6c38649701a15, type: 3}
   m_Name: Curse
   m_EditorClassIdentifier: 
-  id: 13
+  id: 67
   cardName: Curse
   cardDescription: 
   image: {fileID: 0}
@@ -21,7 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc115e9a062e84449b7b87f31a51993d, type: 2}
   - {fileID: 11400000, guid: b783a7ac560e5244a99fe36dfe2a0f08, type: 2}
   abilityValues: 060000000600000001000000
+  isBuffCard: 0
   rarity: 2
-  type: 3
-  race: 4
+  type: 0
+  race: 0
   value: 2

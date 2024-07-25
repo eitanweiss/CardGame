@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf613ac5419cb4f8c6c38649701a15, type: 3}
   m_Name: Multiple Shot
   m_EditorClassIdentifier: 
-  id: 0
+  id: 93
   cardName: Multiple Shot
   cardDescription: 
   image: {fileID: 0}
@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a975d52e04b7329439d4597362da01ee, type: 2}
   - {fileID: 11400000, guid: de1dcebb0079baa4a9fd7f711fcb83a6, type: 2}
   abilityValues: 2a0000000c000000
+  isBuffCard: 0
   rarity: 2
   type: 1
   race: 2

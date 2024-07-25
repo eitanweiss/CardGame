@@ -7,7 +7,10 @@ public class SavedDeck : ScriptableObject
 {
     [SerializeField]
     public List<CardScriptableObject> cards = new List<CardScriptableObject>();
-    // Start is called before the first frame update
+    
+    /// <summary>
+    /// randomize the order of the cards in this deck
+    /// </summary>
     public void Randomize()
     {
 
@@ -21,6 +24,10 @@ public class SavedDeck : ScriptableObject
 
         }
     }
+    /// <summary>
+    /// randomize the order of the cards in the given deck
+    /// </summary>
+    /// <param name="list">deck of cards to randomize</param>
     private void MixList(List<CardScriptableObject> list)
     {
         CardScriptableObject temp;
@@ -32,6 +39,11 @@ public class SavedDeck : ScriptableObject
             list[num] = temp;
         }
     }
+
+    /// <summary>
+    /// draw a card
+    /// </summary>
+    /// <returns>the card drawn</returns>
     public CardScriptableObject Draw()
     {
         CardScriptableObject card = cards[0];

@@ -10,9 +10,11 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public TMP_Text  deckSize;
-    public CardDB randomCardDB;
+    public CardDB playerRandomCardDB;
+    public CardDB opponentRandomCardDB;
     public SavedDeck savedCardDB;
     private List<CardScriptableObject> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
+    private List<CardScriptableObject> copyRandomDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
     public GameObject [] savedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
@@ -41,21 +43,56 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        SetupDecks();
+        
+    }
+    /// <summary>
+    /// initial setup for decks at the start of each match
+    /// </summary>
+    private void SetupDecks()
+    {
         savedCardDB.Randomize();
+        
         copySavedDeck = new List<CardScriptableObject>(savedCardDB.cards);
+        copyRandomDeck = new List<CardScriptableObject>(playerRandomCardDB.allCards);
+
+        Character player = GameObject.Find("PlayerObject").GetComponent<Character>();
+        playerRandomCardDB.LimitByRace(playerRandomCardDB.allCards, player.race);
+        playerRandomCardDB.LimitByType(playerRandomCardDB.allCards, player.type);
+        playerRandomCardDB.SetDrawCount(player.handSlots);//first round can pick up max number of cards
+
+        Character opponent = GameObject.Find("OpponentObject").GetComponent<Character>();
+        opponentRandomCardDB.LimitByRace(opponentRandomCardDB.allCards, opponent.race);
+        opponentRandomCardDB.LimitByType(opponentRandomCardDB.allCards, opponent.type);
+        opponentRandomCardDB.SetDrawCount(opponent.handSlots);//first round can pick up max number of cards
+
         DeckImage();
     }
 
+    /// <summary>
+    /// ATM called from yellow button on bottom left, will be called when match is over
+    /// </summary>
     public void EndGame()
     {
-        savedCardDB.cards =  new List<CardScriptableObject>(copySavedDeck);
+        ResetDecks();
     }
 
+    void ResetDecks()
+    {
+        savedCardDB.cards = new List<CardScriptableObject>(copySavedDeck);
+        playerRandomCardDB.allCards= new List<CardScriptableObject>(copyRandomDeck);
+        opponentRandomCardDB.allCards= new List<CardScriptableObject>(copyRandomDeck);
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void RandomDeckDraw()
     {
         if(hand.GetComponent<DropZone>().ReachedMaxCards() == false)
         {
-            CardScriptableObject card = randomCardDB.randomDraw();
+            CardScriptableObject card = playerRandomCardDB.randomDraw();
 
             hand.AddCardFromDeck(card);
         }
