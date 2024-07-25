@@ -10,14 +10,14 @@ public static class TODO : object
     /// 
     /// TODO list:
     /// 1.  finish up calculation phase:
-    /// 10.
-    /// 11. limit draw to max hand on first turn and 3 on every other turn 
-    /// 12. add other card effects to calculations
-    /// 13.
-    /// 14.
-    /// 15.
-    /// 16.
-    /// 17.
+    /// 2.      add other card effects to calculations
+    /// 3.
+    /// 4.  End of match results:
+    /// 5.      HP Bar - make sure it is ok with going below 0 and no problem with fill and such
+    /// 6.      notice that HP got to 0 or below and end match
+    /// 7.      show end match screen
+    /// 16.     add newly used cards(i.e. cards not from saved deck) to the ever growing collection
+    /// 17.     
     /// 18.
     /// 19.
     /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)- visual, not needed for functionality so will move down the list
