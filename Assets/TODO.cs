@@ -21,6 +21,7 @@ public static class TODO : object
     /// 18.
     /// 19.
     /// 8.  Lerp cards from one zone to the next (makes it look nicer than the immediate transfer)- visual, not needed for functionality so will move down the list
+    ///     Lerp HP? Lerp XP? Lerp Mana?
     /// 20. a thought: do i want to make a 2Vs2 version? each player can choose in ehich zone to put his cards, andeach zone is seperate. 
     /// 21. this adds interRace combos
     /// </summary>

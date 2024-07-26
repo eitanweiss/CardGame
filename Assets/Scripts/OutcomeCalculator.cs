@@ -11,6 +11,8 @@ public class OutcomeCalculator : MonoBehaviour
 {
     //need to find a way to make this not HardCoded if possible
 
+    const int PLAYER= 0;
+    const int OPPONENT= 1;
     GameObject playerObject;
     GameObject opponentObject;
     private void Start()
@@ -216,8 +218,8 @@ public class OutcomeCalculator : MonoBehaviour
 
 
         //calculate dmg and related effects
-        CalculateByArea(playerCards,0);
-        CalculateByArea(opponentCards,1);
+        CalculateByArea(playerCards,PLAYER);
+        CalculateByArea(opponentCards,OPPONENT);
 
         StartCoroutine(Calc());
         ReduceLife();
@@ -226,50 +228,72 @@ public class OutcomeCalculator : MonoBehaviour
         opponentObject.GetComponent<ManaManager>().ResetMana();
         playerObject.GetComponentInChildren<Hand>().ResetDrawCount();
         opponentObject.GetComponentInChildren<Hand>().ResetDrawCount();
+        ClearCards();
     }
 
+    /// <summary>
+    /// empty the cards copied to the outcomeCalculator so they don't count again next round
+    /// </summary>
+    void ClearCards()
+    {
+        while (playerCards.Count > 0)
+        {
+            Destroy(playerCards[0].gameObject);
+            playerCards.Remove(playerCards[0]);
+        }  
+        while (opponentCards.Count > 0)
+        {
+            Destroy(opponentCards[0].gameObject);
+            opponentCards.Remove(opponentCards[0]);
+        }
+    }
 
     void ReduceLife()
     {
         Character opponent = opponentObject.GetComponent<Character>();
         Character player= playerObject.GetComponent<Character>();
+        Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
+        Image oppLife = GameObject.Find("OpponentHealthBar").GetComponentsInChildren<Image>()[1];
 
-        Debug.Log("opp block is " + (block[1] + opponent.GetDefense()));
-        Debug.Log("player dmg is" + damage[0]);
-        bonusDamage[0] += player.GetAttack();
-        if (damage[0]==0)
+        
+        Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
+        Debug.Log("player dmg is" + damage[PLAYER]);
+        Debug.Log("opp self damage by " + loseHealth[OPPONENT]);
+        bonusDamage[PLAYER] += player.GetAttack();
+        if (damage[PLAYER] ==0)
         {
             Debug.Log("no bonus dmg");
-            bonusDamage[0] = 0;
+            bonusDamage[PLAYER] = 0;
         }
-
-        Debug.Log("opp self damage by " + loseHealth[1]);
-        Debug.Log("opp loses life by " + (loseHealth[1] + damage[0] + bonusDamage[0] - block[1]));
-        Debug.Log("opp heals for " + (heal[1] + opponent.GetRegeneration()));
+        Debug.Log("opp loses life by " + (loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT]));
+        Debug.Log("opp heals for " + (heal[OPPONENT] + opponent.GetRegeneration()));
+        
+        
         Debug.Log("that's it for opp");
 
-        Debug.Log("player block is " + (block[0] + player.GetDefense()));
-        Debug.Log("opp dmg is" + damage[1]);
-        bonusDamage[1] += opponent.GetAttack();
-        if (damage[1] == 0)
+        Debug.Log("player block is " + (block[PLAYER] + player.GetDefense()));
+        Debug.Log("opp dmg is" + damage[OPPONENT]);
+        bonusDamage[OPPONENT] += opponent.GetAttack();
+        if (damage[OPPONENT] == 0)
         {
             Debug.Log("no bonus dmg");
-            bonusDamage[1] = 0;
+            bonusDamage[OPPONENT] = 0;
         }
-
-        Debug.Log("player self damage by " + loseHealth[0]);
-        int damagedone = loseHealth[0] + damage[1] + bonusDamage[1] - block[0];
-        Debug.Log("player loses life by " + damagedone);
-        Debug.Log("player heals for " + (heal[0] + player.GetRegeneration()));
+        Debug.Log("player self damage by " + loseHealth[PLAYER]);
+        int damagedonetoopponent = loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[1];
+        int damagedonetoplayer = loseHealth[PLAYER] + damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER];
+        Debug.Log("player loses life by " + damagedonetoplayer);
+        Debug.Log("player heals for " + (heal[PLAYER] + player.GetRegeneration()));
         Debug.Log("that's it for player");
-        Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
-        Debug.Log(playerLife.transform.name) ;
-        Image oppLife = GameObject.Find("OpponentHealthBar").GetComponentsInChildren<Image>()[1];
-        int maxlife = playerObject.GetComponent<Character>().maxHealthPoints;
-        Debug.Log(maxlife);
-        playerLife.fillAmount = ((float)maxlife- (float)damagedone)/ (float)maxlife;
-        maxlife = opponentObject.GetComponent<Character>().maxHealthPoints;
-        oppLife.fillAmount = ((float)maxlife- (float)damagedone)/ (float)maxlife;
+        
+        int playerCurrLife = playerObject.GetComponent<Character>().currentHealthPoints;
+        int opponentCurrLife = opponentObject.GetComponent<Character>().currentHealthPoints;
+        
+        float playerfillAmount = ((float)playerCurrLife - (float)damagedonetoplayer + (float)(heal[PLAYER] + player.GetRegeneration())) / (float)playerObject.GetComponent<Character>().maxHealthPoints;
+        playerLife.fillAmount = Mathf.Clamp(playerfillAmount, 0f, 1f);
+
+        float oppfillAmount = ((float)opponentCurrLife - (float)damagedonetoopponent + (float)(heal[OPPONENT] + player.GetRegeneration())) / (float)opponentObject.GetComponent<Character>().maxHealthPoints;
+        oppLife.fillAmount = Mathf.Clamp(oppfillAmount, 0f, 1f);
     }
     IEnumerator Calc()
     {

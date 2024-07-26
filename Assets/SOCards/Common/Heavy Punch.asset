@@ -19,7 +19,7 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: a975d52e04b7329439d4597362da01ee, type: 2}
   - {fileID: 11400000, guid: de1dcebb0079baa4a9fd7f711fcb83a6, type: 2}
-  abilityValues: 0400000004000000
+  abilityValues: 0400000002000000
   isBuffCard: 0
   rarity: 0
   type: 2
