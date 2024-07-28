@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadf613ac5419cb4f8c6c38649701a15, type: 3}
   m_Name: Trap
   m_EditorClassIdentifier: 
-  id: 0
+  id: 164
   cardName: Trap
   cardDescription: 
   image: {fileID: 0}
@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75fc6efbf4e31294592596516df9f8f5, type: 2}
   - {fileID: 11400000, guid: cc115e9a062e84449b7b87f31a51993d, type: 2}
   abilityValues: 540000000f00000032000000
+  isBuffCard: 0
   rarity: 4
   type: 1
   race: 4

@@ -13,7 +13,6 @@ public static class TODO : object
     /// 2.      add other card effects to calculations
     /// 3.
     /// 4.  End of match results:
-    /// 5.      HP Bar - make sure it is ok with going below 0 and no problem with fill and such
     /// 6.      notice that HP got to 0 or below and end match
     /// 7.      show end match screen
     /// 16.     add newly used cards(i.e. cards not from saved deck) to the ever growing collection

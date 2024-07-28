@@ -11,7 +11,6 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     public bool isMyTurnToStart { get; private set; }
-    private int roundNumber = 0;
     [SerializeField]private TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard, Calculation};
     Phase phase;
@@ -147,18 +146,5 @@ public class TurnManager : MonoBehaviour
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         //let zone activation know somehow
         GameObject.Find("PlayerObject").GetComponent<ZoneActivation>().OnPhaseChange();
-    }
-
-    /// <summary>
-    /// should activate all effects that happen at start of round
-    /// </summary>
-    public void NewRound()
-    {
-        if(roundNumber==2)
-        {
-            //base draw count =3 for both
-        }
-        //actual number will be gotten from calculator once i add these effects in
-        //set draw count for player and opponent to 3 at each round start except first
     }
 }

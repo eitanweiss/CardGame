@@ -18,10 +18,15 @@ public class Character : MonoBehaviour
     public int regeneration;
     public int costToIncreaseRegeneration;
     public int handSlots;
+    public int currentHandslots;
     public int buffSlots;
+    public int currentBuffslots;
     public int playSlots;
+    public int currentPlayslots;
     public int drawCount;
+    public int currentDrawCount;
     public int discardSlots;
+    public int currentDiscardSlots;
     public int maxDeckSize;
     public int maxHealthPoints;
     public int costToIncreaseMaxHP;

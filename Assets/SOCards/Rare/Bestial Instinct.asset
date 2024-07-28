@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bestial Instinct
   m_EditorClassIdentifier: 
   id: 62
-  cardName: 
+  cardName: Bestial Instinct
   cardDescription: 
   image: {fileID: 0}
   abilities:

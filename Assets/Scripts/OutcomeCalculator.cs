@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class OutcomeCalculator : MonoBehaviour
 {
     //need to find a way to make this not HardCoded if possible
-
+    int roundNumber = 0;
     const int PLAYER= 0;
     const int OPPONENT= 1;
     GameObject playerObject;
@@ -224,11 +224,26 @@ public class OutcomeCalculator : MonoBehaviour
         StartCoroutine(Calc());
         ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
+        StartNewRound();     
+        //ClearCards();
+    }
+
+    void StartNewRound()
+    {
         playerObject.GetComponent<ManaManager>().ResetMana();
         opponentObject.GetComponent<ManaManager>().ResetMana();
-        playerObject.GetComponentInChildren<Hand>().ResetDrawCount();
-        opponentObject.GetComponentInChildren<Hand>().ResetDrawCount();
-        ClearCards();
+        roundNumber++;
+        if (roundNumber == 1)
+        {
+            playerObject.GetComponentInChildren<Hand>().ChangeDrawCount(playerObject.GetComponent<Character>().handSlots);
+            opponentObject.GetComponentInChildren<Hand>().ChangeDrawCount(opponentObject.GetComponent<Character>().handSlots);
+        }
+        else
+        {
+            playerObject.GetComponentInChildren<Hand>().ResetDrawCount();
+            opponentObject.GetComponentInChildren<Hand>().ResetDrawCount();
+        }
+        //add other effects after base values have been loaded, like buffslots and such.
     }
 
     /// <summary>
@@ -294,6 +309,13 @@ public class OutcomeCalculator : MonoBehaviour
 
         float oppfillAmount = ((float)opponentCurrLife - (float)damagedonetoopponent + (float)(heal[OPPONENT] + player.GetRegeneration())) / (float)opponentObject.GetComponent<Character>().maxHealthPoints;
         oppLife.fillAmount = Mathf.Clamp(oppfillAmount, 0f, 1f);
+
+        //if both<=0
+
+        //if playerlife<=0
+
+        //if opplife<=0
+
     }
     IEnumerator Calc()
     {
