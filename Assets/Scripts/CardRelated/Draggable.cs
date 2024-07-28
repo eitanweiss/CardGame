@@ -55,7 +55,7 @@ public class Draggable : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDr
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("click!");
+        //Debug.Log("click!");
     }
 
     // Start is called before the first frame update

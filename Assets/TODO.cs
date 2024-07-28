@@ -4,6 +4,14 @@ using UnityEngine;
 
 public static class TODO : object
 {
+    ///
+    /// errors to fix:
+    /// opponent can play 3 cards in playzone
+    /// sometimes wierd things happen - player heals without reason, player can't play cards for no reason etc. 
+    /// 
+    /// 
+    /// 
+    /// 
     /// <summary>
     /// this is a TODO list where i can easily see and add all the things i can think that need done
     /// i will use this to manage my project and try to divide tasks into smaller ones.

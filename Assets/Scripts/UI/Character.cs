@@ -51,6 +51,8 @@ public class Character : MonoBehaviour
         if(transform.name!= "PlayerPortrait")
         {
             StartDropZones();
+            currentHealthPoints = maxHealthPoints;
+            currentMana = maxMana;
         }
     }
 

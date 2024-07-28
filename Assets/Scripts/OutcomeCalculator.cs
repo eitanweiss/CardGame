@@ -303,7 +303,8 @@ public class OutcomeCalculator : MonoBehaviour
         
         int playerCurrLife = playerObject.GetComponent<Character>().currentHealthPoints;
         int opponentCurrLife = opponentObject.GetComponent<Character>().currentHealthPoints;
-        
+        playerObject.GetComponent<Character>().currentHealthPoints = playerCurrLife - damagedonetoplayer + (heal[PLAYER] + player.GetRegeneration());
+        opponentObject.GetComponent<Character>().currentHealthPoints = opponentCurrLife;
         float playerfillAmount = ((float)playerCurrLife - (float)damagedonetoplayer + (float)(heal[PLAYER] + player.GetRegeneration())) / (float)playerObject.GetComponent<Character>().maxHealthPoints;
         playerLife.fillAmount = Mathf.Clamp(playerfillAmount, 0f, 1f);
 
@@ -313,17 +314,17 @@ public class OutcomeCalculator : MonoBehaviour
         //if both<=0
         if(playerfillAmount<0f && oppfillAmount<0f)
         {
-            GameObject.Find("EndMatchScreen").SetActive(true);
+            GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Both died");
         }
         if(oppfillAmount<0f)
         {
-            GameObject.Find("EndMatchScreen").SetActive(true);
+            GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you won!");
         }
         if(playerfillAmount<0f)
         {
-            GameObject.Find("EndMatchScreen").SetActive(true);
+            GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you lost!");
         }
         //if playerlife<=0
