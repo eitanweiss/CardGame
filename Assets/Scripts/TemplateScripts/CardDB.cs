@@ -107,9 +107,9 @@ public class CardDB : ScriptableObject
 
     //currently randomized the drawn card,
     //in future I want to draw the first but randomize it's value
-    float chanceCommon = 0.49f;
+    float chanceCommon = 0.55f;
     float chanceRare = 0.33f;
-    float chanceElite = 0.16f;
+    float chanceElite = 0.10f;
     float chanceEpic = 0.019f;
     //float chanceMythical = 0.001f;
     public CardScriptableObject randomDraw()

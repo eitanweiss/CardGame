@@ -201,6 +201,7 @@ public class OutcomeCalculator : MonoBehaviour
 
     public void CalculateAllZones(TextMeshProUGUI phaseText)
     {
+        ClearCards();
         calcView.SetActive(true);
         Debug.Log("calcView should be active");
         ResetValuesToZero();
@@ -225,7 +226,6 @@ public class OutcomeCalculator : MonoBehaviour
         ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         StartNewRound();     
-        //ClearCards();
     }
 
     void StartNewRound()
