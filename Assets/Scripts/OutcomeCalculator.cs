@@ -311,7 +311,21 @@ public class OutcomeCalculator : MonoBehaviour
         oppLife.fillAmount = Mathf.Clamp(oppfillAmount, 0f, 1f);
 
         //if both<=0
-
+        if(playerfillAmount<0f && oppfillAmount<0f)
+        {
+            GameObject.Find("EndMatchScreen").SetActive(true);
+            Debug.Log("Both died");
+        }
+        if(oppfillAmount<0f)
+        {
+            GameObject.Find("EndMatchScreen").SetActive(true);
+            Debug.Log("you won!");
+        }
+        if(playerfillAmount<0f)
+        {
+            GameObject.Find("EndMatchScreen").SetActive(true);
+            Debug.Log("you lost!");
+        }
         //if playerlife<=0
 
         //if opplife<=0

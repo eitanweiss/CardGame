@@ -23,6 +23,6 @@ MonoBehaviour:
   abilityValues: 180000000200000008000000
   isBuffCard: 0
   rarity: 2
-  type: 0
-  race: 0
+  type: 2
+  race: 1
   value: 2
