@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac807e0cf3363724991f2f78cb588399, type: 3}
   m_Name: Collection
   m_EditorClassIdentifier: 
-  allCards:
-  - {fileID: 0}
-  - {fileID: 0}
+  allCards: []
+  runTimeCards: []
   drawCount: 0

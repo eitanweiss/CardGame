@@ -227,21 +227,29 @@ public class OutcomeCalculator : MonoBehaviour
         ClearCards();
         StartNewRound();     
     }
+
+    /// <summary>
+    /// adds cards to the collection of played cards.
+    /// WARNING: buff cards with no duration
+    /// ERROR: ATM adds them each round they are in the play field - this is wrong.
+    /// </summary>
+    /// <param name="cardObject">card to be added to the collection</param>
     void AddToCollection(CardObject cardObject)
     {   
         if(HasDuration(cardObject))
         {
             Image image = cardObject.transform.GetChild(2).GetComponent<Image>();
             string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
+            Debug.Log(parts[0] + " and " + parts[1]);
             if (parts[0] != parts[1])
             {
                 return;
             }
         }
         CardScriptableObject newCard = cardObject.card.DeepCopy();
-        collection.allCards.Add(newCard);
+        collection.allCards.Add(newCard);//this is pointless IMO may need to depercate
         collection.runTimeCards.Add(new SerializableCard(newCard));
-        collection.SaveRuntimeChanges();
+        collection.SaveRuntimeChanges();//this should be happening only at the end of the match not after every card
     }
 
     bool HasDuration(CardObject cardObject)

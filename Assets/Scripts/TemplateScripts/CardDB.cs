@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CardGame/randomCardDB")]
@@ -22,13 +23,13 @@ public class CardDB : ScriptableObject
     public void SaveRuntimeChanges()
     {
         string json = JsonUtility.ToJson(new SerializableList<SerializableCard>(runTimeCards), true);
-        string path = Path.Combine(Application.persistentDataPath, "DynamicCardDB_RuntimeChanges.json");
+        string path = Path.Combine(Application.dataPath, $"{this.name}.json");
         File.WriteAllText(path, json);
     }
 
     public void LoadRuntimeChanges()
     {
-        string path = Path.Combine(Application.persistentDataPath, "DynamicCardDB_RuntimeChanges.json");
+        string path = Path.Combine(Application.dataPath, $"{this.name}.json");
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -37,7 +38,7 @@ public class CardDB : ScriptableObject
             {
                 if (!allCards.Exists(c => c.id == cardData.id))
                 {
-                    allCards.Add(cardData.ToScriptableObject());
+                    allCards.Add(cardData.ToScriptableObject());//pointless may need to depercate
                     runTimeCards.Add(cardData);
                 }
             }
