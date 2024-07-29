@@ -139,7 +139,7 @@ public class TurnManager : MonoBehaviour
         {
             PlayerStartsRound();
         }
-        Debug.LogError(phase);
+        Debug.LogError(phase);//allows me to follow the curernt phase easilyer
         Notify();
     }
     public void Notify()

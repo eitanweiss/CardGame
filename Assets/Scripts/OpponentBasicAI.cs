@@ -32,7 +32,8 @@ public class OpponentBasicAI : MonoBehaviour
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                if (card.isPlayable)
+                //this does not allow to switch out cards from buff zone - but AI doesn't switch out cards ATM anyway
+                if (card.isPlayable && !transform.GetChild(3).GetComponent<DropZone>().ReachedMaxCards())
                 {
                     transform.GetChild(3).GetComponent<DropZone>().AddCard(card);
                     transform.GetChild(3).GetComponent<DropZone>().DisableDrag();
@@ -48,7 +49,7 @@ public class OpponentBasicAI : MonoBehaviour
             List<CardObject> cardsToRemove = new List<CardObject>();
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
-                if (card.isPlayable)
+                if (card.isPlayable&& !transform.GetChild(1).GetComponent<DropZone>().ReachedMaxCards())
                 {
                     Debug.Log("play card" + card.card.name);
                     cardsToRemove.Add(card);

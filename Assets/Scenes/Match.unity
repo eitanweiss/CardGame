@@ -1784,7 +1784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &499949741
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2889,6 +2889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4181a09418433c4fa60f91bc137c489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collection: {fileID: 11400000, guid: 12419a544838e0c4487270fdfc33fa6e, type: 2}
   playerCards: []
   opponentCards: []
   cardPrefab: {fileID: 1236386901728739356, guid: 03c13b0453703c146bb8b6e9ea252765, type: 3}
@@ -5198,6 +5199,7 @@ MonoBehaviour:
   deckSize: {fileID: 1528318988}
   playerRandomCardDB: {fileID: 11400000, guid: cd7bc7b3493ba1441843f8aa1701f1ad, type: 2}
   opponentRandomCardDB: {fileID: 11400000, guid: 65ebc10ef334ea24ba8b781dd7ac081a, type: 2}
+  collection: {fileID: 11400000, guid: 12419a544838e0c4487270fdfc33fa6e, type: 2}
   savedCardDB: {fileID: 11400000, guid: 2797a9004cf8dcb439be458dce065691, type: 2}
   savedDeckDepth:
   - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}

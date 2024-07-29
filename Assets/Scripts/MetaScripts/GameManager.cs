@@ -6,12 +6,14 @@ using TMPro;
 using System;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     public TMP_Text  deckSize;
     public CardDB playerRandomCardDB;
     public CardDB opponentRandomCardDB;
+    public CardDB collection;
     public SavedDeck savedCardDB;
     private List<CardScriptableObject> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
     private List<CardScriptableObject> copyRandomDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
@@ -75,6 +77,9 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         ResetDecks();
+        string json = JsonUtility.ToJson(collection);
+        Debug.Log(json);
+        File.WriteAllText(Application.dataPath + "saveFile.json", json);
     }
 
     void ResetDecks()

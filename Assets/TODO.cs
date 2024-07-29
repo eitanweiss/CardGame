@@ -6,8 +6,7 @@ public static class TODO : object
 {
     ///
     /// errors to fix:
-    /// opponent can play 3 cards in playzone
-    /// sometimes wierd things happen - player heals without reason, player can't play cards for no reason etc. 
+    /// sometimes player can't play cards for no reason. (28/7/2024) 
     /// 
     /// 
     /// 
@@ -22,7 +21,6 @@ public static class TODO : object
     /// 3.
     /// 4.  End of match results:
     /// 6.      notice that HP got to 0 or below and end match
-    /// 7.      show end match screen
     /// 16.     add newly used cards(i.e. cards not from saved deck) to the ever growing collection
     /// 17.     
     /// 18.

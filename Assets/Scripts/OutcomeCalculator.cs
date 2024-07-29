@@ -15,6 +15,7 @@ public class OutcomeCalculator : MonoBehaviour
     const int OPPONENT= 1;
     GameObject playerObject;
     GameObject opponentObject;
+    public CardDB collection;
     private void Start()
     {
         playerObject = GameObject.Find("PlayerObject").gameObject;
@@ -201,7 +202,6 @@ public class OutcomeCalculator : MonoBehaviour
 
     public void CalculateAllZones(TextMeshProUGUI phaseText)
     {
-        ClearCards();
         calcView.SetActive(true);
         Debug.Log("calcView should be active");
         ResetValuesToZero();
@@ -210,7 +210,6 @@ public class OutcomeCalculator : MonoBehaviour
 
         AddCards(opponentObject,opponentCards);
         AddCards(playerObject,playerCards);
-
         //pan out cards in 1st player
         StartCoroutine(Timer(playerCards) );
         //pan out cards in 2nd player
@@ -225,7 +224,35 @@ public class OutcomeCalculator : MonoBehaviour
         StartCoroutine(Calc());
         ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
+        ClearCards();
         StartNewRound();     
+    }
+    void AddToCollection(CardObject cardObject)
+    {   
+        if(HasDuration(cardObject))
+        {
+            Image image = cardObject.transform.GetChild(2).GetComponent<Image>();
+            string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
+            if (parts[0] != parts[1])
+            {
+                return;
+            }
+        }
+        CardScriptableObject newCard = cardObject.card.DeepCopy();
+        collection.allCards.Add(newCard);
+    }
+
+    bool HasDuration(CardObject cardObject)
+    {
+        for (int i = 0; i < cardObject.card.abilities.Count; i++)
+        {
+            if (cardObject.card.abilities[i].name =="Duration")
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 
     void StartNewRound()
@@ -253,6 +280,7 @@ public class OutcomeCalculator : MonoBehaviour
     {
         while (playerCards.Count > 0)
         {
+            AddToCollection(playerCards[0]);
             Destroy(playerCards[0].gameObject);
             playerCards.Remove(playerCards[0]);
         }  
@@ -352,8 +380,8 @@ public class OutcomeCalculator : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 yield return null;
             } 
-            yield return StartCoroutine(ShowCardCoroutine(list[0]));
-            list.RemoveAt(0);
+            //yield return StartCoroutine(ShowCardCoroutine(list[0]));
+            //list.RemoveAt(0);
             Debug.Log("in enumerator");
         }
     }
