@@ -1,5 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CardGame/randomCardDB")]
@@ -15,7 +16,38 @@ public class CardDB : ScriptableObject
     //[SerializeField] Race race;
     //[SerializeField] Type type;
     [SerializeField] public List<CardScriptableObject> allCards = new List<CardScriptableObject>();
+    public List<SerializableCard> runTimeCards= new List<SerializableCard>();
     public int drawCount;
+
+    public void SaveRuntimeChanges()
+    {
+        string json = JsonUtility.ToJson(new SerializableList<SerializableCard>(runTimeCards), true);
+        string path = Path.Combine(Application.persistentDataPath, "DynamicCardDB_RuntimeChanges.json");
+        File.WriteAllText(path, json);
+    }
+
+    public void LoadRuntimeChanges()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "DynamicCardDB_RuntimeChanges.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SerializableList<SerializableCard> loadedData = JsonUtility.FromJson<SerializableList<SerializableCard>>(json);
+            foreach (var cardData in loadedData.list)
+            {
+                if (!allCards.Exists(c => c.id == cardData.id))
+                {
+                    allCards.Add(cardData.ToScriptableObject());
+                    runTimeCards.Add(cardData);
+                }
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        LoadRuntimeChanges();
+    }
 
     public void SetDrawCount(int num)
     {
@@ -32,7 +64,7 @@ public class CardDB : ScriptableObject
                 list.Add(card);
             }
         }
-        return list[Random.Range(0, list.Count)];
+        return list[UnityEngine.Random.Range(0, list.Count)];
     }
     public void LimitByRarity(List<CardScriptableObject> list, CardScriptableObject.Rarity rarity)
     {
@@ -115,7 +147,7 @@ public class CardDB : ScriptableObject
     public CardScriptableObject randomDraw()
     {
         CardScriptableObject card;
-        float val = Random.Range(0f, 1f);
+        float val = UnityEngine.Random.Range(0f, 1f);
         if (val <= chanceCommon)
         {
             card = SearchByRarity(CardScriptableObject.Rarity.Common);
@@ -144,4 +176,15 @@ public class CardDB : ScriptableObject
         //after getting all cards limit them to type and race of user
         return card;
     }
+}
+
+/// <summary>
+/// Helper class to serialize List
+/// </summary>
+/// <typeparam name="T">type of element</typeparam>
+[Serializable]
+public class SerializableList<T>
+{
+    public List<T> list;
+    public SerializableList(List<T> list) => this.list = list;
 }

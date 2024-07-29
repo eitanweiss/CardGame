@@ -240,6 +240,8 @@ public class OutcomeCalculator : MonoBehaviour
         }
         CardScriptableObject newCard = cardObject.card.DeepCopy();
         collection.allCards.Add(newCard);
+        collection.runTimeCards.Add(new SerializableCard(newCard));
+        collection.SaveRuntimeChanges();
     }
 
     bool HasDuration(CardObject cardObject)
