@@ -6,7 +6,6 @@ public static class TODO : object
 {
     ///
     /// errors to fix:
-    /// sometimes player can't play cards for no reason. (28/7/2024) 
     /// 
     /// 
     /// 

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 16
   cardName: Enchantment
   cardDescription: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: c775e43113dd7574d8a4c5a45423345e, type: 3}
   abilities:
   - {fileID: 11400000, guid: a975d52e04b7329439d4597362da01ee, type: 2}
   - {fileID: 11400000, guid: de1dcebb0079baa4a9fd7f711fcb83a6, type: 2}

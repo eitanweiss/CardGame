@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 54
   cardName: Tree Screen
   cardDescription: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: f9da849087c3cb24597b2b0b0f68cf8c, type: 3}
   abilities:
   - {fileID: 11400000, guid: a975d52e04b7329439d4597362da01ee, type: 2}
   - {fileID: 11400000, guid: 5fd067ce006712349b0943a30eaff454, type: 2}

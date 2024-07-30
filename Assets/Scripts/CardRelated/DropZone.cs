@@ -118,7 +118,7 @@ public class DropZone : MonoBehaviour
             Destroy(handCards[0].gameObject);
             handCards.Remove(handCards[0]);
         }
-
+        ResetAvailablePlayerHandCardSlots();
     }
     /// <summary>
     /// enable user interface with all cards in zone

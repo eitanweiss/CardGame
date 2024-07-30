@@ -119,6 +119,8 @@ public class TurnManager : MonoBehaviour
                 //do calculation of damage and stuff
                 break;
             case Phase.Calculation:
+                /// should go like this: finish discard phase, open calculation panel, place each active card in the view and iterate through them
+                /// then sum it up and exit to next phase
                 calcScreen.SetActive(true);
                 outcomeCalculator.CalculateAllZones(phaseText);
                 durationManager.ReduceRoundCount();

@@ -15,6 +15,7 @@ public class OutcomeCalculator : MonoBehaviour
     const int OPPONENT= 1;
     GameObject playerObject;
     GameObject opponentObject;
+    HashSet<int> cardIDs = new HashSet<int>();
     public CardDB collection;
     private void Start()
     {
@@ -200,6 +201,10 @@ public class OutcomeCalculator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// go through all the different zones. add all the cards in each one to a single list, and calculate the outcome of the list
+    /// </summary>
+    /// <param name="phaseText"></param>
     public void CalculateAllZones(TextMeshProUGUI phaseText)
     {
         calcView.SetActive(true);
@@ -216,6 +221,7 @@ public class OutcomeCalculator : MonoBehaviour
 
         //calculate the rest of the effects(those not directly related to hp and attack)
 
+        ///the order is what i want: calculate all the cards, then reduce the life in the correct amount
 
         //calculate dmg and related effects
         CalculateByArea(playerCards,PLAYER);
@@ -225,6 +231,7 @@ public class OutcomeCalculator : MonoBehaviour
         ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         ClearCards();
+        //signify end of round - also does not belong here in the long run, but belongs in the turnManager
         StartNewRound();     
     }
 
@@ -235,23 +242,46 @@ public class OutcomeCalculator : MonoBehaviour
     /// </summary>
     /// <param name="cardObject">card to be added to the collection</param>
     void AddToCollection(CardObject cardObject)
-    {   
-        if(HasDuration(cardObject))
-        {
-            Image image = cardObject.transform.GetChild(2).GetComponent<Image>();
-            string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
-            Debug.Log(parts[0] + " and " + parts[1]);
-            if (parts[0] != parts[1])
-            {
-                return;
-            }
-        }
-        CardScriptableObject newCard = cardObject.card.DeepCopy();
-        collection.allCards.Add(newCard);//this is pointless IMO may need to depercate
-        collection.runTimeCards.Add(new SerializableCard(newCard));
-        collection.SaveRuntimeChanges();//this should be happening only at the end of the match not after every card
-    }
+    {
+        int _instanceID = cardObject.GetInstanceID();
 
+        if (!cardIDs.Contains(_instanceID))
+        {
+            cardIDs.Add(_instanceID);
+            CardScriptableObject newCard = cardObject.card.DeepCopy();
+            collection.allCards.Add(newCard); // Consider if needed
+            collection.runTimeCards.Add(new SerializableCard(newCard));
+            collection.SaveRuntimeChanges(); // Consider when to save since this should be done only once per match
+        }
+
+
+
+
+    //if(HasDuration(cardObject))
+    //{
+    //    Image image = cardObject.transform.GetChild(2).GetComponent<Image>();
+    //    string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
+    //    Debug.Log(parts[0] + " and " + parts[1]);
+    //    if (parts[0] != parts[1])
+    //    {
+    //        return;
+    //    }
+    //}
+    //if (!cardObject.card.isBuffCard)
+    //{
+
+    //}
+    //else
+    //{
+    //    //buff cards with no duration should be counted only once and not every time they appear
+    //}
+}
+
+    /// <summary>
+    /// check if card has a duration
+    /// </summary>
+    /// <param name="cardObject"> card to check</param>
+    /// <returns></returns>
     bool HasDuration(CardObject cardObject)
     {
         for (int i = 0; i < cardObject.card.abilities.Count; i++)
@@ -265,6 +295,9 @@ public class OutcomeCalculator : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// effects that take place in the new round.
+    /// </summary>
     void StartNewRound()
     {
         playerObject.GetComponent<ManaManager>().ResetMana();
@@ -301,23 +334,27 @@ public class OutcomeCalculator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// reduce life by calculated amount
+    /// ATM full of debugs, just to make sure I can follow
+    /// </summary>
     void ReduceLife()
     {
         Character opponent = opponentObject.GetComponent<Character>();
         Character player= playerObject.GetComponent<Character>();
         Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
         Image oppLife = GameObject.Find("OpponentHealthBar").GetComponentsInChildren<Image>()[1];
-
         
-        Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
-        Debug.Log("player dmg is" + damage[PLAYER]);
-        Debug.Log("opp self damage by " + loseHealth[OPPONENT]);
         bonusDamage[PLAYER] += player.GetAttack();
         if (damage[PLAYER] ==0)
         {
             Debug.Log("no bonus dmg");
             bonusDamage[PLAYER] = 0;
         }
+
+        Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
+        Debug.Log("player dmg is" + damage[PLAYER]);
+        Debug.Log("opp self damage by " + loseHealth[OPPONENT]);
         Debug.Log("opp loses life by " + (loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT]));
         Debug.Log("opp heals for " + (heal[OPPONENT] + opponent.GetRegeneration()));
         
@@ -355,21 +392,25 @@ public class OutcomeCalculator : MonoBehaviour
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Both died");
         }
+        //if opplife<=0
         if(oppfillAmount<0f)
         {
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you won!");
         }
+        //if playerlife<=0
         if(playerfillAmount<0f)
         {
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you lost!");
         }
-        //if playerlife<=0
 
-        //if opplife<=0
 
     }
+    /// <summary>
+    /// show calcview for 1 second(later will be on for as long as the calculation takes and once it is finished it will go off
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Calc()
     {
         yield return new WaitForSeconds(1);
@@ -378,7 +419,11 @@ public class OutcomeCalculator : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// meant to show all the cards on the screen slowly using the showcard coroutine
+    /// </summary>
+    /// <param name="list">list of cards</param>
+    /// <returns></returns>
     IEnumerator Timer(List<CardObject> list)
     {
         while(list.Count > 0)
