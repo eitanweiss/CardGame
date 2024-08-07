@@ -101,7 +101,10 @@ public class Clickable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else
                 {
-                    ChooseZone(3);
+                    if(transform.parent.name == "Discard")
+                    {
+                        ChooseZone(3);
+                    }
                     //move back to hand
                 }
                 //move to/from discard

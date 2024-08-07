@@ -16,11 +16,15 @@ public static class TODO : object
     /// 
     /// TODO list:
     /// 1.  finish up calculation phase:
-    /// 2.      add other card effects to calculations
+    /// 2.      add other card effects to calculations - this will be done later on as it envolves a lot of different aspects
+    /// and i still need to decide how and where these changes will occur
     /// 3.
     /// 4.  End of match results:
     /// 6.      notice that HP got to 0 or below and end match
-    /// 16.     add newly used cards(i.e. cards not from saved deck) to the ever growing collection
+    /// 7.  Options menu:
+    /// 8.  adjust speed in options menu
+    /// 9.
+    /// 10.
     /// 17.     
     /// 18.
     /// 19.

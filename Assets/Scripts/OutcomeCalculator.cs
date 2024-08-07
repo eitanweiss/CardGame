@@ -100,6 +100,7 @@ public class OutcomeCalculator : MonoBehaviour
                         break;
                     case "Attack Break":
                         //some sort of animation?
+                        damage[1 - player] -= card.card.abilityValues[i];
                         break;
                     case "Block":
                         block[player] += card.card.abilityValues[i];
@@ -111,6 +112,7 @@ public class OutcomeCalculator : MonoBehaviour
                         break;
                     case "Defense Break":
                         //some sort of animation?
+                        block[1 - player] -= card.card.abilityValues[i]; 
                         break;
                     case "Heal":
                         heal[player] += card.card.abilityValues[i];
@@ -122,15 +124,21 @@ public class OutcomeCalculator : MonoBehaviour
                         break;
                     case "Opponent Heal Block":
                         //some sort of animation?
+                        heal[1-player] -= card.card.abilityValues[i];
                         break;
                     case "Self Damage":
                         loseHealth[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Decrease Bonus Damage":
+                        //some sort of animation?
+                        bonusDamage[1 - player] -= card.card.abilityValues[i];
                         break;
                     
-                    //non-damage related effects
+                    
+                        
+                        
+                        //non-damage related effects
                     case "Increase Discard Area":
                         break;
                     case "Decrease Discard Area":
@@ -340,11 +348,13 @@ public class OutcomeCalculator : MonoBehaviour
     /// </summary>
     void ReduceLife()
     {
+        //setup
         Character opponent = opponentObject.GetComponent<Character>();
         Character player= playerObject.GetComponent<Character>();
         Image playerLife = GameObject.Find("HealthBar").GetComponentsInChildren<Image>()[1];
         Image oppLife = GameObject.Find("OpponentHealthBar").GetComponentsInChildren<Image>()[1];
         
+        //calculation for damage to opp
         bonusDamage[PLAYER] += player.GetAttack();
         if (damage[PLAYER] ==0)
         {
@@ -352,38 +362,46 @@ public class OutcomeCalculator : MonoBehaviour
             bonusDamage[PLAYER] = 0;
         }
 
+        int damagedonetoOpponent = loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT];
+
         Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
         Debug.Log("player dmg is" + damage[PLAYER]);
         Debug.Log("opp self damage by " + loseHealth[OPPONENT]);
-        Debug.Log("opp loses life by " + (loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT]));
+        Debug.Log("opp loses life by " + damagedonetoOpponent);
         Debug.Log("opp heals for " + (heal[OPPONENT] + opponent.GetRegeneration()));
         
         
         Debug.Log("that's it for opp");
 
-        Debug.Log("player block is " + (block[PLAYER] + player.GetDefense()));
-        Debug.Log("opp dmg is" + damage[OPPONENT]);
+        //calculation for damage to player
         bonusDamage[OPPONENT] += opponent.GetAttack();
-        if (damage[OPPONENT] == 0)
+        if (damage[OPPONENT] <= 0)
         {
             Debug.Log("no bonus dmg");
             bonusDamage[OPPONENT] = 0;
         }
-        Debug.Log("player self damage by " + loseHealth[PLAYER]);
-        int damagedonetoopponent = loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[1];
+
         int damagedonetoplayer = loseHealth[PLAYER] + damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER];
+        Debug.Log("player block is " + (block[PLAYER] + player.GetDefense()));
+        Debug.Log("opp dmg is" + damage[OPPONENT]);
+        Debug.Log("player self damage by " + loseHealth[PLAYER]);
         Debug.Log("player loses life by " + damagedonetoplayer);
         Debug.Log("player heals for " + (heal[PLAYER] + player.GetRegeneration()));
+
         Debug.Log("that's it for player");
         
+        //get curr life
         int playerCurrLife = playerObject.GetComponent<Character>().currentHealthPoints;
         int opponentCurrLife = opponentObject.GetComponent<Character>().currentHealthPoints;
+        
+        //update life in character
         playerObject.GetComponent<Character>().currentHealthPoints = playerCurrLife - damagedonetoplayer + (heal[PLAYER] + player.GetRegeneration());
-        opponentObject.GetComponent<Character>().currentHealthPoints = opponentCurrLife;
+        opponentObject.GetComponent<Character>().currentHealthPoints = opponentCurrLife -damagedonetoOpponent + (heal[OPPONENT] +opponent.GetRegeneration());
+        
         float playerfillAmount = ((float)playerCurrLife - (float)damagedonetoplayer + (float)(heal[PLAYER] + player.GetRegeneration())) / (float)playerObject.GetComponent<Character>().maxHealthPoints;
         playerLife.fillAmount = Mathf.Clamp(playerfillAmount, 0f, 1f);
 
-        float oppfillAmount = ((float)opponentCurrLife - (float)damagedonetoopponent + (float)(heal[OPPONENT] + player.GetRegeneration())) / (float)opponentObject.GetComponent<Character>().maxHealthPoints;
+        float oppfillAmount = ((float)opponentCurrLife - (float)damagedonetoOpponent + (float)(heal[OPPONENT] + player.GetRegeneration())) / (float)opponentObject.GetComponent<Character>().maxHealthPoints;
         oppLife.fillAmount = Mathf.Clamp(oppfillAmount, 0f, 1f);
 
         //if both<=0

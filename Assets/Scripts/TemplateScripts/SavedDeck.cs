@@ -1,13 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CardGame/SavedCardDB")]
 public class SavedDeck : ScriptableObject
 {
     [SerializeField]
-    public List<CardScriptableObject> cards = new List<CardScriptableObject>();
+    List<CardScriptableObject> cards = new List<CardScriptableObject>();
     
+    public void StartUp()
+    {
+        cards.Clear();
+        string path = Path.Combine(Application.dataPath, "Saved.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SerializableList<SerializableCard> loadedData = JsonUtility.FromJson<SerializableList<SerializableCard>>(json);
+            foreach (var cardData in loadedData.list)
+            {
+                cards.Add(cardData.ToScriptableObject());
+            }
+        }
+    }
+
+    /// <summary>
+    /// copy of card list
+    /// </summary>
+    /// <returns>a copy of the deck</returns>
+    public List<CardScriptableObject> GetDeck()
+    {
+        List<CardScriptableObject> list = new List<CardScriptableObject>(cards);
+        return list;
+    }
+
     /// <summary>
     /// randomize the order of the cards in this deck
     /// </summary>
@@ -24,6 +51,7 @@ public class SavedDeck : ScriptableObject
 
         }
     }
+
     /// <summary>
     /// randomize the order of the cards in the given deck
     /// </summary>
@@ -49,5 +77,24 @@ public class SavedDeck : ScriptableObject
         CardScriptableObject card = cards[0];
         //Debug.Log(card.cardName);
         return card;
+    }
+
+    /// <summary>
+    /// returns size of list
+    /// </summary>
+    /// <returns>number of cards in list</returns>
+    public int listSize()
+    {
+        Debug.Log("list size is " + cards.Count);
+        return cards.Count;
+    }
+
+    /// <summary>
+    /// removes a card from the deck
+    /// </summary>
+    /// <param name="card">card to be removed</param>
+    public void RemoveCard(CardScriptableObject card)
+    {
+       cards.Remove(card);
     }
 }

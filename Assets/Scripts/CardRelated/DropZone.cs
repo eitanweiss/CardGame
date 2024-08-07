@@ -161,4 +161,20 @@ public class DropZone : MonoBehaviour
         }
         //move card to other dropzone
     }
+
+    public void TurnFaceDown()
+    {
+        foreach(CardObject card in handCards)
+        {
+            card.transform.GetChild(1).gameObject.SetActive(true);
+        }
+    }
+
+    public void TurnFaceUp()
+    {
+        foreach (CardObject card in handCards)
+        {
+            card.transform.GetChild(1).gameObject.SetActive(false);
+        }
+    }
 }

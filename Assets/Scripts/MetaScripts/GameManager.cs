@@ -25,37 +25,38 @@ public class GameManager : MonoBehaviour
 
     public void DeckImage()
     {
-        if (savedCardDB.cards.Count < 30)
+        if (savedCardDB.listSize() < 30)
         {
             savedDeckDepth[0].SetActive(false);
         }
-        if (savedCardDB.cards.Count < 20)
+        if (savedCardDB.listSize() < 20)
         {
             savedDeckDepth[1].SetActive(false);
         }
-        if (savedCardDB.cards.Count < 10)
+        if (savedCardDB.listSize() < 10)
         {
             savedDeckDepth[2].SetActive(false);
         }
-        if (savedCardDB.cards.Count < 1)
+        if (savedCardDB.listSize() < 1)
         {
             savedDeckDepth[3].SetActive(false);
         }
-        deckSize.text = savedCardDB.cards.Count.ToString();
+        deckSize.text = savedCardDB.listSize().ToString();
     }
     void Start()
     {
-        SetupDecks();
-        
+        SetupDecks();   
     }
+
     /// <summary>
     /// initial setup for decks at the start of each match
     /// </summary>
     private void SetupDecks()
     {
+        savedCardDB.StartUp();
         savedCardDB.Randomize();
         
-        copySavedDeck = new List<CardScriptableObject>(savedCardDB.cards);
+        copySavedDeck = savedCardDB.GetDeck();
         copyRandomDeck = new List<CardScriptableObject>(playerRandomCardDB.allCards);
 
         Character player = GameObject.Find("PlayerObject").GetComponent<Character>();
@@ -84,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     void ResetDecks()
     {
-        savedCardDB.cards = new List<CardScriptableObject>(copySavedDeck);
         playerRandomCardDB.allCards= new List<CardScriptableObject>(copyRandomDeck);
         opponentRandomCardDB.allCards= new List<CardScriptableObject>(copyRandomDeck);
 
@@ -105,13 +105,13 @@ public class GameManager : MonoBehaviour
     }
     public void SavedDeckDraw()
     {
-        if (hand.GetComponent<DropZone>().ReachedMaxCards()==false && hand.drawCount > 0)
+        if (hand.GetComponent<DropZone>().ReachedMaxCards() == false && hand.drawCount > 0)
         {
             drawCardFromSavedDeck.gameObject.SetActive(true);
             CardScriptableObject card = savedCardDB.Draw();
             //randomCard.gameObject.SetActive(true);
             //randomCard.transform.position = cardSlots[i].position;
-            savedCardDB.cards.Remove(card);
+            savedCardDB.RemoveCard(card);
             DeckImage();
             hand.AddCardFromDeck(card);
         }
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
             drawCardFromSavedDeck.gameObject.SetActive(false);
         }
     }
+
     /// <summary>
     /// changes phase every time button is pressed
     /// updates which cards are relevant to current phase

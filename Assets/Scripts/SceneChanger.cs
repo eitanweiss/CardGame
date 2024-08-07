@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void ChangeScene()
+    public void ChangeSceneToMatch()
     {
         SceneManager.LoadScene("Match");
     }
+    public void ChangeSceneToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+    public void ChangeSceneToGameEnd()
+    {
+        SceneManager.LoadScene("Game End");
+    }
+
 }

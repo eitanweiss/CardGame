@@ -27,6 +27,9 @@ public class CardDB : ScriptableObject
         File.WriteAllText(path, json);
     }
 
+    /// <summary>
+    /// needed for the collection part of player data. does not havec any use in game or match
+    /// </summary>
     public void LoadRuntimeChanges()
     {
         string path = Path.Combine(Application.dataPath, $"{this.name}.json");
@@ -43,11 +46,6 @@ public class CardDB : ScriptableObject
                 }
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        LoadRuntimeChanges();
     }
 
     public void SetDrawCount(int num)
