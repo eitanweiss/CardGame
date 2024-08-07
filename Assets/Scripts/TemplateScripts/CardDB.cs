@@ -20,6 +20,9 @@ public class CardDB : ScriptableObject
     public List<SerializableCard> runTimeCards= new List<SerializableCard>();
     public int drawCount;
 
+    /// <summary>
+    /// saves cards to the player collection. called every time a card is used in a match
+    /// </summary>
     public void SaveRuntimeChanges()
     {
         string json = JsonUtility.ToJson(new SerializableList<SerializableCard>(runTimeCards), true);
@@ -28,7 +31,7 @@ public class CardDB : ScriptableObject
     }
 
     /// <summary>
-    /// needed for the collection part of player data. does not havec any use in game or match
+    /// needed for the collection part of player data. does not have any use in game or match. not sure when to call yet.
     /// </summary>
     public void LoadRuntimeChanges()
     {
@@ -48,11 +51,20 @@ public class CardDB : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// sets how many cards can be drawn next round.
+    /// </summary>
+    /// <param name="num">number of cards that can be drawn</param>
     public void SetDrawCount(int num)
     {
         drawCount = num;
     }
 
+    /// <summary>
+    /// searches in the card collection and creates a list of all cards with Rarity rarity.
+    /// </summary>
+    /// <param name="rarity">rarity of the cards in the returned list</param>
+    /// <returns>a random card with Rarity rarity</returns>
     public CardScriptableObject SearchByRarity(CardScriptableObject.Rarity rarity)
     {
         List<CardScriptableObject> list  = new List<CardScriptableObject>();
@@ -65,6 +77,12 @@ public class CardDB : ScriptableObject
         }
         return list[UnityEngine.Random.Range(0, list.Count)];
     }
+
+    /// <summary>
+    /// removes all cards from list that are not of Rarity rarity.
+    /// </summary>
+    /// <param name="list">list to remove cards from</param>
+    /// <param name="rarity">rarity to retain in the list</param>
     public void LimitByRarity(List<CardScriptableObject> list, CardScriptableObject.Rarity rarity)
     {
         for (int i = list.Count - 1; i >= 0; i--)
@@ -75,6 +93,12 @@ public class CardDB : ScriptableObject
             }
         }
     }
+
+    /// <summary>
+    /// searches in the card collection and creates a list of all cards with Race race.
+    /// </summary>
+    /// <param name="race"> race of the cards in the returned list</param>
+    /// <returns> a List<CardScriptableObject> of all cards that are of Race race or Race All </returns>
     public List<CardScriptableObject> SearchByRace(Race race)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject>();
@@ -87,6 +111,12 @@ public class CardDB : ScriptableObject
         }
         return list;
     }
+
+    /// <summary>
+    /// removes all cards from list that are not of Race race.
+    /// </summary>
+    /// <param name="list">list to remove cards from</param>
+    /// <param name="race">race to retain in list</param>
     public void LimitByRace(List<CardScriptableObject> list, Race race) 
     {
         for (int i = list.Count-1; i >=0 ; i--)
@@ -97,6 +127,12 @@ public class CardDB : ScriptableObject
             }
         }
     }
+
+    /// <summary>
+    /// searches in the card collection and creates a list of all cards with Type type.
+    /// </summary>
+    /// <param name="type">type of the cards in the returned list</param>
+    /// <returns>a List<CardScriptableObject> of cards that are of Type type or Type All.</returns>
     public List<CardScriptableObject> SearchByType(Type type)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject >();
@@ -110,6 +146,11 @@ public class CardDB : ScriptableObject
         return list;
     }
 
+    /// <summary>
+    /// removes all cards from list that are not of Type type.
+    /// </summary>
+    /// <param name="list">list to remove cards from</param>
+    /// <param name="type">type to retain in list</param>
     public void LimitByType(List<CardScriptableObject> list, Type type)
     {
         for (int i = list.Count - 1; i >= 0; i--)
@@ -120,6 +161,12 @@ public class CardDB : ScriptableObject
             }
         }
     }
+
+    /// <summary>
+    /// searches in the card collection and creates a list of all cards with the Ability ability.
+    /// </summary>
+    /// <param name="ability">abilityto search by</param>
+    /// <returns>a list of all cards that have the Ability ability.</returns>
     public List<CardScriptableObject> SearchByAbility(Ability ability)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject>();
@@ -143,6 +190,11 @@ public class CardDB : ScriptableObject
     float chanceElite = 0.10f;
     float chanceEpic = 0.019f;
     //float chanceMythical = 0.001f;
+
+    /// <summary>
+    /// returns a random card out of all possible cards.
+    /// </summary>
+    /// <returns>a random card drawn.</returns>
     public CardScriptableObject randomDraw()
     {
         CardScriptableObject card;
