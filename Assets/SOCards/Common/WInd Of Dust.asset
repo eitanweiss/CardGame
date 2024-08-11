@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 58
   cardName: WInd Of Dust
   cardDescription: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 2a2bae6a43c4c79429c7c2b080836faa, type: 3}
   abilities:
   - {fileID: 11400000, guid: 5bb01b802c64d5841945ed7407046b63, type: 2}
   - {fileID: 11400000, guid: 75fc6efbf4e31294592596516df9f8f5, type: 2}
