@@ -16,6 +16,7 @@ public class SerializableCard
     public int value;
     public Type type;
     public bool isBuffCard;
+    public string spritePath;
     public SerializableCard(CardScriptableObject card)
     {
         id = card.id;
@@ -28,6 +29,9 @@ public class SerializableCard
         value = card.value;
         type = card.type;
         isBuffCard = card.isBuffCard;
+
+        spritePath = card.image != null ? $"Sprites/Card/{card.image.name}" : null; // Store the relative path
+        Debug.Log($"Serialized Sprite Path: {spritePath}"); // Debug log
     }
 
     public CardScriptableObject ToScriptableObject()
@@ -43,6 +47,10 @@ public class SerializableCard
         card.value = value;
         card.type = type;
         card.isBuffCard = isBuffCard;
+        Debug.Log($"Loading Sprite from Path: {spritePath}");
+
+        card.image = !string.IsNullOrEmpty(spritePath) ? Resources.Load<Sprite>(spritePath) : null;
+
         return card;
     }
 }

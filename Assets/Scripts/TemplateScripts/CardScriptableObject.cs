@@ -33,6 +33,7 @@ public class CardScriptableObject : ScriptableObject
         value = card.value;
         type = card.type;
         isBuffCard = card.isBuffCard;
+        image = card.image;
     }
     public CardScriptableObject DeepCopy()
     {

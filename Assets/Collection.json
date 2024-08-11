@@ -1,0 +1,85 @@
+{
+    "list": [
+        {
+            "id": 0,
+            "cardName": "Acid Explosion",
+            "cardDescription": "",
+            "abilityValues": [
+                35,
+                10,
+                3
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 23032
+                },
+                {
+                    "instanceID": 22696
+                }
+            ],
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
+            "type": 0,
+            "isBuffCard": false,
+            "spritePath": "Sprites/Card/Acid Explosion"
+        },
+        {
+            "id": 103,
+            "cardName": "Superiority",
+            "cardDescription": "Show them the difference in abilities",
+            "abilityValues": [
+                27,
+                2,
+                6
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 22618
+                },
+                {
+                    "instanceID": 23032
+                }
+            ],
+            "rarity": 2,
+            "race": 0,
+            "value": 2,
+            "type": 3,
+            "isBuffCard": false,
+            "spritePath": ""
+        },
+        {
+            "id": 39,
+            "cardName": "Poison Herb",
+            "cardDescription": "",
+            "abilityValues": [
+                14,
+                9,
+                3
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 22820
+                },
+                {
+                    "instanceID": 22696
+                }
+            ],
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
+            "type": 3,
+            "isBuffCard": false,
+            "spritePath": ""
+        }
+    ]
+}
