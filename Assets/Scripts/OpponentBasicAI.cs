@@ -24,7 +24,7 @@ public class OpponentBasicAI : MonoBehaviour
             {
                 CardScriptableObject card = randomCardDB.randomDraw();
 
-                hand.AddCardFromDeck(card);
+                hand.AddCardFromDeck(card, Origin.RandomDeck);
             }
             hand.GetComponent<DropZone>().DisableDrag();
             hand.GetComponent<DropZone>().TurnFaceDown();

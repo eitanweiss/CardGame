@@ -24,12 +24,12 @@ public class Hand : MonoBehaviour
 
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
-    public void AddCardFromDeck(CardScriptableObject card)
+    public void AddCardFromDeck(CardScriptableObject card,Origin origin)
     {
         GameObject cardGO = Instantiate(cardPrefab, transform);
         CardObject newCardObj = cardGO.AddComponent<CardObject>();
         newCardObj.card = card;
-
+        newCardObj.origin = origin;
         transform.GetComponent<DropZone>().AddCard(newCardObj);
         Debug.Log("Added " +card.cardName + " to hand");
         //only what is related to hand

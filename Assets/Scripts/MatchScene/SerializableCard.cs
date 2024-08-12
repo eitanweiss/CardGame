@@ -17,6 +17,7 @@ public class SerializableCard
     public Type type;
     public bool isBuffCard;
     public string spritePath;
+    public Origin origin;
     public SerializableCard(CardScriptableObject card)
     {
         id = card.id;

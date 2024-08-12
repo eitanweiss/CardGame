@@ -1,29 +1,6 @@
 {
     "list": [
         {
-            "id": 16,
-            "cardName": "Enchantment",
-            "cardDescription": "",
-            "abilityValues": [
-                40,
-                8
-            ],
-            "abilities": [
-                {
-                    "instanceID": 22542
-                },
-                {
-                    "instanceID": 23032
-                }
-            ],
-            "rarity": 0,
-            "race": 0,
-            "value": 1,
-            "type": 0,
-            "isBuffCard": false,
-            "spritePath": "Sprites/Card/Enchantment"
-        },
-        {
             "id": 54,
             "cardName": "Tree Screen",
             "cardDescription": "",
@@ -34,13 +11,13 @@
             ],
             "abilities": [
                 {
-                    "instanceID": 22542
+                    "instanceID": 22548
                 },
                 {
-                    "instanceID": 22726
+                    "instanceID": 22732
                 },
                 {
-                    "instanceID": 23004
+                    "instanceID": 23010
                 }
             ],
             "rarity": 0,
@@ -48,30 +25,60 @@
             "value": 1,
             "type": 0,
             "isBuffCard": false,
-            "spritePath": "Sprites/Card/Tree Wall"
+            "spritePath": "Sprites/Card/Tree Wall",
+            "origin": 0
         },
         {
-            "id": 37,
-            "cardName": "Nature Spirit",
+            "id": 15,
+            "cardName": "Elven Instinct",
             "cardDescription": "",
             "abilityValues": [
-                4,
-                15
+                18,
+                8
             ],
             "abilities": [
                 {
-                    "instanceID": 22618
+                    "instanceID": 22548
                 },
                 {
-                    "instanceID": 22522
+                    "instanceID": 22826
                 }
             ],
             "rarity": 0,
             "race": 0,
             "value": 1,
             "type": 3,
-            "isBuffCard": true,
-            "spritePath": "Sprites/Card/Nature Spirit"
+            "isBuffCard": false,
+            "spritePath": "",
+            "origin": 0
+        },
+        {
+            "id": 0,
+            "cardName": "Acid Explosion",
+            "cardDescription": "",
+            "abilityValues": [
+                35,
+                10,
+                3
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22548
+                },
+                {
+                    "instanceID": 23038
+                },
+                {
+                    "instanceID": 22702
+                }
+            ],
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
+            "type": 0,
+            "isBuffCard": false,
+            "spritePath": "Sprites/Card/Acid Explosion",
+            "origin": 0
         }
     ]
 }

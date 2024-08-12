@@ -21,15 +21,15 @@ public class DisplayCard : MonoBehaviour
         nameText.text = " " +card.cardName;
         descriptionText.text = "" + card.cardDescription + ";\n";
         FillRaceText(card.race,card.type);
-        rarityText.text = " " + card.rarity; 
-        for (int i = 0;i<card.abilities.Count;i++)
+        rarityText.text = " " + card.rarity;
+        for (int i = 0; i < card.abilities.Count; i++)
         {
-            if (card.abilities[i].name=="Duration")
+            if (card.abilities[i] != null && card.abilities[i].name == "Duration")
             {
                 transform.GetChild(2).GetComponent<Image>().GetComponentInChildren<TMP_Text>().text = $"{card.abilityValues[i]}/{card.abilityValues[i]}";
             }
-            descriptionText.text = descriptionText.text + card.abilities[i].name + "(" + card.abilityValues[i] +"); ";
 
+            descriptionText.text = descriptionText.text + card.abilities[i]?.name + "(" + card.abilityValues[i] + "); ";
         }
         cardImage.sprite = card.image;
         border.sprite = card.image;

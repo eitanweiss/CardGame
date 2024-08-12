@@ -28,6 +28,7 @@ public class OutcomeCalculator : MonoBehaviour
     int [] block = new int[2];
     int [] heal = new int[2];
     int [] loseHealth = new int[2];
+    int[] selfDamage = new int[2];
     //private int decreaseMana;
     //private int decreaseMaxHP;
     //private int decreasehandSize;
@@ -127,7 +128,7 @@ public class OutcomeCalculator : MonoBehaviour
                         heal[1-player] -= card.card.abilityValues[i];
                         break;
                     case "Self Damage":
-                        loseHealth[player] += card.card.abilityValues[i];
+                        selfDamage[player] += card.card.abilityValues[i];
                         //some sort of animation?
                         break;
                     case "Decrease Bonus Damage":
@@ -201,6 +202,7 @@ public class OutcomeCalculator : MonoBehaviour
                 GameObject cardGO = Instantiate(cardPrefab, transform);
                 CardObject newCardObj = cardGO.AddComponent<CardObject>();
                 newCardObj.card = card.card.DeepCopy();
+                newCardObj.origin = card.origin;
                 DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
                 displayCard.SetCard(newCardObj.card);
                 cardGO.GetComponent<DisplayCard>().enabled = false;
@@ -253,7 +255,7 @@ public class OutcomeCalculator : MonoBehaviour
     {
         int _instanceID = cardObject.GetInstanceID();
 
-        if (!cardIDs.Contains(_instanceID))
+        if (!cardIDs.Contains(_instanceID) && cardObject.origin == Origin.RandomDeck)
         {
             cardIDs.Add(_instanceID);
             CardScriptableObject newCard = cardObject.card.DeepCopy();
@@ -362,7 +364,7 @@ public class OutcomeCalculator : MonoBehaviour
             bonusDamage[PLAYER] = 0;
         }
 
-        int damagedonetoOpponent = loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT];
+        int damagedonetoOpponent = loseHealth[OPPONENT] + damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT] +selfDamage[OPPONENT];
 
         Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
         Debug.Log("player dmg is" + damage[PLAYER]);
@@ -381,7 +383,7 @@ public class OutcomeCalculator : MonoBehaviour
             bonusDamage[OPPONENT] = 0;
         }
 
-        int damagedonetoplayer = loseHealth[PLAYER] + damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER];
+        int damagedonetoplayer = loseHealth[PLAYER] + damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER] +selfDamage[PLAYER];
         Debug.Log("player block is " + (block[PLAYER] + player.GetDefense()));
         Debug.Log("opp dmg is" + damage[OPPONENT]);
         Debug.Log("player self damage by " + loseHealth[PLAYER]);

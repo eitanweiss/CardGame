@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         {
             CardScriptableObject card = playerRandomCardDB.randomDraw();
 
-            hand.AddCardFromDeck(card);
+            hand.AddCardFromDeck(card,Origin.RandomDeck);
         }
 
     }
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
             //randomCard.transform.position = cardSlots[i].position;
             savedCardDB.RemoveCard(card);
             DeckImage();
-            hand.AddCardFromDeck(card);
+            hand.AddCardFromDeck(card,Origin.SavedDeck);
         }
         else
         {
