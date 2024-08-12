@@ -4,8 +4,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
 /// calculates all card effects at the end of each round. will reset values
+/// this class is currently a mess that needs to be fixed and changed a lot.
 /// </summary>
 public class OutcomeCalculator : MonoBehaviour
 {
@@ -13,15 +15,22 @@ public class OutcomeCalculator : MonoBehaviour
     int roundNumber = 0;
     const int PLAYER= 0;
     const int OPPONENT= 1;
+    
     GameObject playerObject;
     GameObject opponentObject;
+    
     HashSet<int> cardIDs = new HashSet<int>();
+    
     public CardDB collection;
+    public List<CardObject> playerCards;
+    public List<CardObject> opponentCards;
+    
     private void Start()
     {
         playerObject = GameObject.Find("PlayerObject").gameObject;
         opponentObject = GameObject.Find("OpponentObject").gameObject;
     }
+    
     //this will be effects on player
     int [] damage = new int[2];
     int [] bonusDamage = new int[2];
@@ -36,28 +45,14 @@ public class OutcomeCalculator : MonoBehaviour
     //private int decreaseBuffArea;
     //private int decreaseDiscard;
     //private int decreaseDraw;
-    public List<CardObject> playerCards;
-    public List<CardObject> opponentCards;
-
+    
     public GameObject cardPrefab;
+    
     [SerializeField] GameObject calcView;
 
-    //void Start()
-    //{
-    //    damage = 0;
-    //    bonusDamage = 0;
-    //    block = 0;
-    //    heal = 0;
-    //    loseHealth = 0;
-    //    decreaseMana = 0;
-    //    decreaseMaxHP = 0;
-    //    decreasehandSize = 0;
-    //    decreasePlayArea = 0;
-    //    decreaseBuffArea = 0;
-    //    decreaseDiscard = 0;
-    //    decreaseDraw = 0;
-    //}
-
+    /// <summary>
+    /// basic start method to set all values to zero.
+    /// </summary>
     public void ResetValuesToZero()
     {
         for (int i = 0; i < 2; i++)
@@ -79,6 +74,12 @@ public class OutcomeCalculator : MonoBehaviour
 
     //need to decide if i want to calculate by card or by effect
     //ATM it is by card
+    /// <summary>
+    /// calculate card effects by card and add to total.
+    /// each value has 2 entrances: first for player, second for opponent.
+    /// </summary>
+    /// <param name="list">list of cards to go through</param>
+    /// <param name="player">player these cards belong to</param>
     public void CalculateByArea(List<CardObject> list, int player)
     {
          foreach(CardObject card in list)
@@ -183,8 +184,8 @@ public class OutcomeCalculator : MonoBehaviour
     /// <summary>
     /// copy all cards from the different zones into one list in order to make it easier to show and go over all of them together
     /// </summary>
-    /// <param name="gameObject"> object to add cards to</param>
-    /// <param name="list"> cards to add to object</param>
+    /// <param name="gameObject"> object the cards belong to</param>
+    /// <param name="list"> will contain all the cards to be added upon end of method</param>
     private void AddCards(GameObject gameObject, List<CardObject> list)
     {
         Component[] dropzones = gameObject.GetComponentsInChildren<DropZone>();
@@ -213,6 +214,8 @@ public class OutcomeCalculator : MonoBehaviour
 
     /// <summary>
     /// go through all the different zones. add all the cards in each one to a single list, and calculate the outcome of the list
+    /// param is temporary as not sure how to insert the delay yet.
+    /// should delay the start of the next round until calculation is finished.
     /// </summary>
     /// <param name="phaseText"></param>
     public void CalculateAllZones(TextMeshProUGUI phaseText)
@@ -346,7 +349,7 @@ public class OutcomeCalculator : MonoBehaviour
 
     /// <summary>
     /// reduce life by calculated amount
-    /// ATM full of debugs, just to make sure I can follow
+    /// ATM full of debugs, just to make sure I can follow what happens.
     /// </summary>
     void ReduceLife()
     {

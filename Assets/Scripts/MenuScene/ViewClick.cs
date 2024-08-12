@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 
 public class ViewClick : MonoBehaviour, IPointerClickHandler
 {
+    /// <summary>
+    /// click event handler
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         GameObject editView = transform.parent.parent.parent.parent.gameObject;

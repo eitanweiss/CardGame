@@ -4,12 +4,19 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Scriptable Object saved deck - will have one instance per saved deck. Has different behaviour than the random deck
+/// so I decided to have it as a seperate SO class.
+/// </summary>
 [CreateAssetMenu(menuName = "CardGame/SavedCardDB")]
 public class SavedDeck : ScriptableObject
 {
     [SerializeField]
     List<CardScriptableObject> cards = new List<CardScriptableObject>();
     
+    /// <summary>
+    /// Load saved deck from Json file at start of match. ATM supports only one saved deck
+    /// </summary>
     public void StartUp()
     {
         cards.Clear();
@@ -75,7 +82,6 @@ public class SavedDeck : ScriptableObject
     public CardScriptableObject Draw()
     {
         CardScriptableObject card = cards[0];
-        //Debug.Log(card.cardName);
         return card;
     }
 
@@ -85,7 +91,6 @@ public class SavedDeck : ScriptableObject
     /// <returns>number of cards in list</returns>
     public int listSize()
     {
-        Debug.Log("list size is " + cards.Count);
         return cards.Count;
     }
 

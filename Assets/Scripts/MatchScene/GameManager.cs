@@ -15,14 +15,17 @@ public class GameManager : MonoBehaviour
     public CardDB opponentRandomCardDB;
     public CardDB collection;
     public SavedDeck savedCardDB;
-    private List<CardScriptableObject> copySavedDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
-    private List<CardScriptableObject> copyRandomDeck;//so changes in play will not affect regular deck and cards drawn will be there again once finished with this match
+    private List<CardScriptableObject> copySavedDeck;
+    private List<CardScriptableObject> copyRandomDeck;
     public GameObject [] savedDeckDepth = new GameObject[4];
     public Hand hand;
     public Button drawCardFromSavedDeck;
     public TurnManager turnManager;
     public OpponentBasicAI opponentBasicAI;
 
+    /// <summary>
+    /// control deck image in game at runtime by number of cards in the saved deck
+    /// </summary>
     public void DeckImage()
     {
         if (savedCardDB.listSize() < 30)
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
         }
         deckSize.text = savedCardDB.listSize().ToString();
     }
+
     void Start()
     {
         SetupDecks();   
@@ -73,7 +77,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ATM called from yellow button on bottom left, will be called when match is over
+    /// ATM called when forfeit the match, will be called when match is over as well.
     /// </summary>
     public void EndGame()
     {
@@ -83,6 +87,9 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(Application.dataPath + "saveFile.json", json);
     }
 
+    /// <summary>
+    /// refills the decks with all possible cards.
+    /// </summary>
     void ResetDecks()
     {
         playerRandomCardDB.allCards= new List<CardScriptableObject>(copyRandomDeck);
@@ -91,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// draw a random card from the random deck
     /// </summary>
     public void RandomDeckDraw()
     {
@@ -103,14 +110,16 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// draw a random card from the saved deck
+    /// </summary>
     public void SavedDeckDraw()
     {
         if (hand.GetComponent<DropZone>().ReachedMaxCards() == false && hand.drawCount > 0)
         {
             drawCardFromSavedDeck.gameObject.SetActive(true);
             CardScriptableObject card = savedCardDB.Draw();
-            //randomCard.gameObject.SetActive(true);
-            //randomCard.transform.position = cardSlots[i].position;
             savedCardDB.RemoveCard(card);
             DeckImage();
             hand.AddCardFromDeck(card,Origin.SavedDeck);

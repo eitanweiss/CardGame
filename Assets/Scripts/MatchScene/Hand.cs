@@ -7,16 +7,21 @@ using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
-    //[SerializeField] public Image playerMana { get;} //in future will have access to the Character or something?
     [SerializeField] private GameObject cardPrefab;
     public int drawCount;
 
-
+    /// <summary>
+    /// Reset base draw count to 3
+    /// </summary>
     public void ResetDrawCount()
     {
         drawCount = 3;
     }
 
+    /// <summary>
+    /// change draw count to change 
+    /// </summary>
+    /// <param name="change">number of cards that can be drawn next round</param>
     public void ChangeDrawCount(int change)
     {
         drawCount +=change;
@@ -24,6 +29,11 @@ public class Hand : MonoBehaviour
 
 
     //only hand can get a card from deck so it makes sense to have a special function for it. SRP
+    /// <summary>
+    /// Builds a gameobject from the card, inserting the display and origin, and adding it to the dropzone
+    /// </summary>
+    /// <param name="card">card to build around</param>
+    /// <param name="origin">origin of card: random deck or saved deck</param>
     public void AddCardFromDeck(CardScriptableObject card,Origin origin)
     {
         GameObject cardGO = Instantiate(cardPrefab, transform);
@@ -42,6 +52,7 @@ public class Hand : MonoBehaviour
         DisplayCard displayCard = cardGO.GetComponent<DisplayCard>();
         displayCard.SetCard(card);
     }
+
     /// <summary>
     /// checks if card is playable due to mana constraints
     /// called in relevant phase only

@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// control behaviour in the deck edit and card sell views.
+/// </summary>
 public class EditView : MonoBehaviour
 {
     [SerializeField]

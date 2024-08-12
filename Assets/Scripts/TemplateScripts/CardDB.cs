@@ -9,13 +9,11 @@ using UnityEngine;
 
 /// <summary>
 /// contains all the cards known to man(or orc).
-/// contains methods for searching and limiting via each criterea,
+/// contains methods for searching and limiting via each criterea: race,type,rarity.
+/// may later contain methods to search by ability.
 /// </summary>
 public class CardDB : ScriptableObject
 {
-
-    //[SerializeField] Race race;
-    //[SerializeField] Type type;
     [SerializeField] public List<CardScriptableObject> allCards = new List<CardScriptableObject>();
     public List<SerializableCard> runTimeCards= new List<SerializableCard>();
     public int drawCount;

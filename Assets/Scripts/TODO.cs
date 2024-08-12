@@ -23,12 +23,7 @@ public static class TODO : object
     /// 6.      notice that HP got to 0 or below and end match
     /// 7.  Options menu:
     /// 8.  adjust speed in options menu
-    /// 9.  open collection json in deckedit view
-    /// 10. change it from there(sell cards)
-    /// 11. open saved deck from deckedit view and change it from there (remove cards from collection and add to deck or vice versa)
-    /// 17. implement selling cards = removing cards from collection and getting money
-    /// 18. moving cards from collection to saved deck removes them from collection
-    /// 19. save information to json for future games
+    /// 9. 
     /// 20. randomize opponent faction when generating opponent.
     /// 21. later on write more intrecate AI options for computer opponent
     /// 22. add combonations of cards to effects and calculations
@@ -37,6 +32,7 @@ public static class TODO : object
     ///     Lerp HP? Lerp XP? Lerp Mana?
     /// 20. a thought: do i want to make a 2Vs2 version? each player can choose in ehich zone to put his cards, andeach zone is seperate. 
     /// 21. this adds interRace combos
+    /// 22. thought: change OutcomeCalculator to be tied to a player, and each round call the one tied to the starting player (may work better when expanding to multiplayer)
     /// </summary>
     public static void TODOfirst()
     { }

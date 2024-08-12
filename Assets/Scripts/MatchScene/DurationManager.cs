@@ -126,8 +126,8 @@ public class DurationManager : MonoBehaviour
         image.gameObject.SetActive(true);
         string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
         if (int.Parse(parts[0]) > 1)
-        {
-            image.GetComponentInChildren<TMP_Text>().text = $"{int.Parse(parts[0]) - 1}/{int.Parse(parts[1])}";//decreases duration by one
+        {   //decreases duration by one
+            image.GetComponentInChildren<TMP_Text>().text = $"{int.Parse(parts[0]) - 1}/{int.Parse(parts[1])}";
         }
         else
         {

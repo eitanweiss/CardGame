@@ -14,7 +14,10 @@ public class DisplayCard : MonoBehaviour
     public Image border;
     // Start is called before the first frame update
 
-
+    /// <summary>
+    /// Set display components according to card data
+    /// </summary>
+    /// <param name="card">the card data to display</param>
     public void SetCard(CardScriptableObject card)
     {
      
@@ -34,6 +37,12 @@ public class DisplayCard : MonoBehaviour
         cardImage.sprite = card.image;
         border.sprite = card.image;
     }
+
+    /// <summary>
+    /// set race and type text in display
+    /// </summary>
+    /// <param name="race">race of card</param>
+    /// <param name="type">type of card</param>
     public void FillRaceText(Race race, Type type)
     {
         switch (race)
