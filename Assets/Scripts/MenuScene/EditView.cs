@@ -27,6 +27,9 @@ public class EditView : MonoBehaviour
         //load saved deck from json
     }
 
+    /// <summary>
+    /// Destroy unsaved changes when reopening window in scene and reload collection and savedDeck
+    /// </summary>
     public void Restart()
     {
         //empty children from content view
@@ -39,9 +42,15 @@ public class EditView : MonoBehaviour
             Destroy(savedDeckViewContent.GetChild (i).gameObject);
         }
         LoadCollection();
-        LoadSavedDeck();
+        if(this.gameObject.name == "EditDeck View")
+        {
+            LoadSavedDeck();
+        }
     }
 
+    /// <summary>
+    /// save current collection to json file. callled from buttons in-game
+    /// </summary>
     public void SaveCollection()
     {
         List<SerializableCard> serializedCards= new List<SerializableCard>();
@@ -133,6 +142,9 @@ public class EditView : MonoBehaviour
         savedDeck.Remove(card.card);
     }
 
+    /// <summary>
+    /// save current deck to json file. callled from button in-game
+    /// </summary>
     public void SaveSavedDeck()
     {
         List<SerializableCard> serializedCards = new List<SerializableCard>();
@@ -182,6 +194,25 @@ public class EditView : MonoBehaviour
     public Transform GetSavedTransform()
     {
         return savedDeckViewContent;
+    }
+
+    /// <summary>
+    /// sells the card specified and recieves the value of those cards
+    /// </summary>
+    /// <returns>money earned from selling the cards</returns>
+    public void SellCards()
+    {
+        int sum = 0;
+        foreach (var card in savedDeck)
+        {
+            sum += card.value;
+        }
+        savedDeck.Clear();
+        for (int i = savedDeckViewContent.childCount - 1; i >= 0; i--)
+        {
+            Destroy(savedDeckViewContent.GetChild(i).gameObject);
+        }
+        Debug.Log("got " + sum + "coins from selling the cards");
     }
     //limit the number of cards in the saved deck according to - higher order not important ATM
 }

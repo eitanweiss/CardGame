@@ -17,7 +17,7 @@ public class ViewClick : MonoBehaviour, IPointerClickHandler
             //move to saved
             transform.SetParent(editView.GetComponent<EditView>().GetSavedTransform());
             //add to saved
-            editView.GetComponent<EditView>().AddToSaved(eventData.pointerClick.GetComponent<CardObject>());
+            editView.GetComponent<EditView>().AddToSaved(eventData.pointerClick.GetComponent<CardObject>()); 
         }
         else
         {

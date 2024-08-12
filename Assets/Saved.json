@@ -1,6 +1,29 @@
 {
     "list": [
         {
+            "id": 49,
+            "cardName": "Staff Attack",
+            "cardDescription": "",
+            "abilityValues": [
+                10,
+                2
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 23032
+                }
+            ],
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
+            "type": 0,
+            "isBuffCard": false,
+            "spritePath": ""
+        },
+        {
             "id": 115,
             "cardName": "Concentration",
             "cardDescription": "",
@@ -28,56 +51,6 @@
             "race": 4,
             "value": 10,
             "type": 3,
-            "isBuffCard": false,
-            "spritePath": ""
-        },
-        {
-            "id": 52,
-            "cardName": "Thunder Strike",
-            "cardDescription": "",
-            "abilityValues": [
-                60,
-                2,
-                7
-            ],
-            "abilities": [
-                {
-                    "instanceID": 22542
-                },
-                {
-                    "instanceID": 22618
-                },
-                {
-                    "instanceID": 23032
-                }
-            ],
-            "rarity": 0,
-            "race": 0,
-            "value": 0,
-            "type": 0,
-            "isBuffCard": false,
-            "spritePath": ""
-        },
-        {
-            "id": 49,
-            "cardName": "Staff Attack",
-            "cardDescription": "",
-            "abilityValues": [
-                10,
-                2
-            ],
-            "abilities": [
-                {
-                    "instanceID": 22542
-                },
-                {
-                    "instanceID": 23032
-                }
-            ],
-            "rarity": 0,
-            "race": 4,
-            "value": 1,
-            "type": 0,
             "isBuffCard": false,
             "spritePath": ""
         }
