@@ -1765,6 +1765,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &337664325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  m_PrefabInstance: {fileID: 699904282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &353540525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,6 +2005,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366859781}
   m_CullTransparentMesh: 1
+--- !u!1 &413579850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  m_PrefabInstance: {fileID: 1261190146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &470483591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,6 +3910,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976284160}
   m_CullTransparentMesh: 1
+--- !u!1 &1006219380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  m_PrefabInstance: {fileID: 493800250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1059273794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4605,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1405260546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  m_PrefabInstance: {fileID: 1725842945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416482198
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,10 +6247,10 @@ MonoBehaviour:
   collection: {fileID: 11400000, guid: 12419a544838e0c4487270fdfc33fa6e, type: 2}
   savedCardDB: {fileID: 11400000, guid: 2797a9004cf8dcb439be458dce065691, type: 2}
   savedDeckDepth:
-  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
-  - {fileID: 3847908678912220708, guid: acb1b290810383d49b89a760c4c82a2f, type: 3}
+  - {fileID: 1405260546}
+  - {fileID: 413579850}
+  - {fileID: 1006219380}
+  - {fileID: 337664325}
   hand: {fileID: 1911530110}
   drawCardFromSavedDeck: {fileID: 2072977979}
   turnManager: {fileID: 1976088628}
@@ -6277,12 +6297,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2ed69b317f8444fb40db52ec00ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPlayArea: {fileID: 0}
-  playerActiveArea: {fileID: 0}
-  playerBuffArea: {fileID: 0}
-  oppPlayArea: {fileID: 0}
-  oppActiveArea: {fileID: 0}
-  oppBuffArea: {fileID: 0}
+  playerPlayArea: {fileID: 905445072}
+  playerActiveArea: {fileID: 1682370970}
+  playerBuffArea: {fileID: 569411446}
+  oppPlayArea: {fileID: 353540525}
+  oppActiveArea: {fileID: 1996761778}
+  oppBuffArea: {fileID: 2081207601}
 --- !u!114 &1888001730
 MonoBehaviour:
   m_ObjectHideFlags: 0
