@@ -1,13 +1,12 @@
 {
     "list": [
         {
-            "id": 0,
-            "cardName": "Acid Explosion",
+            "id": 16,
+            "cardName": "Enchantment",
             "cardDescription": "",
             "abilityValues": [
-                35,
-                10,
-                3
+                40,
+                8
             ],
             "abilities": [
                 {
@@ -15,26 +14,73 @@
                 },
                 {
                     "instanceID": 23032
-                },
-                {
-                    "instanceID": 22696
                 }
             ],
             "rarity": 0,
-            "race": 4,
+            "race": 0,
             "value": 1,
             "type": 0,
             "isBuffCard": false,
-            "spritePath": "Sprites/Card/Acid Explosion"
+            "spritePath": "Sprites/Card/Enchantment"
         },
         {
-            "id": 103,
-            "cardName": "Superiority",
-            "cardDescription": "Show them the difference in abilities",
+            "id": 54,
+            "cardName": "Tree Screen",
+            "cardDescription": "",
             "abilityValues": [
-                27,
+                32,
+                3,
+                12
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 22726
+                },
+                {
+                    "instanceID": 23004
+                }
+            ],
+            "rarity": 0,
+            "race": 0,
+            "value": 1,
+            "type": 0,
+            "isBuffCard": false,
+            "spritePath": "Sprites/Card/Tree Wall"
+        },
+        {
+            "id": 37,
+            "cardName": "Nature Spirit",
+            "cardDescription": "",
+            "abilityValues": [
+                4,
+                15
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22618
+                },
+                {
+                    "instanceID": 22522
+                }
+            ],
+            "rarity": 0,
+            "race": 0,
+            "value": 1,
+            "type": 3,
+            "isBuffCard": true,
+            "spritePath": "Sprites/Card/Nature Spirit"
+        },
+        {
+            "id": 52,
+            "cardName": "Thunder Strike",
+            "cardDescription": "",
+            "abilityValues": [
+                60,
                 2,
-                6
+                7
             ],
             "abilities": [
                 {
@@ -47,37 +93,33 @@
                     "instanceID": 23032
                 }
             ],
-            "rarity": 2,
+            "rarity": 0,
             "race": 0,
-            "value": 2,
-            "type": 3,
+            "value": 0,
+            "type": 0,
             "isBuffCard": false,
             "spritePath": ""
         },
         {
-            "id": 39,
-            "cardName": "Poison Herb",
+            "id": 49,
+            "cardName": "Staff Attack",
             "cardDescription": "",
             "abilityValues": [
-                14,
-                9,
-                3
+                10,
+                2
             ],
             "abilities": [
                 {
                     "instanceID": 22542
                 },
                 {
-                    "instanceID": 22820
-                },
-                {
-                    "instanceID": 22696
+                    "instanceID": 23032
                 }
             ],
             "rarity": 0,
             "race": 4,
             "value": 1,
-            "type": 3,
+            "type": 0,
             "isBuffCard": false,
             "spritePath": ""
         }

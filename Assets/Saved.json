@@ -1,0 +1,35 @@
+{
+    "list": [
+        {
+            "id": 115,
+            "cardName": "Concentration",
+            "cardDescription": "",
+            "abilityValues": [
+                28,
+                3,
+                3,
+                12
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22542
+                },
+                {
+                    "instanceID": 22618
+                },
+                {
+                    "instanceID": 22820
+                },
+                {
+                    "instanceID": 22522
+                }
+            ],
+            "rarity": 3,
+            "race": 4,
+            "value": 10,
+            "type": 3,
+            "isBuffCard": false,
+            "spritePath": ""
+        }
+    ]
+}
