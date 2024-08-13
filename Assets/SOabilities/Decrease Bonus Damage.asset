@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46d6e962574a4243b7f578795ed64a5, type: 3}
   m_Name: Decrease Bonus Damage
   m_EditorClassIdentifier: 
-  ability: 
+  ability: Decrease Bonus Damage

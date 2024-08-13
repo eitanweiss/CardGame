@@ -1,83 +1,31 @@
 {
     "list": [
         {
-            "id": 54,
-            "cardName": "Tree Screen",
+            "id": 66,
+            "cardName": "Cure",
             "cardDescription": "",
             "abilityValues": [
-                32,
-                3,
-                12
-            ],
-            "abilities": [
-                {
-                    "instanceID": 22548
-                },
-                {
-                    "instanceID": 22732
-                },
-                {
-                    "instanceID": 23010
-                }
-            ],
-            "rarity": 0,
-            "race": 0,
-            "value": 1,
-            "type": 0,
-            "isBuffCard": false,
-            "spritePath": "Sprites/Card/Tree Wall",
-            "origin": 0
-        },
-        {
-            "id": 15,
-            "cardName": "Elven Instinct",
-            "cardDescription": "",
-            "abilityValues": [
-                18,
+                56,
+                2,
                 8
             ],
             "abilities": [
                 {
-                    "instanceID": 22548
+                    "instanceID": 22554
                 },
                 {
-                    "instanceID": 22826
+                    "instanceID": 22630
+                },
+                {
+                    "instanceID": 22766
                 }
             ],
-            "rarity": 0,
+            "rarity": 2,
             "race": 0,
-            "value": 1,
-            "type": 3,
-            "isBuffCard": false,
-            "spritePath": "",
-            "origin": 0
-        },
-        {
-            "id": 0,
-            "cardName": "Acid Explosion",
-            "cardDescription": "",
-            "abilityValues": [
-                35,
-                10,
-                3
-            ],
-            "abilities": [
-                {
-                    "instanceID": 22548
-                },
-                {
-                    "instanceID": 23038
-                },
-                {
-                    "instanceID": 22702
-                }
-            ],
-            "rarity": 0,
-            "race": 4,
-            "value": 1,
+            "value": 2,
             "type": 0,
             "isBuffCard": false,
-            "spritePath": "Sprites/Card/Acid Explosion",
+            "spritePath": "",
             "origin": 0
         }
     ]

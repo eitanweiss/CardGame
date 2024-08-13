@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="CardGame/Ability/Power",fileName ="Power")]
-public class Power : Ability
+public class Power : ScriptableObject
 {
-    public void ActivateAbility()
-    {
-
-    }
+    public string power;
 }
