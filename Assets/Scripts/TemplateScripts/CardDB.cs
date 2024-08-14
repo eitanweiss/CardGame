@@ -165,14 +165,14 @@ public class CardDB : ScriptableObject
     /// </summary>
     /// <param name="power">ability to search by</param>
     /// <returns>a list of all cards that have the Ability ability.</returns>
-    public List<CardScriptableObject> SearchByAbility(Power power)
+    public List<CardScriptableObject> SearchByAbility(Ability ability)
     {
         List<CardScriptableObject> list = new List<CardScriptableObject>();
         foreach (CardScriptableObject card in allCards)
         {
-            foreach (Power cardAbility in card.abilities)
+            foreach (Ability cardAbility in card.abilities)
             {
-                if (cardAbility== power)
+                if (cardAbility== ability)
                 {
                     list.Add(card);
                 }

@@ -10,7 +10,7 @@ public class SerializableCard
     public string cardName;
     public string cardDescription;
     public List<int> abilityValues;
-    public List<Power> abilities;
+    public List<Ability> abilities;
     public Rarity rarity;
     public Race race;
     public int value;
@@ -24,7 +24,7 @@ public class SerializableCard
         cardName = card.cardName;
         cardDescription = card.cardDescription;
         abilityValues = new List<int>(card.abilityValues);
-        abilities = new List<Power>(card.abilities);
+        abilities = new List<Ability>(card.abilities);
         rarity = card.rarity;
         race = card.race;
         value = card.value;
@@ -42,7 +42,7 @@ public class SerializableCard
         card.cardName = cardName;
         card.cardDescription = cardDescription;
         card.abilityValues = new List<int>(abilityValues);
-        card.abilities = new List<Power>(abilities);
+        card.abilities = new List<Ability>(abilities);
         card.rarity = rarity;
         card.race = race;
         card.value = value;

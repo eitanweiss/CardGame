@@ -12,7 +12,7 @@ public class CardScriptableObject : ScriptableObject
     public string cardName;//name of card
     public string cardDescription;//flavor text + abilities
     public Sprite image;//image
-    public List<Power> abilities;//what the card does
+    public List<Ability> abilities;//what the card does
     public List<int> abilityValues;//how much it does for every ability
     public bool isBuffCard;
     public enum Rarity { Common, Uncommon, Rare, Elite, Epic, Legendary, Mythical, Unique, Special, Relic, Heroic }//whatever
@@ -27,7 +27,7 @@ public class CardScriptableObject : ScriptableObject
         cardName = card.cardName;
         cardDescription = card.cardDescription;
         abilityValues =  new List<int>(card.abilityValues);
-        abilities = new List<Power>(card.abilities);
+        abilities = new List<Ability>(card.abilities);
         rarity = card.rarity;
         race = card.race;
         value = card.value;
