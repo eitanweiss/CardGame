@@ -30,7 +30,7 @@ public class ZoneActivation : MonoBehaviour
         {
             case TurnManager.Phase.Draw:
                 discard.enabled = false;//this is done twice, may need to rwwrite how and when these get updated
-                discard.GetComponent<DiscardManager>().deleteCards();//this should be done as first step of calculations. just here for now
+                discard.GetComponent<Discard>().deleteCards();//this should be done as first step of calculations. just here for now
                 buttonA.enabled = true;
                 buttonB.enabled = true;
                 
@@ -65,7 +65,7 @@ public class ZoneActivation : MonoBehaviour
                 break;
             
             case TurnManager.Phase.OpponentDraw:
-                discard.GetComponent<DiscardManager>().deleteCards();//this should be done as first step of calculations. just here for now
+                discard.GetComponent<Discard>().deleteCards();//this should be done as first step of calculations. just here for now
                 //actually i think it (that^) is ok here
                 discard.enabled = false; 
                 discard.DisableDrag();

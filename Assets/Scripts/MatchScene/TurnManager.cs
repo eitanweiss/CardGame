@@ -10,6 +10,22 @@ using UnityEngine.UI;
 /// </summary>
 public class TurnManager : MonoBehaviour
 {
+    public static TurnManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
     public bool isMyTurnToStart { get; private set; }
     [SerializeField]private TextMeshProUGUI phaseText;
     public enum Phase { Draw,PlayBuff, PlayCard,Discard, OpponentDraw,OpponentPlayBuff,OpponentPlayCard,OpponentDiscard, Calculation};
@@ -35,7 +51,7 @@ public class TurnManager : MonoBehaviour
             phase = Phase.Calculation;
             phaseText.text = "Opponent's Draw Phase";
         }
-        GameObject.Find("GameManager").GetComponent<GameManager>().TurnControl();
+        MatchManager.Instance.TurnControl();
     }
     public Phase GetPhase()
     {

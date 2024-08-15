@@ -7,11 +7,11 @@ public class SceneChanger : MonoBehaviour
 {
     public void ChangeSceneToMatch()
     {
-        SceneManager.LoadScene("Match");
+        GameManager.Instance.LoadMatch();
     }
     public void ChangeSceneToMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        GameManager.Instance.LoadStartMenu();
     }
     public void ChangeSceneToGameEnd()
     {

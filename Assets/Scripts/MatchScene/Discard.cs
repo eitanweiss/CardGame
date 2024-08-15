@@ -5,8 +5,9 @@ using UnityEngine;
 /// <summary>
 /// will be in charge of discard effects: destroy or add to collection, depending on whether it was played
 /// </summary>
-public class DiscardManager : MonoBehaviour
+public class Discard : MonoBehaviour
 {
+
     public void deleteCards()
     {
         var list = transform.GetComponent<DropZone>().GetList();

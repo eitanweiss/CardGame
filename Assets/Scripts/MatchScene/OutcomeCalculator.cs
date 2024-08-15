@@ -313,8 +313,8 @@ public class OutcomeCalculator : MonoBehaviour
     /// </summary>
     void StartNewRound()
     {
-        playerObject.GetComponent<ManaManager>().ResetMana();
-        opponentObject.GetComponent<ManaManager>().ResetMana();
+        playerObject.GetComponent<Mana>().ResetMana();
+        opponentObject.GetComponent<Mana>().ResetMana();
         roundNumber++;
         if (roundNumber == 1)
         {

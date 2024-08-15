@@ -65,7 +65,7 @@ public class Hand : MonoBehaviour
             {
                 if (cardObj.card.abilities[i].name == "Cost")
                 {
-                    ManaManager playerMana = transform.parent.GetComponent<ManaManager>();
+                    Mana playerMana = transform.parent.GetComponent<Mana>();
                     if(cardObj.card.abilityValues[i] > playerMana.GetMana())
                     {
                         cardObj.GetComponent<Draggable>().enabled = false;

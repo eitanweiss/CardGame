@@ -8,8 +8,24 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using System.IO;
 
-public class GameManager : MonoBehaviour
+public class MatchManager : MonoBehaviour
 {
+    public static MatchManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
     public TMP_Text  deckSize;
     public CardDB playerRandomCardDB;
     public CardDB opponentRandomCardDB;
@@ -83,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         ResetDecks();
         string json = JsonUtility.ToJson(collection);
-        Debug.Log(json);
+        //Debug.Log(json);
         File.WriteAllText(Application.dataPath + "saveFile.json", json);
     }
 

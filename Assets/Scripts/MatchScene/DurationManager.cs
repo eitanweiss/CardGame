@@ -43,7 +43,7 @@ public class DurationManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log("removing all cards from playzone");
+        Debug.Log("removing all cards from playzone");  
         playArea.GetComponent<DropZone>().RemoveAllCards();
         Debug.Log("all cards should be removed now");
 

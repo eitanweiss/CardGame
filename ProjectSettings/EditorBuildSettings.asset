@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Match.unity
     guid: cbad3d2101d41b94faab049b09636c5e
+  - enabled: 1
+    path: Assets/Scenes/Persistent Scene.unity
+    guid: 625f9fb0566cfd4459bb46eacab88e6f
   m_configObjects: {}

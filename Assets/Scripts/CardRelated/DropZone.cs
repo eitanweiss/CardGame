@@ -82,8 +82,8 @@ public class DropZone : MonoBehaviour
         handCards.Add(card);
         if (transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")
         {
-           transform.parent.GetComponent<ManaManager>().ChangeMana(card, true);
-           GameObject.Find("GameManager").GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
+           transform.parent.GetComponent<Mana>().ChangeMana(card, true);
+           MatchManager.Instance.GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;//make it independant of previous values
 
@@ -102,9 +102,9 @@ public class DropZone : MonoBehaviour
         ///might want to find a cleaner solution than adding the second condition here
         ///it is a little ugly
         if ((transform.name == "PlayerPlayArea" || transform.name == "OpponentPlayArea")&&
-            GameObject.Find("TurnManager").GetComponent<TurnManager>().GetPhase() != TurnManager.Phase.Calculation)
+            TurnManager.Instance.GetComponent<TurnManager>().GetPhase() != TurnManager.Phase.Calculation)
         {
-            transform.parent.GetComponent<ManaManager>().ChangeMana(card,false);
+            transform.parent.GetComponent<Mana>().ChangeMana(card,false);
         }
         availablePlayerHandCardSlots = maxslots - handCards.Count;
     }

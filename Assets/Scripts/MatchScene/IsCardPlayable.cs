@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //class is in charge of checking which cards can be played in each phase.
-//IMPORTANT: this does not do mana calculations, but rather the ManaManager does that.
+//IMPORTANT: this does not do mana calculations, but rather the Mana does that.
 //need to make sure they do not overturn each other
 public class IsCardPlayable : MonoBehaviour
 {    
@@ -36,7 +36,7 @@ public class IsCardPlayable : MonoBehaviour
         else if (turnManager.GetPhase() == TurnManager.Phase.PlayCard)
         {
 
-            int mana = hand.GetComponentInParent<ManaManager>().GetMana();
+            int mana = hand.GetComponentInParent<Mana>().GetMana();
             //Debug.Log(mana);
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
@@ -101,7 +101,7 @@ public class IsCardPlayable : MonoBehaviour
         else if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayCard)
         {
 
-            int mana = oppHand.GetComponentInParent<ManaManager>().GetMana();
+            int mana = oppHand.GetComponentInParent<Mana>().GetMana();
             //Debug.Log(mana);
             foreach (CardObject card in oppHand.GetComponent<DropZone>().GetList())
             {

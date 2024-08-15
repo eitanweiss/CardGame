@@ -1,28 +1,52 @@
 {
     "list": [
         {
-            "id": 66,
-            "cardName": "Cure",
+            "id": 49,
+            "cardName": "Staff Attack",
             "cardDescription": "",
             "abilityValues": [
-                56,
-                2,
-                8
+                10,
+                2
             ],
             "abilities": [
                 {
-                    "instanceID": 22554
+                    "instanceID": 22562
                 },
                 {
-                    "instanceID": 22630
-                },
-                {
-                    "instanceID": 22766
+                    "instanceID": 23052
                 }
             ],
-            "rarity": 2,
-            "race": 0,
-            "value": 2,
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
+            "type": 0,
+            "isBuffCard": false,
+            "spritePath": "",
+            "origin": 0
+        },
+        {
+            "id": 6,
+            "cardName": "Brain Strain",
+            "cardDescription": "",
+            "abilityValues": [
+                30,
+                3,
+                2
+            ],
+            "abilities": [
+                {
+                    "instanceID": 22562
+                },
+                {
+                    "instanceID": 22638
+                },
+                {
+                    "instanceID": 22688
+                }
+            ],
+            "rarity": 0,
+            "race": 4,
+            "value": 1,
             "type": 0,
             "isBuffCard": false,
             "spritePath": "",

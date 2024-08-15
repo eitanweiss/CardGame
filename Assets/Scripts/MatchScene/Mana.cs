@@ -10,7 +10,7 @@ using UnityEngine.UI;
  * 3. After playing a card mana goes down by that card's cost
  * 4. At calculation, if something affects mana, next round starts with different amount.
  */
-public class ManaManager : MonoBehaviour
+public class Mana : MonoBehaviour
 {
     public Image playerMana;
     public float baseMana = 50f;//this is a patch for now, need to change it to get info from player

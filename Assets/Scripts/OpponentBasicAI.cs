@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class OpponentBasicAI : MonoBehaviour
 {
-    public TurnManager turnManager;
     public CardDB randomCardDB;
     public Hand hand;
 
@@ -18,7 +17,7 @@ public class OpponentBasicAI : MonoBehaviour
     public void Play()
     {
         //check why draggable becomes active again when moving between zones, patched it with the disable every phase
-        if (turnManager.GetPhase() == TurnManager.Phase.OpponentDraw)
+        if (TurnManager.Instance.GetPhase() == TurnManager.Phase.OpponentDraw)
         {
             while (hand.GetComponent<DropZone>().ReachedMaxCards()==false &&hand.drawCount>0)
             {
@@ -29,7 +28,7 @@ public class OpponentBasicAI : MonoBehaviour
             hand.GetComponent<DropZone>().DisableDrag();
             hand.GetComponent<DropZone>().TurnFaceDown();
         }
-        if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
+        if (TurnManager.Instance.GetPhase() == TurnManager.Phase.OpponentPlayBuff)
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
@@ -45,7 +44,7 @@ public class OpponentBasicAI : MonoBehaviour
                 }
             }
         }
-        if (turnManager.GetPhase() == TurnManager.Phase.OpponentPlayCard)
+        if (TurnManager.Instance.GetPhase() == TurnManager.Phase.OpponentPlayCard)
         {
             List<CardObject> list = new List<CardObject>();
             List<CardObject> cardsToRemove = new List<CardObject>();
@@ -59,7 +58,7 @@ public class OpponentBasicAI : MonoBehaviour
                     transform.GetChild(1).GetComponent<DropZone>().DisableDrag();
                     transform.GetChild(1).GetComponent<DropZone>().TurnFaceUp();
                     card.transform.SetParent(transform.GetChild(1).transform);
-                    GameObject.Find("GameManager").GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
+                    MatchManager.Instance.GetComponent<IsCardPlayable>().UpdateIfCardCanBePlayed();
                 }
             }
             foreach (CardObject card in cardsToRemove) 
@@ -67,7 +66,7 @@ public class OpponentBasicAI : MonoBehaviour
                 hand.GetComponent<DropZone>().RemoveCard(card);
             }
         }
-        if (turnManager.GetPhase() == TurnManager.Phase.OpponentDiscard)
+        if (TurnManager.Instance.GetPhase() == TurnManager.Phase.OpponentDiscard)
         {
             foreach (CardObject card in hand.GetComponent<DropZone>().GetList())
             {
