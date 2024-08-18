@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum SceneIndexes
 {
-    STARTMENU=0,
-    MATCH=1,
-    LOADING=2
+    LOADING = 0,
+    STARTMENU = 1,
+    MATCH = 2
 }

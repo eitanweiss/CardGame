@@ -21,32 +21,34 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         SceneManager.LoadSceneAsync((int)SceneIndexes.STARTMENU,LoadSceneMode.Additive);
+        loadingScreen.SetActive(false);
     }
 
 
      
     public GameObject loadingScreen;
-    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     public ProgressBar bar;
+    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     float totalSceneProgress;
     float totalSpawnProgress;
     public void LoadStartMenu()
     {
-        //loadingScreen.SetActive(true);
+        loadingScreen.SetActive(true);
         if(SceneManager.GetSceneByBuildIndex((int)SceneIndexes.MATCH).isLoaded)
         {
             SceneManager.UnloadSceneAsync((int)SceneIndexes.MATCH);
         }
         SceneManager.LoadSceneAsync((int)SceneIndexes.STARTMENU, LoadSceneMode.Additive);
+        loadingScreen.SetActive(false);
     }
 
 
     public void LoadMatch()
     {
-        //loadingScreen.SetActive(true);
+        loadingScreen.SetActive(true);
         SceneManager.UnloadSceneAsync((int)SceneIndexes.STARTMENU);
         SceneManager.LoadSceneAsync((int)SceneIndexes.MATCH,LoadSceneMode.Additive);
-
+        loadingScreen.SetActive(false);
     }
 
     public IEnumerator GetSceneProgress()
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GetTotalProgress()
     {
-        float totalProgress = 0f;
+        //float totalProgress = 0f;
         //while(false)//spawning not finished
         //{
         //    //if(true)//not started yet
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
         //    totalProgress = Mathf.Round((totalSpawnProgress + totalSceneProgress) / 2);
         //}
         loadingScreen.SetActive(false);
-        bar.value = totalProgress;
+        //bar.value = totalProgress;
         yield return null;
     }
 
