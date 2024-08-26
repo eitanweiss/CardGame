@@ -50,8 +50,8 @@ public class ProgressBar : MonoBehaviour
     {
         float currentOffset = current - minimum;
         float maximumOffset = maximum - minimum;
-        float fillamount  = currentOffset / maximumOffset;
-        mask.fillAmount = fillamount;
+        float fillAmount  = currentOffset / maximumOffset;
+        mask.fillAmount = fillAmount;
 
         fill.color = color; 
     }
