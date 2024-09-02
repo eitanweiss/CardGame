@@ -24,7 +24,7 @@ public class Hand : MonoBehaviour
     /// <param name="change">number of cards that can be drawn next round</param>
     public void ChangeDrawCount(int change)
     {
-        drawCount +=change;
+        drawCount = change;
     }
 
 

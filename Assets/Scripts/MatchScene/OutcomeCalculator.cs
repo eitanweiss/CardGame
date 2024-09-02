@@ -38,37 +38,37 @@ public class OutcomeCalculator : MonoBehaviour
     int [] heal = new int[2];
 
     int[] selfDamage = new int[2];
-    //private int decreaseMana;
-    //private int decreaseMaxHP;
-    //private int decreasehandSize;
-    //private int decreasePlayArea;
-    //private int decreaseBuffArea;
-    //private int decreaseDiscard;
-    //private int decreaseDraw;
+    private int [] changeMana = new int[2];
+    private int [] changeMaxHP = new int[2];
+    private int [] changeHandSize = new int [2];
+    private int [] changePlayArea = new int[2];
+    private int [] changeBuffArea = new int [2];
+    private int [] changeDiscard = new int[2];
+    private int [] changeDraw = new int [2];
     
     public GameObject cardPrefab;
     
     [SerializeField] GameObject calcView;
 
     /// <summary>
-    /// basic start method to set all values to zero.
+    /// basic reset method to set all values to zero.
     /// </summary>
     public void ResetValuesToZero()
     {
         for (int i = 0; i < 2; i++)
         {
-            damage[i] = 0;
-            bonusDamage[i] = 0;
-            block[i] = 0;
-            heal[i] = 0;
-            selfDamage[i] = 0;
-            //decreaseMana = 0;
-            //decreaseMaxHP = 0;
-            //decreasehandSize = 0;
-            //decreasePlayArea = 0;
-            //decreaseBuffArea = 0;
-            //decreaseDiscard = 0;
-            //decreaseDraw = 0;
+            damage [i] = 0;
+            bonusDamage [i] = 0;
+            block [i] = 0;
+            heal [i] = 0;
+            selfDamage [i] = 0;
+            changeMana [i] = 0;
+            changeMaxHP [i] = 0;
+            changeHandSize [i] = 0;
+            changePlayArea [i] = 0;
+            changeBuffArea [i] = 0;
+            changeDiscard [i] = 0;
+            changeDraw [i] = 0;
         }
     }
 
@@ -80,7 +80,7 @@ public class OutcomeCalculator : MonoBehaviour
     /// </summary>
     /// <param name="list">list of cards to go through</param>
     /// <param name="player">player these cards belong to</param>
-    public void CalculateByArea(List<CardObject> list, int player)
+    public void CalculateEffectsByArea(List<CardObject> list, int player)
     {
          foreach(CardObject card in list)
         {
@@ -141,11 +141,24 @@ public class OutcomeCalculator : MonoBehaviour
                         
                         
                         //non-damage related effects
-                    case "Increase Discard Area":
+                    case "Increase Player Discard Area":
+                        //need to change discard slots for correct player only
+                        changeDiscard[player] += card.card.abilityValues[i];
                         break;
-                    case "Decrease Discard Area":
+                    case "Decrease Player Discard Area":
+                        //need to change discard slots for correct player only
+                        changeDiscard[player] -= card.card.abilityValues[i];
                         break;
+                    case "Increase Opponent Discard Area":
+                        changeDiscard[1 - player] += card.card.abilityValues[i];
+                        break;
+
+                    case "Decrease Opponent Discard Area":
+                        changeDiscard[1 - player] -= card.card.abilityValues[i];
+                        break;
+
                     case "Increase Player Draw":
+
                         break;
                     case "Decrease Player Draw":
                         break;
@@ -186,7 +199,7 @@ public class OutcomeCalculator : MonoBehaviour
     /// </summary>
     /// <param name="gameObject"> object the cards belong to</param>
     /// <param name="list"> will contain all the cards to be added upon end of method</param>
-    private void AddCards(GameObject gameObject, List<CardObject> list)
+    private void CombineCardsToList(GameObject gameObject, List<CardObject> list)
     {
         Component[] dropzones = gameObject.GetComponentsInChildren<DropZone>();
         foreach (DropZone dropzone in dropzones)
@@ -195,7 +208,7 @@ public class OutcomeCalculator : MonoBehaviour
             //need to find a way to make this not HardCoded
             if(dropzone.transform.name == "OpponentHand" || dropzone.transform.name =="Hand")
             {
-                Debug.Log("in hand");
+                //Debug.Log("in hand");
                 continue;
             }
             foreach(CardObject card in dropzone.GetList())
@@ -225,22 +238,26 @@ public class OutcomeCalculator : MonoBehaviour
         ResetValuesToZero();
 
         //add cards to lists.
+        CombineCardsToList(opponentObject,opponentCards);
+        CombineCardsToList(playerObject,playerCards);
+        
+        //pan out cards in 1st player - ATM not working
+        //StartCoroutine(Timer(playerCards) );
 
-        AddCards(opponentObject,opponentCards);
-        AddCards(playerObject,playerCards);
-        //pan out cards in 1st player
-        StartCoroutine(Timer(playerCards) );
         //pan out cards in 2nd player
-
+        //StartCoroutine(Timer(opponentCards) );
+        
         //calculate the rest of the effects(those not directly related to hp and attack)
 
-        ///the order is what i want: calculate all the cards, then reduce the life in the correct amount
+        ///the order of what i want: calculate all the cards, then reduce the life in the correct amount
 
         //calculate dmg and related effects
-        CalculateByArea(playerCards,PLAYER);
-        CalculateByArea(opponentCards,OPPONENT);
+        CalculateEffectsByArea(playerCards,PLAYER);
+        CalculateEffectsByArea(opponentCards,OPPONENT);
 
+        //turns off the CalcView
         StartCoroutine(Calc());
+
         ReduceLife();
         phaseText.GetComponent<FadeAway>().ResetFadeAway();
         ClearCards();
@@ -249,9 +266,7 @@ public class OutcomeCalculator : MonoBehaviour
     }
 
     /// <summary>
-    /// adds cards to the collection of played cards.
-    /// WARNING: buff cards with no duration
-    /// ERROR: ATM adds them each round they are in the play field - this is wrong.
+    /// adds cards to the player's collection of played cards.
     /// </summary>
     /// <param name="cardObject">card to be added to the collection</param>
     void AddToCollection(CardObject cardObject)
@@ -264,52 +279,13 @@ public class OutcomeCalculator : MonoBehaviour
             CardScriptableObject newCard = cardObject.card.DeepCopy();
             collection.allCards.Add(newCard); // Consider if needed
             collection.runTimeCards.Add(new SerializableCard(newCard));
-            collection.SaveRuntimeChanges(); // Consider when to save since this should be done only once per match
+            collection.SaveRuntimeChanges(); // Creates a lot of overhead - consider when to save since this should be done only once per match
         }
-
-
-
-
-    //if(HasDuration(cardObject))
-    //{
-    //    Image image = cardObject.transform.GetChild(2).GetComponent<Image>();
-    //    string[] parts = image.GetComponentInChildren<TMP_Text>().text.Split('/');
-    //    Debug.Log(parts[0] + " and " + parts[1]);
-    //    if (parts[0] != parts[1])
-    //    {
-    //        return;
-    //    }
-    //}
-    //if (!cardObject.card.isBuffCard)
-    //{
-
-    //}
-    //else
-    //{
-    //    //buff cards with no duration should be counted only once and not every time they appear
-    //}
 }
 
     /// <summary>
-    /// check if card has a duration
-    /// </summary>
-    /// <param name="cardObject"> card to check</param>
-    /// <returns></returns>
-    bool HasDuration(CardObject cardObject)
-    {
-        for (int i = 0; i < cardObject.card.abilities.Count; i++)
-        {
-            if (cardObject.card.abilities[i].name =="Duration")
-            {
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-    /// <summary>
     /// effects that take place in the new round.
+    /// currently resets mana and drawcount.
     /// </summary>
     void StartNewRound()
     {
@@ -361,16 +337,20 @@ public class OutcomeCalculator : MonoBehaviour
         
         //calculation for damage to opp
         bonusDamage[PLAYER] += player.GetAttack();
+        block[OPPONENT] += opponent.GetDefense();
+        heal[OPPONENT] += opponent.GetRegeneration();
         int damagedonetoOpponent = CalculateDamage(OPPONENT);
 
         //calculation for damage to player
         bonusDamage[OPPONENT] += opponent.GetAttack();
+        block[PLAYER] += player.GetDefense();
+        heal[PLAYER] += player.GetRegeneration();
         int damagedonetoplayer = CalculateDamage(PLAYER);
 
         PrintToLog(opponent, player);
         //get curr life
         int playerCurrLife = playerObject.GetComponent<Character>().currentHealthPoints;
-        Debug.Log("players life was ------------------- = " + playerCurrLife);
+        //Debug.Log("players life was ------------------- = " + playerCurrLife);
         int opponentCurrLife = opponentObject.GetComponent<Character>().currentHealthPoints;
 
 
@@ -380,8 +360,13 @@ public class OutcomeCalculator : MonoBehaviour
             playerCurrLife += heal[PLAYER] + player.GetRegeneration();
         }
         playerLife.fillAmount = Mathf.Clamp((float)playerCurrLife/ (float)playerObject.GetComponent<Character>().maxHealthPoints,0f,1f);
+        //if healing increases to over the maximum amount
+        if (playerCurrLife > playerObject.GetComponent<Character>().maxHealthPoints)
+        {
+            playerCurrLife = playerObject.GetComponent<Character>().maxHealthPoints;
+        }
         playerObject.GetComponent<Character>().currentHealthPoints = playerCurrLife;
-        Debug.Log("players life is ------------------- = " + playerCurrLife);
+        //Debug.Log("players life is ------------------- = " + playerCurrLife);
 
         opponentCurrLife -= damagedonetoOpponent;
         if (opponentCurrLife > 0)
@@ -389,34 +374,21 @@ public class OutcomeCalculator : MonoBehaviour
             opponentCurrLife += heal[OPPONENT] + opponent.GetRegeneration();
         }
         oppLife.fillAmount = Mathf.Clamp((float)opponentCurrLife / (float)opponentObject.GetComponent<Character>().maxHealthPoints, 0f, 1f);
+        //if healing increases to over the maximum amount
+        if (opponentCurrLife> opponentObject.GetComponent<Character>().maxHealthPoints)
+        {
+            opponentCurrLife = opponentObject.GetComponent<Character>().maxHealthPoints;
+        }
         opponentObject.GetComponent<Character>().currentHealthPoints = opponentCurrLife;
 
-
-
-        //update life in character
-        //playerObject.GetComponent<Character>().currentHealthPoints = playerCurrLife - damagedonetoplayer + (heal[PLAYER] + player.GetRegeneration());
-        //opponentObject.GetComponent<Character>().currentHealthPoints = opponentCurrLife -damagedonetoOpponent + (heal[OPPONENT] +opponent.GetRegeneration());
-        
-
-
-
-
-        //float playerFillAmount = ((float)playerCurrLife - (float)damagedonetoplayer + (float)(heal[PLAYER] + player.GetRegeneration())) / (float)playerObject.GetComponent<Character>().maxHealthPoints;
-        //playerLife.fillAmount = Mathf.Clamp(playerFillAmount, 0f, 1f);
-
-        //float oppFillAmount = ((float)opponentCurrLife - (float)damagedonetoOpponent + (float)(heal[OPPONENT] + player.GetRegeneration())) / (float)opponentObject.GetComponent<Character>().maxHealthPoints;
-        //oppLife.fillAmount = Mathf.Clamp(oppFillAmount, 0f, 1f);
-
-
         EndCondition(playerCurrLife, opponentCurrLife);
-
     }
 
     /// <summary>
-    /// calculate the final damage done after all cards and effects have been added. damage is: self damage of player, damage of other player
+    /// calculate the final damage done after all cards and effects have been added.
     /// </summary>
-    /// <param name="player"></param>
-    /// <returns></returns>
+    /// <param name="player">player to whom the damage is done</param>
+    /// <returns>total damage done to player this round</returns>
     int CalculateDamage(int player)
     {
         if (damage[1-player]<0)
@@ -449,19 +421,19 @@ public class OutcomeCalculator : MonoBehaviour
     void EndCondition(float playerFillAmount,float oppFillAmount)
     {
         //if both<=0
-        if (playerFillAmount < 0f && oppFillAmount < 0f)
+        if (playerFillAmount <= 0f && oppFillAmount <= 0f)
         {
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("Both died");
         }
         //if opplife<=0
-        if (oppFillAmount < 0f)
+        if (oppFillAmount <= 0f)
         {
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you won!");
         }
         //if playerlife<=0
-        if (playerFillAmount < 0f)
+        if (playerFillAmount <= 0f)
         {
             GameObject.Find("EndMatchScreen").transform.GetChild(0).gameObject.SetActive(true);
             Debug.Log("you lost!");
@@ -470,13 +442,14 @@ public class OutcomeCalculator : MonoBehaviour
 
     /// <summary>
     /// prints different values for calculation
+    /// should have no side-effects
     /// </summary>
     /// <param name="opponent">opponent character </param>
     /// <param name="player">player character</param>
     void PrintToLog(Character opponent, Character player)
     {
-        int damagedonetoplayer = damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER] + selfDamage[PLAYER];
-        int damagedonetoOpponent = damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT] + selfDamage[OPPONENT];
+        int damagedonetoplayer = damage[OPPONENT] + bonusDamage[OPPONENT] - block[PLAYER] - player.GetDefense() + selfDamage[PLAYER];
+        int damagedonetoOpponent = damage[PLAYER] + bonusDamage[PLAYER] - block[OPPONENT] - opponent.GetDefense() + selfDamage[OPPONENT];
 
 
         Debug.Log("opp block is " + (block[OPPONENT] + opponent.GetDefense()));
@@ -485,16 +458,14 @@ public class OutcomeCalculator : MonoBehaviour
         Debug.Log("opp self damage by " + selfDamage[OPPONENT]);
         Debug.Log("opp loses life by " + damagedonetoOpponent);
         Debug.Log("opp heals for " + (heal[OPPONENT] + opponent.GetRegeneration()));
-
-
         Debug.Log("that's it for opp");
+
         Debug.Log("player block is " + (block[PLAYER] + player.GetDefense()));
         Debug.Log("opp dmg is" + damage[OPPONENT]);
         Debug.Log("opp bonus dmg is" + bonusDamage[OPPONENT]);
         Debug.Log("player self damage by " + selfDamage[PLAYER]);
         Debug.Log("player loses life by " + damagedonetoplayer);
         Debug.Log("player heals for " + (heal[PLAYER] + player.GetRegeneration()));
-
         Debug.Log("that's it for player");
     }
 
