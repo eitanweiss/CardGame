@@ -24,6 +24,16 @@ public static class TODO : object
     /// 7.  Options menu:
     /// 8.  adjust speed in options menu
     /// 9. 
+    /// 10. Start creating the Tutorial
+    /// 11. Add generation for story mode - daily quest
+    /// 13. Add buttons and menus to different play types 
+    /// 14. Learn about multiplayer and how to implement it in a game
+    /// 15. Implement it in the game
+    /// 16.
+    /// 12. Optional: add an ability to continue past dailies that have not been finished 
+    /// 17. Optional: add single player/multiplayer tabs and/or entries. reorganize the parts
+    /// 18.
+    /// 19.
     /// 20. randomize opponent faction when generating opponent.
     /// 21. later on write more intrecate AI options for computer opponent
     /// 22. add combonations of cards to effects and calculations

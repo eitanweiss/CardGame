@@ -10,10 +10,10 @@
             ],
             "abilities": [
                 {
-                    "instanceID": 22562
+                    "instanceID": 0
                 },
                 {
-                    "instanceID": 23052
+                    "instanceID": 0
                 }
             ],
             "rarity": 0,
@@ -35,13 +35,13 @@
             ],
             "abilities": [
                 {
-                    "instanceID": 22562
+                    "instanceID": 0
                 },
                 {
-                    "instanceID": 22638
+                    "instanceID": 0
                 },
                 {
-                    "instanceID": 22688
+                    "instanceID": 0
                 }
             ],
             "rarity": 0,

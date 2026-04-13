@@ -46,9 +46,55 @@ public class Character : MonoBehaviour
         baseStats(type);
     }
 
+    //public Character(Character other)
+    //{
+    //    this.race = other.race;
+    //    this.type = other.type;
+    //    this.level = other.level;
+    //    this.experience = other.experience;
+    //    this.experienceToLevel = other.experienceToLevel;
+    //    this.skillPoints = other.skillPoints;
+    //    this.attack = other.attack;
+    //    this.costToIncreaseAttack = other.costToIncreaseAttack;
+    //    this.defense = other.defense;
+    //    this.costToIncreaseDefense = other.costToIncreaseDefense;
+    //    this.regeneration = other.regeneration;
+    //    this.costToIncreaseRegeneration = other.costToIncreaseRegeneration;
+    //    this.handSlots = other.handSlots;
+    //    this.currentHandslots = other.currentHandslots;
+    //    this.buffSlots = other.buffSlots;
+    //    this.currentBuffslots = other.currentBuffslots;
+    //    this.playSlots = other.playSlots;
+    //    this.currentPlayslots = other.currentPlayslots;
+    //    this.drawCount = other.drawCount;
+    //    this.currentDrawCount = other.currentDrawCount;
+    //    this.discardSlots = other.discardSlots;
+    //    this.currentDiscardSlots = other.currentDiscardSlots;
+    //    this.maxDeckSize = other.maxDeckSize;
+    //    this.maxHealthPoints = other.maxHealthPoints;
+    //    this.costToIncreaseMaxHP = other.costToIncreaseMaxHP;
+    //    this.currentHealthPoints = other.currentHealthPoints;
+    //    this.maxMana = other.maxMana;
+    //    this.costToIncreaseMaxMana = other.costToIncreaseMaxMana;
+    //    this.currentMana = other.currentMana;
+    //}
+
     void Start()
     {
-        if(transform.name!= "PlayerPortrait")
+        if(transform.name =="OpponentObject")
+        {
+            ////randomize opponent race and type
+            //System.Random random = new System.Random();
+            //var v = Race.GetValues(typeof(Race));
+            //Race race = (Race)v.GetValue(random.Next(v.Length));
+            //var t = Type.GetValues(typeof(Type));
+            //Type type = (Type)t.GetValue(random.Next(t.Length));
+            //NewCharacter();
+            //baseStats(race);
+            //baseStats(type);
+
+        }
+        if (transform.name== "PlayerObject" || transform.name == "OpponentObject")
         {
             StartDropZones();
             currentHealthPoints = maxHealthPoints;

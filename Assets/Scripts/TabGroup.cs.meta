@@ -3,7 +3,10 @@ guid: 86f360bc542cc014db7a6e600bf6e22f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hoverTab: {fileID: 21300000, guid: 85de6728b9840c94ea7efd943d0d5ef8, type: 3}
+  - activeTab: {fileID: 21300000, guid: 17eeae81898d1174db7e3518828d54ec, type: 3}
+  - idleTab: {fileID: 21300000, guid: 7aed67f65ecf58b4d8d7979a9bb724da, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
